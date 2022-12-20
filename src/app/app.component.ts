@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import champions from '../assets/champions.json';
 
 @Component({

@@ -7,7 +7,7 @@
         <div style="display:flex;margin-top:60px;justify-content: center;">
             <div *ngFor="let champ of randomChamps;let i=index" style="height:120px;">
                 <div *ngIf="i<nbFound">
-                    <img src="../assets/imgs/{{champ.nom}}.png" style="width:120px;height:120px;" />
+                    <img src="./assets/imgs/{{champ.nom}}.png" style="width:120px;height:120px;" />
                 </div>
             </div>
 
@@ -25,7 +25,7 @@
     </div>
 </div>
 <div style="height:100%;width:100%;position:absolute;top:0px;left:0px;" class="bg" *ngIf="!start&&!pause">
-    <img src="../assets/fond.jpg" style="position:absolute">
+    <img src="./assets/fond.jpg" style="position:absolute">
     <div style="display:flex;justify-content: center;margin-top:10%;z-index:1;position: relative;">
         <button style="font-size:50px;padding:20px 40px;box-shadow: 20px 20px 15px black;"
             (click)="clickStart()">Jouer</button>

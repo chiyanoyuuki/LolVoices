@@ -1,0 +1,38 @@
+<div>
+    <div style="width:fit-content;margin:auto;position:relative;margin-top:10%;">
+        <div style="display:flex;justify-content: space-evenly;position: absolute;width:100%;left:0px;top:-50px;">
+            <p style="text-align: center;margin-right:10%;">Trouvés : {{nbFound}}/10</p>
+            <p style="text-align: center;margin-left:10%;">Temps : {{timer | number: '1.1-1'}}</p>
+        </div>
+        <div style="display:flex;margin-top:60px;justify-content: center;">
+            <div *ngFor="let champ of randomChamps;let i=index" style="height:120px;">
+                <div *ngIf="i<nbFound">
+                    <img src="../assets/imgs/{{champ.nom}}.png" style="width:120px;height:120px;" />
+                </div>
+            </div>
+
+            <div class="toFind" *ngIf="nbFound<10">
+                <p>?</p>
+            </div>
+        </div>
+        <div style="display:flex;justify-content: center;margin-top:30px;">
+            <button (click)="play()" [ngClass]="{disabled:sound&&!sound.paused}"
+                [disabled]="sound&&!sound.paused">🔊</button>
+            <input id="typeBar" type="text" [(ngModel)]="typing" style="margin-right:20px;margin-left:20px;"
+                (keydown.enter)="validate()" focus="true" autofocus />
+            <button (click)="validate()">Ok</button>
+        </div>
+    </div>
+</div>
+<div style="height:100%;width:100%;position:absolute;top:0px;left:0px;" class="bg" *ngIf="!start&&!pause">
+    <img src="../assets/fond.jpg" style="position:absolute">
+    <div style="display:flex;justify-content: center;margin-top:10%;z-index:1;position: relative;">
+        <button style="font-size:50px;padding:20px 40px;box-shadow: 20px 20px 15px black;"
+            (click)="clickStart()">Jouer</button>
+    </div>
+</div>
+<div *ngIf="pause" style="position:absolute;top:0px;left:0px;z-index:1;background-color:black;width:100%">
+    <p style="margin: auto;width: fit-content;margin-top: 10%;">Début dans :</p>
+    <p style="margin: auto;width: fit-content;font-size: 200px;">{{timer2 | number:
+        '1.1-1'}}</p>
+</div>

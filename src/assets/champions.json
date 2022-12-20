@@ -1,0 +1,524 @@
+{
+    "data": [
+        {
+            "nom": "Aatrox"
+        },
+        {
+            "nom": "Ahri"
+        },
+        {
+            "nom": "Akali"
+        },
+        {
+            "nom": "Akshan"
+        },
+        {
+            "nom": "Alistar"
+        },
+        {
+            "nom": "Amumu"
+        },
+        {
+            "nom": "Anivia"
+        },
+        {
+            "nom": "Annie"
+        },
+        {
+            "nom": "Aphelios"
+        },
+        {
+            "nom": "Ashe"
+        },
+        {
+            "nom": "Aurelion_Sol","other":"Aurelion"
+        },
+        {
+            "nom": "Azir"
+        },
+        {
+            "nom": "Bard"
+        },
+        {
+            "nom": "Bel'Veth"
+        },
+        {
+            "nom": "Blitzcrank",
+            "other":"Blitz"
+        },
+        {
+            "nom": "Brand"
+        },
+        {
+            "nom": "Braum"
+        },
+        {
+            "nom": "Caitlyn",
+            "other":"Cait"
+        },
+        {
+            "nom": "Camille"
+        },
+        {
+            "nom": "Cassiopeia",
+            "other":"Cassio"
+        },
+        {
+            "nom": "Cho'Gath"
+        },
+        {
+            "nom": "Corki"
+        },
+        {
+            "nom": "Darius"
+        },
+        {
+            "nom": "Diana"
+        },
+        {
+            "nom": "Dr._Mundo",
+            "other":"Mundo"
+        },
+        {
+            "nom": "Draven"
+        },
+        {
+            "nom": "Ekko"
+        },
+        {
+            "nom": "Elise"
+        },
+        {
+            "nom": "Evelynn",
+            "other":"Eve"
+        },
+        {
+            "nom": "Ezreal",
+            "other":"Ez"
+        },
+        {
+            "nom": "Fiddlesticks",
+            "other":"Fiddle"
+        },
+        {
+            "nom": "Fiora"
+        },
+        {
+            "nom": "Fizz"
+        },
+        {
+            "nom": "Galio"
+        },
+        {
+            "nom": "Gangplank",
+            "other":"Gp"
+        },
+        {
+            "nom": "Garen"
+        },
+        {
+            "nom": "Gnar"
+        },
+        {
+            "nom": "Gragas"
+        },
+        {
+            "nom": "Graves"
+        },
+        {
+            "nom": "Gwen"
+        },
+        {
+            "nom": "Hecarim",
+            "other":"Heca"
+        },
+        {
+            "nom": "Heimerdinger",
+            "other":"Heimer"
+        },
+        {
+            "nom": "Illaoi"
+        },
+        {
+            "nom": "Irelia"
+        },
+        {
+            "nom": "Ivern"
+        },
+        {
+            "nom": "Janna"
+        },
+        {
+            "nom": "Jarvan_IV",
+            "other":"Jarvan"
+        },
+        {
+            "nom": "Jax"
+        },
+        {
+            "nom": "Jayce"
+        },
+        {
+            "nom": "Jhin"
+        },
+        {
+            "nom": "Jinx"
+        },
+        {
+            "nom": "K'Sante"
+        },
+        {
+            "nom": "Kai'Sa"
+        },
+        {
+            "nom": "Kalista"
+        },
+        {
+            "nom": "Karma"
+        },
+        {
+            "nom": "Karthus"
+        },
+        {
+            "nom": "Kassadin",
+            "other":"Kassa"
+        },
+        {
+            "nom": "Katarina",
+            "other":"Kata"
+        },
+        {
+            "nom": "Kayle"
+        },
+        {
+            "nom": "Kayn"
+        },
+        {
+            "nom": "Kennen"
+        },
+        {
+            "nom": "Kha'Zix"
+        },
+        {
+            "nom": "Kindred"
+        },
+        {
+            "nom": "Kled"
+        },
+        {
+            "nom": "Kog'Maw",
+            "other":"Kog"
+        },
+        {
+            "nom": "LeBlanc",
+            "other":"Lb"
+        },
+        {
+            "nom": "Lee_Sin",
+            "other":"Lee"
+        },
+        {
+            "nom": "Leona",
+            "other":"Leo"
+        },
+        {
+            "nom": "Lillia"
+        },
+        {
+            "nom": "Lissandra",
+            "other":"Liss"
+        },
+        {
+            "nom": "Lucian"
+        },
+        {
+            "nom": "Lulu"
+        },
+        {
+            "nom": "Lux"
+        },
+        {
+            "nom": "Malphite",
+            "other":"Malph"
+        },
+        {
+            "nom": "Malzahar",
+            "other":"Malza"
+        },
+        {
+            "nom": "Maokai",
+            "other":"Mao"
+        },
+        {
+            "nom": "Master_Yi",
+            "other":"Yi"
+        },
+        {
+            "nom": "Miss_Fortune",
+            "other":"Mf"
+        },
+        {
+            "nom": "Mordekaiser",
+            "other":"Morde"
+        },
+        {
+            "nom": "Morgana",
+            "other":"Morg"
+        },
+        {
+            "nom": "Nami"
+        },
+        {
+            "nom": "Nasus"
+        },
+        {
+            "nom": "Nautilus",
+            "other":"Nauti"
+        },
+        {
+            "nom": "Neeko"
+        },
+        {
+            "nom": "Nidalee",
+            "other":"Nida"
+        },
+        {
+            "nom": "Nilah"
+        },
+        {
+            "nom": "Nocturne",
+            "other":"Noc"
+        },
+        {
+            "nom": "Nunu"
+        },
+        {
+            "nom": "Olaf"
+        },
+        {
+            "nom": "Orianna",
+            "other":"Ori"
+        },
+        {
+            "nom": "Ornn"
+        },
+        {
+            "nom": "Pantheon",
+            "other":"Panth"
+        },
+        {
+            "nom": "Poppy"
+        },
+        {
+            "nom": "Pyke"
+        },
+        {
+            "nom": "Qiyana"
+        },
+        {
+            "nom": "Quinn"
+        },
+        {
+            "nom": "Rakan"
+        },
+        {
+            "nom": "Rammus"
+        },
+        {
+            "nom": "Rek'Sai"
+        },
+        {
+            "nom": "Rell"
+        },
+        {
+            "nom": "Renata_Glasc",
+            "other":"Renata"
+        },
+        {
+            "nom": "Renekton",
+            "other":"Renek"
+        },
+        {
+            "nom": "Rengar"
+        },
+        {
+            "nom": "Riven"
+        },
+        {
+            "nom": "Rumble"
+        },
+        {
+            "nom": "Ryze"
+        },
+        {
+            "nom": "Samira"
+        },
+        {
+            "nom": "Sejuani",
+            "other":"Sej"
+        },
+        {
+            "nom": "Senna"
+        },
+        {
+            "nom": "Seraphine"
+        },
+        {
+            "nom": "Sett"
+        },
+        {
+            "nom": "Shaco"
+        },
+        {
+            "nom": "Shen"
+        },
+        {
+            "nom": "Shyvana",
+            "other":"Shyv"
+        },
+        {
+            "nom": "Singed"
+        },
+        {
+            "nom": "Sion"
+        },
+        {
+            "nom": "Sivir"
+        },
+        {
+            "nom": "Skarner"
+        },
+        {
+            "nom": "Sona"
+        },
+        {
+            "nom": "Soraka","other":"Raka"
+        },
+        {
+            "nom": "Swain"
+        },
+        {
+            "nom": "Sylas"
+        },
+        {
+            "nom": "Syndra"
+        },
+        {
+            "nom": "Tahm_Kench","other":"Tahm"
+        },
+        {
+            "nom": "Taliyah"
+        },
+        {
+            "nom": "Talon"
+        },
+        {
+            "nom": "Taric"
+        },
+        {
+            "nom": "Teemo"
+        },
+        {
+            "nom": "Thresh"
+        },
+        {
+            "nom": "Tristana","other":"Trist"
+        },
+        {
+            "nom": "Trundle"
+        },
+        {
+            "nom": "Tryndamere","other":"Tryn"
+        },
+        {
+            "nom": "Twisted_Fate","other":"Tf"
+        },
+        {
+            "nom": "Twitch"
+        },
+        {
+            "nom": "Udyr"
+        },
+        {
+            "nom": "Urgot"
+        },
+        {
+            "nom": "Varus"
+        },
+        {
+            "nom": "Vayne"
+        },
+        {
+            "nom": "Veigar"
+        },
+        {
+            "nom": "Vel'Koz"
+        },
+        {
+            "nom": "Vex"
+        },
+        {
+            "nom": "Vi"
+        },
+        {
+            "nom": "Viego"
+        },
+        {
+            "nom": "Viktor"
+        },
+        {
+            "nom": "Vladimir","other":"Vlad"
+        },
+        {
+            "nom": "Volibear","other":"Voli"
+        },
+        {
+            "nom": "Warwick","other":"Ww"
+        },
+        {
+            "nom": "Wukong"
+        },
+        {
+            "nom": "Xayah"
+        },
+        {
+            "nom": "Xerath"
+        },
+        {
+            "nom": "Xin_Zhao","other":"Xin"
+        },
+        {
+            "nom": "Yasuo","other":"Yas"
+        },
+        {
+            "nom": "Yone"
+        },
+        {
+            "nom": "Yorick"
+        },
+        {
+            "nom": "Yuumi"
+        },
+        {
+            "nom": "Zac"
+        },
+        {
+            "nom": "Zed"
+        },
+        {
+            "nom": "Zeri"
+        },
+        {
+            "nom": "Ziggs"
+        },
+        {
+            "nom": "Zilean"
+        },
+        {
+            "nom": "Zoe"
+        },
+        {
+            "nom": "Zyra"
+        }
+    ]
+}

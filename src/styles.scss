@@ -1,0 +1,70 @@
+* {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.html {
+    height: 100%;
+}
+
+html {
+    background-color: black;
+}
+
+button {
+    background-color: #505050;
+    border: 2px solid #202020;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 80px;
+    font-weight: bold;
+}
+
+button:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+p {
+    color: #505050;
+    margin: auto;
+    font-weight: bold;
+    font-size: 40px;
+    white-space: nowrap;
+}
+
+input {
+    background-color: #505050;
+    border: 2px solid #202020;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.toFind {
+    width: 120px;
+    height: 120px;
+    background-color: #505050;
+    border: 5px solid #202020;
+}
+
+.toFind p {
+    color: #202020;
+    font-weight: bold;
+    font-size: 100px;
+    margin: auto;
+    width: fit-content;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.disabled:hover {
+    opacity: 0.5;
+    cursor: unset;
+}

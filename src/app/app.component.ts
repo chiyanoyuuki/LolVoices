@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import champions from '../assets/champions.json';
@@ -22,10 +22,13 @@ export class AppComponent implements OnInit {
   public pickMusic: any;
   public pause: boolean = false;
   public sound: any;
-  
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.getData();
+    this.setData();
+
     while (this.randomChamps.length < 10) {
       let rdm = Math.floor(Math.random() * this.champs.length);
       let champ = this.champs[rdm];
@@ -35,6 +38,18 @@ export class AppComponent implements OnInit {
     this.pickMusic = new Audio();
     this.pickMusic.loop = true;
     this.pickMusic.src = "./assets/pickMusic.mp3";
+  }
+
+  async setData() {
+    this.http.post<any>("http://www.chiya-no-yuuki.fr/pickscoreUpload?nbgame=1&pseudo=ASC%20Arma%20TV&temps=28.5", { headers:new HttpHeaders({'Access-Control-Allow-Origin': '*'}),title: 'Angular POST Request Example' }).subscribe(data => {
+        console.log("INSERT",data);
+    })
+  }
+
+  async getData() {
+    this.http.get<any>("http://www.chiya-no-yuuki.fr/pickscoreDownload",{headers:new HttpHeaders({'Access-Control-Allow-Origin': '*'})}).subscribe(data => {
+        console.log("GET",data);
+    })
   }
 
   @HostListener('window:keyup', ['$event'])

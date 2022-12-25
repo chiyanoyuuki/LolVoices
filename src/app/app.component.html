@@ -2,7 +2,8 @@
     <div style="width:fit-content;margin:auto;position:relative;margin-top:10%;">
         <div style="display:flex;justify-content: space-evenly;position: absolute;width:100%;left:0px;top:-50px;">
             <p style="text-align: center;margin-right:10%;">Trouvés : {{nbFound}}/10</p>
-            <p style="text-align: center;margin-left:10%;">Temps : {{timer | number: '1.1-1'}}</p>
+            <p *ngIf="best">Record : {{best | number: '1.1-1'}}</p>
+            <p style="text-align: center;margin-left:10%;" [style.color]="best&&timer>best?'red':'#505050'">Temps : {{timer | number: '1.1-1'}}</p>
         </div>
         <div style="display:flex;margin-top:60px;justify-content: center;">
             <div *ngFor="let champ of randomChamps;let i=index" style="height:120px;">
@@ -15,12 +16,18 @@
                 <p>?</p>
             </div>
         </div>
-        <div style="display:flex;justify-content: center;margin-top:30px;">
+        <p *ngIf="false&&champActuel">Debug : {{format(champActuel.nom)}}</p>
+        <div style="display:flex;justify-content: center;margin-top:30px;" *ngIf="!end">
             <button (click)="play()" [ngClass]="{disabled:sound&&!sound.paused}"
                 [disabled]="sound&&!sound.paused">🔊</button>
             <input id="typeBar" type="text" [(ngModel)]="typing" style="margin-right:20px;margin-left:20px;"
                 (keydown.enter)="validate()" focus="true" autofocus />
             <button (click)="validate()">Ok</button>
+        </div>
+        <p  *ngIf="end&&newRecord">Nouveau record !</p>
+        <p  *ngIf="end">Score : {{timer | number: '1.1-1'}}</p>
+        <div style="display:flex;justify-content: center">
+            <button *ngIf="end" (click)="end=false;clickStart()">Rejouer</button>
         </div>
     </div>
 </div>

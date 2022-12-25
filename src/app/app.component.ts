@@ -16,24 +16,23 @@ export class AppComponent implements OnInit {
   public typing: string = "";
   public nbFound: number = -1;
   public timer: number = -0.5;
-  public timer2: number = 0.5;
+  public timer2: number = 3.5;
   public interval: any;
   public interval2: any;
   public pickMusic: any;
+  public best!: number;
   public pause: boolean = false;
   public sound: any;
+  public end!: boolean;
+  public newRecord!: boolean;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getData();
-    this.setData();
+    //this.getData();
+    //this.setData();
 
-    while (this.randomChamps.length < 10) {
-      let rdm = Math.floor(Math.random() * this.champs.length);
-      let champ = this.champs[rdm];
-      if (!this.randomChamps.includes(champ)) this.randomChamps[this.randomChamps.length] = champ;
-    }
+    console.log(this.randomChamps);
 
     this.pickMusic = new Audio();
     this.pickMusic.loop = true;
@@ -41,14 +40,14 @@ export class AppComponent implements OnInit {
   }
 
   async setData() {
-    this.http.post<any>("http://www.chiya-no-yuuki.fr/pickscoreUpload?nbgame=1&pseudo=ASC%20Arma%20TV&temps=28.5", { headers:new HttpHeaders({'Access-Control-Allow-Origin': '*'}),title: 'Angular POST Request Example' }).subscribe(data => {
-        console.log("INSERT",data);
+    this.http.post<any>("http://www.chiya-no-yuuki.fr/pickscoreUpload?nbgame=1&pseudo=ASC%20Arma%20TV&temps=28.5", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }), title: 'Angular POST Request Example' }).subscribe(data => {
+      console.log("INSERT", data);
     })
   }
 
   async getData() {
-    this.http.get<any>("http://www.chiya-no-yuuki.fr/pickscoreDownload",{headers:new HttpHeaders({'Access-Control-Allow-Origin': '*'})}).subscribe(data => {
-        console.log("GET",data);
+    this.http.get<any>("http://www.chiya-no-yuuki.fr/pickscoreDownload", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) }).subscribe(data => {
+      console.log("GET", data);
     })
   }
 
@@ -76,6 +75,10 @@ export class AppComponent implements OnInit {
   }
 
   beginGame() {
+    this.end = false;
+    this.newRecord = false;
+    this.timer = -0.5;
+    this.timer2 = 3.5;
     this.nbFound = -1;
     this.pause = false;
     this.start = true;
@@ -86,17 +89,23 @@ export class AppComponent implements OnInit {
   }
 
   over() {
-
+    this.typing = "";
+    this.end = true;
+    if (!this.best || this.timer < this.best) {
+      this.best = this.timer;
+      this.newRecord = true;
+    }
+    clearInterval(this.interval);
   }
 
   good() {
-    if (this.nbFound == 9) {
+    this.nbFound++;
+    console.log("nbFound", this.nbFound);
+    if (this.nbFound == 10) {
       this.over();
     }
     else {
       if (this.sound) this.sound.pause();
-      this.nbFound++;
-      this.typing = "";
       this.champActuel = this.randomChamps[this.nbFound];
       this.newSound();
       this.sound.play();
@@ -121,6 +130,12 @@ export class AppComponent implements OnInit {
   }
 
   clickStart() {
+    this.randomChamps = [];
+    while (this.randomChamps.length < 10) {
+      let rdm = Math.floor(Math.random() * this.champs.length);
+      let champ = this.champs[rdm];
+      if (!this.randomChamps.includes(champ)) this.randomChamps[this.randomChamps.length] = champ;
+    }
     this.pause = true;
     this.pickMusic.play();
     this.startTimer2();

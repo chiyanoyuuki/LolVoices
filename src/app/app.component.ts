@@ -25,15 +25,13 @@ export class AppComponent implements OnInit {
   public sound: any;
   public end!: boolean;
   public newRecord!: boolean;
+  public nomJoueur = "Charles";
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    //this.getData();
-    //this.setData();
-
-    console.log(this.randomChamps);
-
+    let tmp = this.getData();
+    console.log(tmp);
     this.pickMusic = new Audio();
     this.pickMusic.loop = true;
     this.pickMusic.src = "./assets/pickMusic.mp3";
@@ -41,13 +39,11 @@ export class AppComponent implements OnInit {
 
   async setData() {
     this.http.post<any>("http://www.chiya-no-yuuki.fr/pickscoreUpload?nbgame=1&pseudo=ASC%20Arma%20TV&temps=28.5", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }), title: 'Angular POST Request Example' }).subscribe(data => {
-      console.log("INSERT", data);
     })
   }
 
   async getData() {
     this.http.get<any>("http://www.chiya-no-yuuki.fr/pickscoreDownload", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) }).subscribe(data => {
-      console.log("GET", data);
     })
   }
 
@@ -100,7 +96,6 @@ export class AppComponent implements OnInit {
 
   good() {
     this.nbFound++;
-    console.log("nbFound", this.nbFound);
     if (this.nbFound == 10) {
       this.over();
     }
@@ -147,7 +142,6 @@ export class AppComponent implements OnInit {
     let typingtmp = this.format(this.typing);
     if (this.champActuel.other) {
       let othertmp = this.format(this.champActuel.other);
-      console.log("other:", typingtmp, othertmp);
       if (typingtmp == othertmp) {
         good = true;
       }
@@ -155,7 +149,6 @@ export class AppComponent implements OnInit {
     }
 
     let nomtmp = this.format(this.champActuel.nom);
-    console.log("nom:", nomtmp, typingtmp);
     if (nomtmp == typingtmp) {
       good = true;
     }

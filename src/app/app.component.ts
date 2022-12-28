@@ -31,19 +31,19 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     let tmp = this.getData();
-    console.log(tmp);
+    console.log("getData",tmp);
     this.pickMusic = new Audio();
     this.pickMusic.loop = true;
     this.pickMusic.src = "./assets/pickMusic.mp3";
   }
 
   async setData() {
-    this.http.post<any>("http://www.chiya-no-yuuki.fr/pickscoreUpload?nbgame=1&pseudo=ASC%20Arma%20TV&temps=28.5", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }), title: 'Angular POST Request Example' }).subscribe(data => {
+    this.http.post<any>("https://www.chiya-no-yuuki.fr/pickscoreUpload?nbgame=1&pseudo=ASC%20Arma%20TV&temps=28.5", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }), title: 'Angular POST Request Example' }).subscribe(data => {
     })
   }
 
   async getData() {
-    this.http.get<any>("http://www.chiya-no-yuuki.fr/pickscoreDownload", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) }).subscribe(data => {
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pickscoreDownload", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) }).subscribe(data => {
     })
   }
 

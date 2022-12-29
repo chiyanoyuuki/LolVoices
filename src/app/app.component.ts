@@ -275,6 +275,7 @@ export class AppComponent implements OnInit {
   }
 
   clickReplay() {
+    this.nbFound = 0;
     if (this.sound) this.sound.pause();
     if (!this.end) {
       let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);

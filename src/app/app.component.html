@@ -1,4 +1,4 @@
-<div class="flex justify-content:center" style="margin:5% 0px">
+<div class="flex justify-content:center" style="margin:2% 0px">
     <div [ngClass]="{pickBg:true}">
         <ng-container *ngFor="let perso of randomChamps;let i=index;">
             <img *ngIf="i<nbFound" src="./assets/imgs/{{perso.nom}}.png"
@@ -8,7 +8,8 @@
 
 
         <div style="margin-top:140px;width: fit-content;margin-left: 400px;">
-            <p style="position: absolute;top: -155px;width: 100%;font-size: 35px;white-space: nowrap;">{{topText()}}</p>
+            <p style="position: absolute;top: -155px;width: 100%;font-size: 35px;white-space: nowrap;"
+                [style.color]="invalidName()?'red':'white'">{{topText()}}</p>
             <div *ngIf="page=='pause' || page=='jeu'">
                 <div style="width:fit-content;margin:auto;position:relative;">
                     <p style="text-align: center;font-size: 60px;position: absolute;width:100%;top: -120px;"
@@ -24,6 +25,7 @@
                             <button (click)="validate()">Ok</button>
                         </div>
                         <div style="display:flex;justify-content: center">
+                            <button (click)="clickMenu()">Menu principal</button>
                             <button *ngIf="!end && pass>0" (click)="passer()">Passer : {{pass}}</button>
                             <button (click)="clickReplay()">Rejouer</button>
                         </div>
@@ -32,9 +34,6 @@
                 </div>
             </div>
             <div *ngIf="page=='start'">
-                <div style="display:flex;justify-content: center">
-                    <p style="color:red;font-weight:bold">{{invalidName()?"Pseudo Invalide":"&nbsp;"}}</p>
-                </div>
                 <div style="display:flex;justify-content: center">
                     <input type="text" [(ngModel)]="nomJoueur" />
                     <select [(ngModel)]="typeGame">
@@ -83,7 +82,8 @@
                         </div>
                     </div>
                     <div *ngIf="typeGame=='Pick Français'">
-                        <div class="ligne" *ngFor="let score of pick_fr; let i=index" (click)="nomJoueur = score.pseudo"
+                        <div class="ligne" *ngFor="let score of pick_fr; let i=index"
+                            (click)="page=='start'?nomJoueur = score.pseudo:null"
                             [ngClass]="{selected:nomJoueur==score.pseudo}">
                             <p>{{(i+1)}}</p>
                             <p>{{score.pseudo}}</p>

@@ -131,12 +131,27 @@ export class AppComponent implements OnInit {
     }
   }
 
+  public clickMenu() {
+    this.pickMusic.currentTime = 0;
+    this.pickMusic.pause();
+    if (this.sound) this.sound.pause();
+    if (!this.end) {
+      let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
+      if (this.typeGame == "Pick Français") { exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur); }
+      if (exists) { this.addGame(); }
+      this.getData();
+    }
+    this.end = false;
+    this.page = 'start'
+  }
+
   public topText() {
+    if (this.invalidName()) return "Pseudo invalide";
     if (this.end) {
       if (this.newRecord != -1) return "Record battu : " + this.newRecord + "s gagnées";
       else return "Bien joué !"
     }
-    else if (this.page == "start") { return "Choisissez un pseudo et un mode de jeu" }
+    else if (this.page == "start") { return "Choisissez un mode de jeu" }
     else if (this.page == "pause") { return "Attention ! La partie va commencer !" }
     else if (this.page == "jeu") {
       if (this.overallBest && this.timer < this.overallBest) return "Record mondial";
@@ -253,7 +268,7 @@ export class AppComponent implements OnInit {
   }
 
   getColor() {
-    if (this.overallBest && this.timer < this.overallBest) return "#c5c900;";
+    if (this.overallBest && this.timer < this.overallBest) return "#c5c900";
     if (this.best && this.timer > this.best) return "red";
     if (!this.best) return "white";
     return "green";

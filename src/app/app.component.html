@@ -7,18 +7,21 @@
         </div>
 
 
-        <ng-container *ngFor="let perso of randomChamps;let i=index;">
-            <div *ngIf="i<nbFound" style="position: absolute;display:flex;width:300px;"
-                [style.justify-content]="getJustify(i)" [style.top]="getTop(i,1)" [style.left]="getLeft(i,1)">
-                <p *ngIf="i>4" style="margin:auto;font-size:30px;width:100%;text-align: right;padding:5%;">
-                    {{smallFormat(perso.nom)}}</p>
-                <img src="./assets/imgs/{{perso.nom}}.png" style="border-radius: 100%;width: 64px" />
-                <p *ngIf="i<5" style="margin:auto;font-size:30px;width:100%;text-align: left;padding:5%;">
-                    {{smallFormat(perso.nom)}}</p>
-            </div>
-            <img *ngIf="nbFound==i" src="./assets/loading.png" class="rotate" [style.top]="getTop(i,2)"
-                [style.left]="getLeft(i,2)" style="width:72px;height:72px;position:absolute" />
+        <ng-container *ngIf="page=='jeu'">
+            <ng-container *ngFor="let perso of randomChamps;let i=index;">
+                <div *ngIf="i<nbFound" style="position: absolute;display:flex;width:300px;"
+                    [style.justify-content]="getJustify(i)" [style.top]="getTop(i,1)" [style.left]="getLeft(i,1)">
+                    <p *ngIf="i>4" style="margin:auto;font-size:30px;width:100%;text-align: right;padding:5%;">
+                        {{smallFormat(perso.nom)}}</p>
+                    <img src="./assets/imgs/{{perso.nom}}.png" style="border-radius: 100%;width: 64px" />
+                    <p *ngIf="i<5" style="margin:auto;font-size:30px;width:100%;text-align: left;padding:5%;">
+                        {{smallFormat(perso.nom)}}</p>
+                </div>
+                <img *ngIf="nbFound==i" src="./assets/loading.png" class="rotate" [style.top]="getTop(i,2)"
+                    [style.left]="getLeft(i,2)" style="width:72px;height:72px;position:absolute" />
+            </ng-container>
         </ng-container>
+
 
 
         <div style="margin-top:140px;width: fit-content;margin-left: 432px;">
@@ -33,7 +36,7 @@
                         <div style="display:flex;justify-content: center;" *ngIf="!end">
                             <button (click)="play()" [ngClass]="{disabled:sound&&sound.currentTime < 1}"
                                 [disabled]="sound&&sound.currentTime < 1">🔊</button>
-                            <input id="typeBar" type="text" [(ngModel)]="typing"
+                            <input id="typeBar" type="text" [(ngModel)]="typing" tabindex="-1"
                                 style="margin-right:20px;margin-left:20px;" (keydown.enter)="validate()" focus="true"
                                 autofocus />
                             <button (click)="validate()">Ok</button>

@@ -112,14 +112,28 @@ export class AppComponent implements OnInit {
     if (this.debug) return;
     console.log("getData");
     this.nbGames = 0;
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; this.addAllGames(this.pick_en); this.pick_en.sort((a: any, b: any) => { return a.temps < b.temps ? -1 : 1; }); })
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.addAllGames(this.pick_fr); this.pick_fr.sort((a: any, b: any) => { return a.temps < b.temps ? -1 : 1; }); })
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; this.addAllGames(data); this.sort(this.pick_en);})
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.addAllGames(data); this.sort(this.pick_fr);})
+  }
+
+  public sort(tab: any) {
+    tab.sort((a: any, b: any) => {
+      if (a.temps < b.temps) return -2;
+      else if (a.temps > b.temps) return 2;
+      else if (a.nbgame < b.nbgame) return -1;
+      else return 1;
+    });
   }
 
   public addAllGames(tab: any) {
     for (let x = 0; x < tab.length; x++) {
       this.nbGames += tab[x].nbgame;
     }
+  }
+
+  @HostListener('document:keydown.tab', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    event.preventDefault();
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -283,6 +297,13 @@ export class AppComponent implements OnInit {
     }
   }
 
+  blur() {
+    let el = document.getElementById("typeBar");
+    if (el) {
+      el.blur();
+    }
+  }
+
   startTimer2() {
     this.interval2 = setInterval(() => {
       this.timer2 -= 0.1;
@@ -330,6 +351,7 @@ export class AppComponent implements OnInit {
       let champ = this.champs[rdm];
       if (!this.randomChamps.includes(champ)) this.randomChamps[this.randomChamps.length] = champ;
     }
+    this.blur();
     this.pause = true;
     this.pickMusic.play();
     this.startTimer2();

@@ -1,16 +1,23 @@
 <div class="flex justify-content:center" style="margin:2% 0px">
     <div [ngClass]="{pickBg:true}">
+        <div class="chat">
+            <p class="gray">GameMaster à rejoint le salon</p>
+            <p><span class="yellow">GameMaster </span> Le nombre total de games joueés est de {{nbGames}}</p>
+            <p><span class="yellow">GameMaster </span> Merci à tous, vous êtes les boss !</p>
+        </div>
+
+
         <ng-container *ngFor="let perso of randomChamps;let i=index;">
             <div *ngIf="i<nbFound" style="position: absolute;display:flex;width:300px;"
-                [style.justify-content]="getJustify(i)" [style.top]="getTop(i)" [style.left]="getLeft(i)">
-                <img *ngIf="false" src="./assets/loading.png" class="rotate" style="width:90px;height:90px;" />
+                [style.justify-content]="getJustify(i)" [style.top]="getTop(i,1)" [style.left]="getLeft(i,1)">
                 <p *ngIf="i>4" style="margin:auto;font-size:30px;width:100%;text-align: right;padding:5%;">
                     {{smallFormat(perso.nom)}}</p>
                 <img src="./assets/imgs/{{perso.nom}}.png" style="border-radius: 100%;width: 64px" />
                 <p *ngIf="i<5" style="margin:auto;font-size:30px;width:100%;text-align: left;padding:5%;">
                     {{smallFormat(perso.nom)}}</p>
             </div>
-
+            <img *ngIf="nbFound==i" src="./assets/loading.png" class="rotate" [style.top]="getTop(i,2)"
+                [style.left]="getLeft(i,2)" style="width:72px;height:72px;position:absolute" />
         </ng-container>
 
 
@@ -71,7 +78,7 @@
             </div>
             <div style="margin-top:20px;display:flex;justify-content: center;">
                 <div [style.max-height]="page=='start'?'300px':'380px'" style="overflow-y:auto;">
-                    <div class="ligne" style="opacity:1!important">
+                    <div class="ligne" style="opacity:1!important;background-color:'#00000080'">
                         <p>Rang</p>
                         <p>Pseudo</p>
                         <p>Record</p>
@@ -93,7 +100,9 @@
                             (click)="page=='start'?nomJoueur = score.pseudo:null"
                             [ngClass]="{selected:nomJoueur==score.pseudo}">
                             <p>{{(i+1)}}</p>
-                            <p>{{score.pseudo}}</p>
+                            <div class="flex"><i class="fa-solid fa-medal"></i>
+                                <p>{{score.pseudo}}</p>
+                            </div>
                             <p>{{score.temps}}</p>
                             <p *ngIf="false">{{score.nbgame}}</p>
                             <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>

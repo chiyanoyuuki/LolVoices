@@ -138,7 +138,7 @@ td {
 }
 
 .selected {
-    background-color: #505050;
+    background-color: #30903050 !important;
 }
 
 .selected p {
@@ -245,4 +245,23 @@ td {
     to {
         transform: rotate(359deg);
     }
+}
+
+.chat {
+    position: absolute;
+    bottom: 70px;
+    width: 320px;
+    left: 35px;
+}
+
+.chat p {
+    text-align: left;
+}
+
+.chat .gray {
+    opacity: 0.2;
+}
+
+.chat .yellow {
+    color: rgb(170, 130, 0);
 }

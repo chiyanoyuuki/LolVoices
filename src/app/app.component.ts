@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   public pick_fr: { id: number, nbgame: number, pseudo: string, temps: number, lastgame: string }[] = [];
   public page = "start";
   public typeGame = "Pick Français";
+  public nbGames = 0;
 
   public debug = false;
 
@@ -110,8 +111,15 @@ export class AppComponent implements OnInit {
   async getData() {
     if (this.debug) return;
     console.log("getData");
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; this.pick_en.sort((a: any, b: any) => { return a.temps < b.temps ? -1 : 1; }); })
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.pick_fr.sort((a: any, b: any) => { return a.temps < b.temps ? -1 : 1; }); })
+    this.nbGames = 0;
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; this.addAllGames(this.pick_en); this.pick_en.sort((a: any, b: any) => { return a.temps < b.temps ? -1 : 1; }); })
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.addAllGames(this.pick_fr); this.pick_fr.sort((a: any, b: any) => { return a.temps < b.temps ? -1 : 1; }); })
+  }
+
+  public addAllGames(tab: any) {
+    for (let x = 0; x < tab.length; x++) {
+      this.nbGames += tab[x].nbgame;
+    }
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -184,12 +192,14 @@ export class AppComponent implements OnInit {
     this.sound.src = "./assets/pick/" + (this.typeGame == "Pick Anglais" ? "en" : "fr") + "/" + this.champActuel.code + ".wav";
   }
 
-  getTop(i: number) {
+  getTop(i: number, x: number) {
     if (i < 5) {
-      return (119 + 90 * i) + 'px';
+      if (x == 1) return (119 + 90 * i) + 'px';
+      else return (115 + 90 * i) + 'px';
     }
     else {
-      return (119 + 90 * (i - 5)) + 'px';
+      if (x == 1) return (119 + 90 * (i - 5)) + 'px';
+      else return (115 + 90 * (i - 5)) + 'px';
     }
   }
 
@@ -201,9 +211,15 @@ export class AppComponent implements OnInit {
     return nom;
   }
 
-  getLeft(i: number) {
-    if (i < 5) return 31 + "px";
-    else return 1111 + "px";
+  getLeft(i: number, x: number) {
+    if (i < 5) {
+      if (x == 1) return 31 + "px";
+      else return 28 + "px";
+    }
+    else {
+      if (x == 1) return 1111 + "px";
+      else return 1343 + "px";
+    }
   }
 
   getJustify(i: number) {

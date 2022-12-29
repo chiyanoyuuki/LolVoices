@@ -1,13 +1,20 @@
 <div class="flex justify-content:center" style="margin:2% 0px">
     <div [ngClass]="{pickBg:true}">
         <ng-container *ngFor="let perso of randomChamps;let i=index;">
-            <img *ngIf="i<nbFound" src="./assets/imgs/{{perso.nom}}.png"
-                style="border-radius: 100%;width: 64px;position: absolute;" [style.top]="getTop(i)"
-                [style.left]="getLeft(i)" />
+            <div *ngIf="i<nbFound" style="position: absolute;display:flex;width:300px;"
+                [style.justify-content]="getJustify(i)" [style.top]="getTop(i)" [style.left]="getLeft(i)">
+                <img *ngIf="false" src="./assets/loading.png" class="rotate" style="width:90px;height:90px;" />
+                <p *ngIf="i>4" style="margin:auto;font-size:30px;width:100%;text-align: right;padding:5%;">
+                    {{smallFormat(perso.nom)}}</p>
+                <img src="./assets/imgs/{{perso.nom}}.png" style="border-radius: 100%;width: 64px" />
+                <p *ngIf="i<5" style="margin:auto;font-size:30px;width:100%;text-align: left;padding:5%;">
+                    {{smallFormat(perso.nom)}}</p>
+            </div>
+
         </ng-container>
 
 
-        <div style="margin-top:140px;width: fit-content;margin-left: 400px;">
+        <div style="margin-top:140px;width: fit-content;margin-left: 432px;">
             <p style="position: absolute;top: -155px;width: 100%;font-size: 35px;white-space: nowrap;"
                 [style.color]="invalidName()?'red':'white'">{{topText()}}</p>
             <div *ngIf="page=='pause' || page=='jeu'">
@@ -26,7 +33,7 @@
                         </div>
                         <div style="display:flex;justify-content: center">
                             <button (click)="clickMenu()">Menu principal</button>
-                            <button *ngIf="!end && pass>0" (click)="passer()">Passer : {{pass}}</button>
+                            <button *ngIf="!end" (click)="passer()">Passer</button>
                             <button (click)="clickReplay()">Rejouer</button>
                         </div>
                     </div>
@@ -64,11 +71,11 @@
             </div>
             <div style="margin-top:20px;display:flex;justify-content: center;">
                 <div [style.max-height]="page=='start'?'300px':'380px'" style="overflow-y:auto;">
-                    <div class="ligne">
+                    <div class="ligne" style="opacity:1!important">
                         <p>Rang</p>
                         <p>Pseudo</p>
                         <p>Record</p>
-                        <p>Essais</p>
+                        <p *ngIf="false">Essais</p>
                         <p>Derniere partie</p>
                     </div>
                     <div *ngIf="typeGame=='Pick Anglais'">
@@ -77,18 +84,18 @@
                             <p>{{(i+1)}}</p>
                             <p>{{score.pseudo}}</p>
                             <p>{{score.temps}}</p>
-                            <p>{{score.nbgame}}</p>
+                            <p *ngIf="false">{{score.nbgame}}</p>
                             <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>
                         </div>
                     </div>
                     <div *ngIf="typeGame=='Pick Français'">
-                        <div class="ligne" *ngFor="let score of pick_fr; let i=index"
+                        <div class="ligne rank" *ngFor="let score of pick_fr; let i=index"
                             (click)="page=='start'?nomJoueur = score.pseudo:null"
                             [ngClass]="{selected:nomJoueur==score.pseudo}">
                             <p>{{(i+1)}}</p>
                             <p>{{score.pseudo}}</p>
                             <p>{{score.temps}}</p>
-                            <p>{{score.nbgame}}</p>
+                            <p *ngIf="false">{{score.nbgame}}</p>
                             <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>
                         </div>
                     </div>

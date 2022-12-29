@@ -7,7 +7,7 @@ import { from } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   public start: boolean = false;
@@ -33,7 +33,6 @@ export class AppComponent implements OnInit {
   public pick_fr: { id: number, nbgame: number, pseudo: string, temps: number, lastgame: string }[] = [];
   public page = "start";
   public typeGame = "Pick Français";
-  public pass = 3;
 
   public debug = false;
 
@@ -122,7 +121,7 @@ export class AppComponent implements OnInit {
         if (!(this.sound && this.sound.currentTime < 1))
           this.play();
       }
-      else if (event.key == "Tab" && this.pass > 0) {
+      else if (event.key == "Tab") {
         this.passer();
       }
       else if (event.key == "Escape") {
@@ -148,7 +147,7 @@ export class AppComponent implements OnInit {
   public topText() {
     if (this.invalidName()) return "Pseudo invalide";
     if (this.end) {
-      if (this.newRecord != -1) return "Record battu : " + this.newRecord + "s gagnées";
+      if (this.newRecord != -1) return "Record battu : " + this.newRecord.toFixed(1) + "s gagnées";
       else return "Bien joué !"
     }
     else if (this.page == "start") { return "Choisissez un mode de jeu" }
@@ -171,7 +170,6 @@ export class AppComponent implements OnInit {
   }
 
   passer() {
-    this.pass--;
     this.timer += 10;
     this.good();
   }
@@ -195,9 +193,22 @@ export class AppComponent implements OnInit {
     }
   }
 
+  smallFormat(nom: string) {
+    nom = nom.replaceAll("_", " ");
+    nom = nom.replaceAll(" ", " ");
+    nom = nom.replaceAll("-", " ");
+    nom = nom.replaceAll("'", " ");
+    return nom;
+  }
+
   getLeft(i: number) {
     if (i < 5) return 31 + "px";
-    else return 1347 + "px";
+    else return 1111 + "px";
+  }
+
+  getJustify(i: number) {
+    if (i < 5) return "left";
+    else return "right";
   }
 
   startTimer() {
@@ -207,7 +218,6 @@ export class AppComponent implements OnInit {
   }
 
   beginGame() {
-    this.pass = 3;
     this.end = false;
     this.newRecord = -1;
     this.timer = 0;

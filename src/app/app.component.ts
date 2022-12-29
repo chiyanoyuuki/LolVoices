@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import champions from '../assets/champions.json';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,58 +11,125 @@ import champions from '../assets/champions.json';
 })
 export class AppComponent implements OnInit {
   public start: boolean = false;
-  public champs: { nom: string, other?: string }[] = champions.data;
-  public randomChamps: { nom: string, other?: string }[] = [];
-  public champActuel!: { nom: string, other?: string };
+  public champs: { nom: string, other?: string, code: string }[] = champions.data;
+  public randomChamps: { nom: string, other?: string, code: string }[] = [];
+  public champActuel!: { nom: string, other?: string, code: string };
   public typing: string = "";
   public nbFound: number = -1;
-  public timer: number = -0.5;
-  public timer2: number = 3.5;
+  public timer: number = 0;
+  public timer2: number = 3;
   public interval: any;
   public interval2: any;
   public pickMusic: any;
   public best!: number;
+  public overallBest!: number;
   public pause: boolean = false;
   public sound: any;
+  public victory: any;
   public end!: boolean;
-  public newRecord!: boolean;
+  public newRecord!: number;
   public nomJoueur = "Charles";
+  public pick_en: { id: number, nbgame: number, pseudo: string, temps: number, lastgame: string }[] = [];
+  public pick_fr: { id: number, nbgame: number, pseudo: string, temps: number, lastgame: string }[] = [];
+  public page = "start";
+  public typeGame = "Pick Anglais"
+
+  public headers!: HttpHeaders;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    let tmp = this.getData();
-    console.log("getData",tmp);
+    this.getData();
     this.pickMusic = new Audio();
     this.pickMusic.loop = true;
     this.pickMusic.src = "./assets/pickMusic.mp3";
+    this.victory = new Audio();
+    this.victory.src = "./assets/victory.wav";
   }
 
-  async setData() {
-    this.http.post<any>("https://www.chiya-no-yuuki.fr/pickscoreUpload?nbgame=1&pseudo=ASC%20Arma%20TV&temps=28.5", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }), title: 'Angular POST Request Example' }).subscribe(data => {
-    })
+  async newRecordd() {
+    console.log("newRecord");
+    let langue = this.typeGame == "Pick Anglais" ? "en" : "fr";
+    from(
+      fetch(
+        "https://www.chiya-no-yuuki.fr/pick_" + langue + "_record?pseudo=" + this.nomJoueur.replaceAll(" ", "%20") + "&temps=" + this.timer.toFixed(1),
+        {
+          body: "",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          mode: 'no-cors'
+        }
+      ).then(res => { this.getData(); })
+    );
+  }
+
+  async addGame() {
+    console.log("addGame");
+    let langue = this.typeGame == "Pick Anglais" ? "en" : "fr";
+    from(
+      fetch(
+        "https://www.chiya-no-yuuki.fr/pick_" + langue + "_addgame?pseudo=" + this.nomJoueur.replaceAll(" ", "%20"),
+        {
+          body: "",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          mode: 'no-cors'
+        }
+      ).then(res => { this.getData(); })
+    );
+  }
+
+  async newData() {
+    console.log("newData");
+    let langue = this.typeGame == "Pick Anglais" ? "en" : "fr";
+    from(
+      fetch(
+        "https://www.chiya-no-yuuki.fr/pick_" + langue + "_insert?nbgame=1&pseudo=" + this.nomJoueur.replaceAll(" ", "%20") + "&temps=" + this.timer.toFixed(1),
+        {
+          body: "",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          mode: 'no-cors'
+        }
+      ).then(res => { this.getData(); })
+    );
   }
 
   async getData() {
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pickscoreDownload", { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) }).subscribe(data => {
-    })
+    console.log("getData");
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; })
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; })
   }
 
   @HostListener('window:keyup', ['$event'])
   keyDownEvent(event: KeyboardEvent) {
     if (event.key == "Control") {
-      if (!(this.sound && !this.sound.paused))
+      if (!(this.sound && this.sound.currentTime < 1))
         this.play();
     }
   }
 
+  public invalidName() {
+    let rgx = /^[a-zA-Z0-9 \-\_]{3,16}$/g;
+    let res = this.nomJoueur.match(rgx);
+    if (res && res[0] == this.nomJoueur) return false;
+    return true;
+  }
+
   play() {
+    this.sound.currentTime = 0;
     this.sound.play();
   }
 
   newSound() {
     this.sound = new Audio();
-    this.sound.src = "./assets/pick/" + this.champActuel.nom + ".wav";
+    this.sound.src = "./assets/pick/" + (this.typeGame == "Pick Anglais" ? "en" : "fr") + "/" + this.champActuel.code + ".wav";
   }
 
   startTimer() {
@@ -72,9 +140,9 @@ export class AppComponent implements OnInit {
 
   beginGame() {
     this.end = false;
-    this.newRecord = false;
-    this.timer = -0.5;
-    this.timer2 = 3.5;
+    this.newRecord = -1;
+    this.timer = 0;
+    this.timer2 = 3;
     this.nbFound = -1;
     this.pause = false;
     this.start = true;
@@ -85,18 +153,23 @@ export class AppComponent implements OnInit {
   }
 
   over() {
+    this.victory.play();
+    this.pickMusic.currentTime = 0;
+    this.pickMusic.pause();
+    let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
+    if (this.typeGame == "Pick Français") { exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur); }
+    if (!exists) { this.newData(); }
+    else if (this.timer < this.best) { this.newRecord = this.best - this.timer; this.newRecordd(); }
+    else { this.addGame(); }
     this.typing = "";
     this.end = true;
-    if (!this.best || this.timer < this.best) {
-      this.best = this.timer;
-      this.newRecord = true;
-    }
     clearInterval(this.interval);
   }
 
   good() {
     this.nbFound++;
     if (this.nbFound == 10) {
+      if (this.sound) this.sound.pause();
       this.over();
     }
     else {
@@ -119,12 +192,38 @@ export class AppComponent implements OnInit {
     this.interval2 = setInterval(() => {
       this.timer2 -= 0.1;
       if (this.timer2 <= 0.1) {
+        this.page = "jeu";
         this.beginGame();
       }
     }, 100)
   }
 
+  getColor() {
+    if (this.overallBest && this.timer < this.overallBest) return "green";
+    if (this.best && this.timer > this.best) return "red";
+    return "white";
+  }
+
+  clickReplay() {
+    if (this.sound) this.sound.pause();
+    let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
+    if (this.typeGame == "Pick Français") { exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur); }
+    if (exists) { this.addGame(); }
+    this.end = false;
+    this.clickStart()
+  }
+
   clickStart() {
+    clearInterval(this.interval);
+    this.pickMusic.currentTime = 0;
+    this.page = "pause";
+    if (this.typeGame == "Pick Français" && this.pick_fr[0]) this.overallBest = this.pick_fr[0].temps;
+    else if (this.typeGame == "Pick Anglais" && this.pick_en[0]) this.overallBest = this.pick_en[0].temps;
+    let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
+    if (this.typeGame == "Pick Français") { exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur); }
+    if (exists) {
+      this.best = exists.temps;
+    }
     this.randomChamps = [];
     while (this.randomChamps.length < 10) {
       let rdm = Math.floor(Math.random() * this.champs.length);

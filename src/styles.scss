@@ -1,4 +1,14 @@
+html,
+body,
+app-root {
+    height: 100%;
+    display: inherit;
+    overflow: hidden;
+}
+
 * {
+    margin: 0;
+    position: relative;
     -webkit-user-select: none;
     /* Safari */
     -ms-user-select: none;
@@ -7,50 +17,86 @@
     /* Standard syntax */
 }
 
-.html {
-    height: 100%;
+img {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 html {
-    background-color: black;
+    background-color: #202020;
 }
 
-button {
-    background-color: #505050;
-    border: 2px solid #202020;
-    border-radius: 10px;
-    padding: 10px;
-    min-width: 80px;
+button,
+input,
+select {
+    background-color: #303030;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: white;
     font-weight: bold;
+    text-align: center;
+    margin: 5px;
 }
 
-button:hover {
+.clickable:hover,
+button:hover,
+select:hover {
     cursor: pointer;
-    opacity: 0.9;
+    opacity: 0.3;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
 }
 
 p {
-    color: #505050;
-    margin: auto;
+    color: white;
     font-weight: bold;
-    font-size: 40px;
-    white-space: nowrap;
     text-align: center;
 }
 
-input {
-    background-color: #505050;
-    border: 2px solid #202020;
-    border-radius: 10px;
-    font-weight: bold;
-    text-align: center;
+.vertFlex {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;
 }
+
+.hiddenHover p,
+.maxHiddenHover p {
+    color: transparent;
+}
+
+.hiddenHover:hover {
+    background: #30303090 !important;
+    opacity: 1 !important;
+}
+
+.maxHiddenHover:hover {
+    opacity: 0.05 !important;
+}
+
+.hiddenHover:hover p,
+.maxHiddenHover:hover p {
+    color: white;
+}
+
+.disabledButton {
+    opacity: 0.2;
+    pointer-events: none;
+}
+
 
 .toFind {
     width: 120px;
     height: 120px;
     background-color: #505050;
-    border: 5px solid #202020;
+    border: 5px solid black;
 }
 
 .toFind p {
@@ -68,4 +114,82 @@ input {
 .disabled:hover {
     opacity: 0.5;
     cursor: unset;
+}
+
+table {
+    color: white;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid white;
+    white-space: nowrap;
+    padding: 5px;
+}
+
+tr:hover {
+    cursor: pointer;
+    background-color: #202020 !important;
+}
+
+td {
+    text-align: center;
+}
+
+.selected {
+    background-color: #505050;
+}
+
+.selected p {
+    color: rgb(158, 223, 158);
+    font-weight: bold;
+}
+
+.ligne {
+    display: flex;
+}
+
+.ligne p {
+    border: 1px solid white;
+    padding: 5px;
+}
+
+.ligne:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.ligne p:nth-child(1) {
+    width: 60px
+}
+
+.ligne p:nth-child(2) {
+    width: 160px;
+    text-align: left;
+}
+
+.ligne p:nth-child(3) {
+    width: 70px
+}
+
+.ligne p:nth-child(4) {
+    width: 60px
+}
+
+.ligne p:nth-child(5) {
+    width: 200px
+}
+
+.pause {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #202020;
+}
+
+.topInfos p {
+    white-space: nowrap;
 }

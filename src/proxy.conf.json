@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "https://www.chiya-no-yuuki.fr",
+        "secure": false
+    }
+}

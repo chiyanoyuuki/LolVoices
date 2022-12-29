@@ -28,11 +28,11 @@ export class AppComponent implements OnInit {
   public victory: any;
   public end!: boolean;
   public newRecord!: number;
-  public nomJoueur = "Charles";
+  public nomJoueur = "";
   public pick_en: { id: number, nbgame: number, pseudo: string, temps: number, lastgame: string }[] = [];
   public pick_fr: { id: number, nbgame: number, pseudo: string, temps: number, lastgame: string }[] = [];
   public page = "start";
-  public typeGame = "Pick Anglais"
+  public typeGame = "Pick Français"
 
   public headers!: HttpHeaders;
 
@@ -206,8 +206,7 @@ export class AppComponent implements OnInit {
 
   clickReplay() {
     if (this.sound) this.sound.pause();
-    if(!this.end)
-    {
+    if (!this.end) {
       let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
       if (this.typeGame == "Pick Français") { exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur); }
       if (exists) { this.addGame(); }

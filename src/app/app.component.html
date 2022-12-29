@@ -37,14 +37,26 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="page=='start'" style="display:flex;justify-content: center">
-            <input type="text" [(ngModel)]="nomJoueur" />
-            <select [(ngModel)]="typeGame">
-                <option>Pick Anglais</option>
-                <option>Pick Français</option>
-            </select>
-            <button (click)="clickStart()" [ngClass]="{disabledButton:invalidName()}"
-                [disabled]="invalidName()">Jouer</button>
+        <div *ngIf="page=='start'">
+            <div style="display:flex;justify-content: center">
+                <p style="color:red;font-weight:bold">{{invalidName()?"Pseudo Invalide":"&nbsp;"}}</p>
+            </div>
+            <div style="display:flex;justify-content: center">
+                <input type="text" [(ngModel)]="nomJoueur" />
+                <select [(ngModel)]="typeGame">
+                    <option>Pick Anglais</option>
+                    <option>Pick Français</option>
+                </select>
+                <button (click)="clickStart()" [ngClass]="{disabledButton:invalidName()}"
+                    [disabled]="invalidName()">Jouer</button>
+            </div>
+
+            <div style="display:flex;justify-content: center;margin-top:20px;">
+                <div>
+                    <p>Vous pouvez directement selectionner votre ligne dans le tableau des scores</p>
+                    <p style="opacity:0.5">Hint : Vous pouvez appuyer sur Control pour rejouer la voix</p>
+                </div>
+            </div>
         </div>
         <div *ngIf="page=='pause'" class="pause">
             <p style="margin: auto;width: fit-content;margin-top: 10%;">Début dans :</p>

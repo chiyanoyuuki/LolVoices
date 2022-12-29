@@ -103,8 +103,8 @@ export class AppComponent implements OnInit {
 
   async getData() {
     console.log("getData");
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; })
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; })
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; this.pick_en.sort((a:any,b:any)=>{return  a.temps<b.temps?-1:1;}); })
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.pick_fr.sort((a:any,b:any)=>{return  a.temps<b.temps?-1:1;});})
   }
 
   @HostListener('window:keyup', ['$event'])

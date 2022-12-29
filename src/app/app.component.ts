@@ -32,7 +32,10 @@ export class AppComponent implements OnInit {
   public pick_en: { id: number, nbgame: number, pseudo: string, temps: number, lastgame: string }[] = [];
   public pick_fr: { id: number, nbgame: number, pseudo: string, temps: number, lastgame: string }[] = [];
   public page = "start";
-  public typeGame = "Pick Français"
+  public typeGame = "Pick Français";
+  public pass = 3;
+
+  public debug = false;
 
   public headers!: HttpHeaders;
 
@@ -43,11 +46,13 @@ export class AppComponent implements OnInit {
     this.pickMusic = new Audio();
     this.pickMusic.loop = true;
     this.pickMusic.src = "./assets/pickMusic.mp3";
+    this.pickMusic.volume = 0.4;
     this.victory = new Audio();
     this.victory.src = "./assets/victory.wav";
   }
 
   async newRecordd() {
+    if (this.debug) return;
     console.log("newRecord");
     let langue = this.typeGame == "Pick Anglais" ? "en" : "fr";
     from(
@@ -66,6 +71,7 @@ export class AppComponent implements OnInit {
   }
 
   async addGame() {
+    if (this.debug) return;
     console.log("addGame");
     let langue = this.typeGame == "Pick Anglais" ? "en" : "fr";
     from(
@@ -84,6 +90,7 @@ export class AppComponent implements OnInit {
   }
 
   async newData() {
+    if (this.debug) return;
     console.log("newData");
     let langue = this.typeGame == "Pick Anglais" ? "en" : "fr";
     from(
@@ -102,17 +109,43 @@ export class AppComponent implements OnInit {
   }
 
   async getData() {
+    if (this.debug) return;
     console.log("getData");
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; this.pick_en.sort((a:any,b:any)=>{return  a.temps<b.temps?-1:1;}); })
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.pick_fr.sort((a:any,b:any)=>{return  a.temps<b.temps?-1:1;});})
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; this.pick_en.sort((a: any, b: any) => { return a.temps < b.temps ? -1 : 1; }); })
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.pick_fr.sort((a: any, b: any) => { return a.temps < b.temps ? -1 : 1; }); })
   }
 
   @HostListener('window:keyup', ['$event'])
   keyDownEvent(event: KeyboardEvent) {
-    if (event.key == "Control") {
-      if (!(this.sound && this.sound.currentTime < 1))
-        this.play();
+    if (this.start) {
+      if (event.key == "Control") {
+        if (!(this.sound && this.sound.currentTime < 1))
+          this.play();
+      }
+      else if (event.key == "Tab" && this.pass > 0) {
+        this.passer();
+      }
+      else if (event.key == "Escape") {
+        this.clickReplay();
+      }
     }
+  }
+
+  public topText() {
+    if (this.end) {
+      if (this.newRecord != -1) return "Record battu : " + this.newRecord + "s gagnées";
+      else return "Bien joué !"
+    }
+    else if (this.page == "start") { return "Choisissez un pseudo et un mode de jeu" }
+    else if (this.page == "pause") { return "Attention ! La partie va commencer !" }
+    else if (this.page == "jeu") {
+      if (this.overallBest && this.timer < this.overallBest) return "Record mondial";
+      else if (this.best && this.timer < this.best) return "Record personnel";
+      else if (this.best && this.timer >= this.best) return "Pour le beau jeu";
+      else return (10 - this.nbFound) + " personnages restants";
+    }
+    else
+      return "&nbsp;";
   }
 
   public invalidName() {
@@ -120,6 +153,12 @@ export class AppComponent implements OnInit {
     let res = this.nomJoueur.match(rgx);
     if (res && res[0] == this.nomJoueur) return false;
     return true;
+  }
+
+  passer() {
+    this.pass--;
+    this.timer += 10;
+    this.good();
   }
 
   play() {
@@ -132,6 +171,20 @@ export class AppComponent implements OnInit {
     this.sound.src = "./assets/pick/" + (this.typeGame == "Pick Anglais" ? "en" : "fr") + "/" + this.champActuel.code + ".wav";
   }
 
+  getTop(i: number) {
+    if (i < 5) {
+      return (119 + 90 * i) + 'px';
+    }
+    else {
+      return (119 + 90 * (i - 5)) + 'px';
+    }
+  }
+
+  getLeft(i: number) {
+    if (i < 5) return 31 + "px";
+    else return 1347 + "px";
+  }
+
   startTimer() {
     this.interval = setInterval(() => {
       this.timer += 0.1;
@@ -139,6 +192,7 @@ export class AppComponent implements OnInit {
   }
 
   beginGame() {
+    this.pass = 3;
     this.end = false;
     this.newRecord = -1;
     this.timer = 0;
@@ -199,9 +253,10 @@ export class AppComponent implements OnInit {
   }
 
   getColor() {
-    if (this.overallBest && this.timer < this.overallBest) return "green";
+    if (this.overallBest && this.timer < this.overallBest) return "#c5c900;";
     if (this.best && this.timer > this.best) return "red";
-    return "white";
+    if (!this.best) return "white";
+    return "green";
   }
 
   clickReplay() {

@@ -148,6 +148,7 @@ td {
 
 .ligne {
     display: flex;
+    background-color: #50505080;
 }
 
 .ligne p {
@@ -192,4 +193,19 @@ td {
 
 .topInfos p {
     white-space: nowrap;
+}
+
+.pickBg {
+    background: url("./assets/pickFond.png");
+    width: 1400px;
+    height: 768px;
+    background-size: cover;
+    padding: 20px;
+    box-shadow: 5px 5px 70px black;
+    color: #c5c900;
+}
+
+.paused {
+    pointer-events: none;
+    opacity: 0.2;
 }

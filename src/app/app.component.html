@@ -1,101 +1,103 @@
 <div class="flex justify-content:center" style="margin:5% 0px">
-    <div>
-        <div *ngIf="page=='pause' || page=='jeu'">
-            <div style="width:fit-content;margin:auto;position:relative;margin-top:10%;">
-                <div class="topInfos"
-                    style="display:flex;justify-content: space-evenly;position: absolute;width:100%;left:0px;top:-50px;">
-                    <p style="text-align: center;margin-right:10%;">Trouvés : {{nbFound}}/10</p>
-                    <p *ngIf="best">Record : {{best | number: '1.1-1'}}</p>
-                    <p style="text-align: center;margin-left:10%;" [style.color]="getColor()">
-                        Temps :
-                        {{timer | number: '1.1-1'}}</p>
-                </div>
-                <div style="display:flex;margin-top:60px;justify-content: center;">
-                    <div *ngFor="let champ of randomChamps;let i=index" style="height:120px;">
-                        <div *ngIf="i<nbFound">
-                            <img src="./assets/imgs/{{champ.nom}}.png" style="width:120px;height:120px;" />
+    <div [ngClass]="{pickBg:true}">
+        <ng-container *ngFor="let perso of randomChamps;let i=index;">
+            <img *ngIf="i<nbFound" src="./assets/imgs/{{perso.nom}}.png"
+                style="border-radius: 100%;width: 64px;position: absolute;" [style.top]="getTop(i)"
+                [style.left]="getLeft(i)" />
+        </ng-container>
+
+
+        <div style="margin-top:140px;width: fit-content;margin-left: 400px;">
+            <p style="position: absolute;top: -155px;width: 100%;font-size: 35px;white-space: nowrap;">{{topText()}}</p>
+            <div *ngIf="page=='pause' || page=='jeu'">
+                <div style="width:fit-content;margin:auto;position:relative;">
+                    <p style="text-align: center;font-size: 60px;position: absolute;width:100%;top: -120px;"
+                        [style.color]="getColor()">
+                        {{(page=='jeu'?timer :timer2) | number: '1.1-1' }}</p>
+                    <div [ngClass]="{paused:page=='pause'}">
+                        <div style="display:flex;justify-content: center;" *ngIf="!end">
+                            <button (click)="play()" [ngClass]="{disabled:sound&&sound.currentTime < 1}"
+                                [disabled]="sound&&sound.currentTime < 1">🔊</button>
+                            <input id="typeBar" type="text" [(ngModel)]="typing"
+                                style="margin-right:20px;margin-left:20px;" (keydown.enter)="validate()" focus="true"
+                                autofocus />
+                            <button (click)="validate()">Ok</button>
+                        </div>
+                        <div style="display:flex;justify-content: center">
+                            <button *ngIf="!end && pass>0" (click)="passer()">Passer : {{pass}}</button>
+                            <button (click)="clickReplay()">Rejouer</button>
                         </div>
                     </div>
 
-                    <div class="toFind" *ngIf="nbFound<10">
-                        <p>?</p>
-                    </div>
                 </div>
-                <p *ngIf="false&&champActuel">Debug : {{format(champActuel.nom)}}</p>
-                <div style="display:flex;justify-content: center;margin-top:30px;" *ngIf="!end">
-                    <button (click)="play()" [ngClass]="{disabled:sound&&sound.currentTime < 1}"
-                        [disabled]="sound&&sound.currentTime < 1">🔊</button>
-                    <input id="typeBar" type="text" [(ngModel)]="typing" style="margin-right:20px;margin-left:20px;"
-                        (keydown.enter)="validate()" focus="true" autofocus />
-                    <button (click)="validate()">Ok</button>
-                </div>
-
-                <p *ngIf="end&&newRecord">Nouveau record ! {{newRecord | number: '1.1-1'}}s gagnées !</p>
-                <p *ngIf="end">Score : {{timer | number: '1.1-1'}}</p>
+            </div>
+            <div *ngIf="page=='start'">
                 <div style="display:flex;justify-content: center">
-                    <button (click)="clickReplay()">Rejouer</button>
+                    <p style="color:red;font-weight:bold">{{invalidName()?"Pseudo Invalide":"&nbsp;"}}</p>
                 </div>
-            </div>
-        </div>
-        <div *ngIf="page=='start'">
-            <div style="display:flex;justify-content: center">
-                <p style="color:red;font-weight:bold">{{invalidName()?"Pseudo Invalide":"&nbsp;"}}</p>
-            </div>
-            <div style="display:flex;justify-content: center">
-                <input type="text" [(ngModel)]="nomJoueur" />
-                <select [(ngModel)]="typeGame">
-                    <option>Pick Anglais</option>
-                    <option>Pick Français</option>
-                </select>
-                <button (click)="clickStart()" [ngClass]="{disabledButton:invalidName()}"
-                    [disabled]="invalidName()">Jouer</button>
-            </div>
+                <div style="display:flex;justify-content: center">
+                    <input type="text" [(ngModel)]="nomJoueur" />
+                    <select [(ngModel)]="typeGame">
+                        <option>Pick Anglais</option>
+                        <option>Pick Français</option>
+                    </select>
+                    <button (click)="clickStart()" [ngClass]="{disabledButton:invalidName()}"
+                        [disabled]="invalidName()">Jouer</button>
+                </div>
 
-            <div style="display:flex;justify-content: center;margin-top:20px;">
-                <div>
-                    <p>Vous pouvez directement selectionner votre ligne dans le tableau des scores</p>
-                    <p style="opacity:0.5">Hint : Vous pouvez appuyer sur Control pour rejouer la voix</p>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="page=='pause'" class="pause">
-            <p style="margin: auto;width: fit-content;margin-top: 10%;">Début dans :</p>
-            <p style="margin: auto;width: fit-content;font-size: 200px;">{{timer2 | number:
-                '1.0-0'}}</p>
-        </div>
-        <div style="margin-top:20px;display:flex;justify-content: center;">
-            <div>
-                <div class="ligne">
-                    <p>Rang</p>
-                    <p>Pseudo</p>
-                    <p>Record</p>
-                    <p>Essais</p>
-                    <p>Derniere partie</p>
-                </div>
-                <div *ngIf="typeGame=='Pick Anglais'">
-                    <div class="ligne" *ngFor="let score of pick_en; let i=index" (click)="nomJoueur = score.pseudo"
-                        [ngClass]="{selected:nomJoueur==score.pseudo}">
-                        <p>{{(i+1)}}</p>
-                        <p>{{score.pseudo}}</p>
-                        <p>{{score.temps}}</p>
-                        <p>{{score.nbgame}}</p>
-                        <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>
+                <div style="display:flex;justify-content: center;margin-top:20px;">
+                    <div>
+                        <div style="opacity:0.5">
+                            <p>Raccourcis</p>
+                            <div style="display:flex;justify-content:space-between">
+                                <p>Control : Rejouer son</p>
+                                <p>Tab : Passer</p>
+                            </div>
+                            <div style="display:flex;justify-content:space-between">
+                                <p>Echap : Rejouer</p>
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+
+                        <p>Vous pouvez directement selectionner votre ligne dans le tableau des scores</p>
                     </div>
                 </div>
-                <div *ngIf="typeGame=='Pick Français'">
-                    <div class="ligne" *ngFor="let score of pick_fr; let i=index" (click)="nomJoueur = score.pseudo"
-                        [ngClass]="{selected:nomJoueur==score.pseudo}">
-                        <p>{{(i+1)}}</p>
-                        <p>{{score.pseudo}}</p>
-                        <p>{{score.temps}}</p>
-                        <p>{{score.nbgame}}</p>
-                        <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>
+            </div>
+            <div style="margin-top:20px;display:flex;justify-content: center;">
+                <div [style.max-height]="page=='start'?'300px':'380px'" style="overflow-y:auto;">
+                    <div class="ligne">
+                        <p>Rang</p>
+                        <p>Pseudo</p>
+                        <p>Record</p>
+                        <p>Essais</p>
+                        <p>Derniere partie</p>
                     </div>
+                    <div *ngIf="typeGame=='Pick Anglais'">
+                        <div class="ligne" *ngFor="let score of pick_en; let i=index" (click)="nomJoueur = score.pseudo"
+                            [ngClass]="{selected:nomJoueur==score.pseudo}">
+                            <p>{{(i+1)}}</p>
+                            <p>{{score.pseudo}}</p>
+                            <p>{{score.temps}}</p>
+                            <p>{{score.nbgame}}</p>
+                            <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>
+                        </div>
+                    </div>
+                    <div *ngIf="typeGame=='Pick Français'">
+                        <div class="ligne" *ngFor="let score of pick_fr; let i=index" (click)="nomJoueur = score.pseudo"
+                            [ngClass]="{selected:nomJoueur==score.pseudo}">
+                            <p>{{(i+1)}}</p>
+                            <p>{{score.pseudo}}</p>
+                            <p>{{score.temps}}</p>
+                            <p>{{score.nbgame}}</p>
+                            <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>
+                        </div>
+                    </div>
+
+
                 </div>
-
-
             </div>
         </div>
     </div>
+
 
 </div>

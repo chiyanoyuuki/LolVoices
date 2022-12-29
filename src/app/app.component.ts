@@ -210,6 +210,7 @@ export class AppComponent implements OnInit {
       let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
       if (this.typeGame == "Pick Français") { exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur); }
       if (exists) { this.addGame(); }
+      this.getData();
     }
     this.end = false;
     this.clickStart()

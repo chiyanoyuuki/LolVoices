@@ -18,13 +18,13 @@
                     [style.justify-content]="getJustify(i)" [style.top]="getTop(i,1)" [style.left]="getLeft(i,1)">
                     <div *ngIf="i>4" class="textPick textPickLeft">
                         <p style="color:rgb(209, 209, 199);right:15px;">{{smallFormat(perso.nom) | uppercase }}</p>
-                        <p style="color:rgb(209, 209, 199);right:15px;">{{pick_en[i]?pick_en[i].pseudo:creatures[i]}}
+                        <p style="color:rgb(209, 209, 199);right:15px;">{{pick_fr[i]?pick_fr[i].pseudo:creatures[i]}}
                         </p>
                     </div>
                     <img src="./assets/imgs/{{perso.nom}}.png" style="border-radius: 100%;width: 64px" />
                     <div *ngIf="i<5" class="textPick textPickRight">
                         <p style="color:rgb(209, 209, 199);left:15px;">{{smallFormat(perso.nom) | uppercase }}</p>
-                        <p style="color:rgb(209, 209, 199);left:15px;">{{pick_en[i]?pick_en[i].pseudo:creatures[i]}}</p>
+                        <p style="color:rgb(209, 209, 199);left:15px;">{{pick_fr[i]?pick_fr[i].pseudo:creatures[i]}}</p>
                     </div>
                 </div>
 
@@ -34,7 +34,7 @@
                         <img src="./assets/actual2.png"
                             style="position:absolute;right: -100px;top: -27px;height: 90px;">
                         <p> Picking...</p>
-                        <p>{{pick_en[i]?pick_en[i].pseudo:creatures[i]}}</p>
+                        <p>{{pick_fr[i]?pick_fr[i].pseudo:creatures[i]}}</p>
                     </div>
 
                     <img src="./assets/loading{{i<5?'':'2'}}.png" class="rotate" style="width:72px;height:72px" />
@@ -42,7 +42,7 @@
                     <div *ngIf="i<5" class="textPick textPickRight">
                         <img src="./assets/actual.png" style="position:absolute;left: -100px;top: -27px;height: 90px;">
                         <p>Picking...</p>
-                        <p>{{pick_en[i]?pick_en[i].pseudo:creatures[i]}}</p>
+                        <p>{{pick_fr[i]?pick_fr[i].pseudo:creatures[i]}}</p>
                     </div>
 
                 </div>
@@ -108,8 +108,10 @@
                 </div>
             </div>
             <div style="margin-top:20px;display:flex;justify-content: center;">
-                <div [style.max-height]="page=='start'?'300px':'380px'" style="overflow-y:auto;border-radius: 15px;box-shadow: 5px 5px 20px black;">
+                <div [style.max-height]="page=='start'?'300px':'380px'"
+                    style="overflow-y:auto;border-radius: 15px;box-shadow: 5px 5px 20px black;">
                     <div class="ligne" style="opacity:1!important;background-color:'#00000080'">
+                        <p style="display:none"></p>
                         <p>Rang</p>
                         <p>Pseudo</p>
                         <p>Record</p>
@@ -117,8 +119,10 @@
                         <p>Derniere partie</p>
                     </div>
                     <div *ngIf="typeGame=='Pick Anglais'">
-                        <div class="ligne" *ngFor="let score of pick_en; let i=index" (click)="nomJoueur = score.pseudo"
+                        <div class="ligne rank" *ngFor="let score of debug?debugData:pick_en; let i=index"
+                            (click)="page=='start'?nomJoueur = score.pseudo:null"
                             [ngClass]="{selected:nomJoueur==score.pseudo}">
+                            <img src="./assets/elos/{{i<8?i:8}}.png" class="elo"/>
                             <p>{{(i+1)}}</p>
                             <p>{{score.pseudo}}</p>
                             <p>{{score.temps}}</p>
@@ -127,13 +131,12 @@
                         </div>
                     </div>
                     <div *ngIf="typeGame=='Pick Français'">
-                        <div class="ligne rank" *ngFor="let score of pick_fr; let i=index"
+                        <div class="ligne rank" *ngFor="let score of debug?debugData:pick_fr; let i=index"
                             (click)="page=='start'?nomJoueur = score.pseudo:null"
                             [ngClass]="{selected:nomJoueur==score.pseudo}">
+                            <img src="./assets/elos/{{i<8?i:8}}.png" class="elo"/>
                             <p>{{(i+1)}}</p>
-                            <div class="flex"><i class="fa-solid fa-medal"></i>
-                                <p>{{score.pseudo}}</p>
-                            </div>
+                            <p>{{score.pseudo}}</p>
                             <p>{{score.temps}}</p>
                             <p *ngIf="false">{{score.nbgame}}</p>
                             <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>

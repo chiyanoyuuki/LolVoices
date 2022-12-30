@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, isDevMode } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import champions from '../assets/champions.json';
 import { from } from 'rxjs';
@@ -34,8 +34,79 @@ export class AppComponent implements OnInit {
   public page = "start";
   public typeGame = "Pick Français";
   public nbGames = 0;
-  creatures = ["Gromp", "Scuttle Crab", "Raptor", "Fire Dragon", "Baron Nashor", "Wolf", "Blue buff", "Golem", "Earth Drake", "Red Buff"];
-
+  public creatures = ["Gromp", "Scuttle Crab", "Raptor", "Fire Dragon", "Baron Nashor", "Wolf", "Blue buff", "Golem", "Earth Drake", "Red Buff"];
+  public debugData = [
+    {
+      "id": 6,
+      "nbgame": 450,
+      "pseudo": "DEBUG J1",
+      "temps": 20,
+      "lastgame": "2022-12-29 20:27:31"
+    },
+    {
+      "id": 7,
+      "nbgame": 450,
+      "pseudo": "DEBUG J2",
+      "temps": 30,
+      "lastgame": "2022-12-29 20:27:31"
+    },
+    {
+      "id": 8,
+      "nbgame": 450,
+      "pseudo": "DEBUG J3",
+      "temps": 40,
+      "lastgame": "2022-12-29 20:27:31"
+    },
+    {
+      "id": 9,
+      "nbgame": 450,
+      "pseudo": "DEBUG J4",
+      "temps": 50,
+      "lastgame": "2022-12-29 20:27:31"
+    },
+    {
+      "id": 10,
+      "nbgame": 450,
+      "pseudo": "DEBUG J5",
+      "temps": 60,
+      "lastgame": "2022-12-29 20:27:31"
+    },
+    {
+      "id": 7,
+      "nbgame": 450,
+      "pseudo": "DEBUG J6",
+      "temps": 70,
+      "lastgame": "2022-12-29 20:27:31"
+    },
+    {
+      "id": 8,
+      "nbgame": 450,
+      "pseudo": "DEBUG J7",
+      "temps": 80,
+      "lastgame": "2022-12-29 20:27:31"
+    },
+    {
+      "id": 9,
+      "nbgame": 450,
+      "pseudo": "DEBUG J8",
+      "temps": 90,
+      "lastgame": "2022-12-29 20:27:31"
+    },
+    {
+      "id": 10,
+      "nbgame": 450,
+      "pseudo": "DEBUG J9",
+      "temps": 95,
+      "lastgame": "2022-12-29 20:27:31"
+    },
+    {
+      "id": 11,
+      "nbgame": 450,
+      "pseudo": "DEBUG J10",
+      "temps": 95,
+      "lastgame": "2022-12-29 20:27:31"
+    }
+  ]
   public debug = false;
 
   public headers!: HttpHeaders;
@@ -43,6 +114,8 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.debug = isDevMode();
+    if(this.debug)this.nomJoueur = "DEBUG J2";
     this.getData();
     this.pickMusic = new Audio();
     this.pickMusic.loop = true;
@@ -118,7 +191,7 @@ export class AppComponent implements OnInit {
 
   async getdata2() {
     console.log("getData(fr)");
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.sort(this.pick_fr); this.nbGames = this.getNbGames(); })
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.sort(this.pick_fr); this.nbGames = this.getNbGames(); console.log(data) })
   }
 
   public sort(tab: any) {

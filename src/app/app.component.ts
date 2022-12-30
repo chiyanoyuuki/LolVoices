@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
   public page = "start";
   public typeGame = "Pick Français";
   public nbGames = 0;
+  creatures = ["Gromp", "Scuttle Crab", "Raptor", "Fire Dragon", "Baron Nashor", "Wolf", "Blue buff", "Golem", "Earth Drake", "Red Buff"];
 
   public debug = false;
 
@@ -110,10 +111,14 @@ export class AppComponent implements OnInit {
 
   async getData() {
     if (this.debug) return;
-    console.log("getData");
-    this.nbGames = 0;
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; this.addAllGames(data); this.sort(this.pick_en);})
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.addAllGames(data); this.sort(this.pick_fr);})
+    console.log("getData(en)");
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_en_select").subscribe(data => { this.pick_en = data; this.sort(this.pick_en); this.getdata2(); })
+
+  }
+
+  async getdata2() {
+    console.log("getData(fr)");
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.sort(this.pick_fr); this.nbGames = this.getNbGames(); })
   }
 
   public sort(tab: any) {
@@ -125,10 +130,17 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public addAllGames(tab: any) {
-    for (let x = 0; x < tab.length; x++) {
-      this.nbGames += tab[x].nbgame;
+  public getNbGames() {
+    let total = 0;
+    for (let x = 0; x < this.pick_en.length; x++) {
+      let nb = this.pick_en[x].nbgame;
+      total += nb;
     }
+    for (let x = 0; x < this.pick_fr.length; x++) {
+      let nb = this.pick_fr[x].nbgame;
+      total += nb;
+    }
+    return total
   }
 
   @HostListener('document:keydown.tab', ['$event'])
@@ -232,7 +244,7 @@ export class AppComponent implements OnInit {
     }
     else {
       if (x == 1) return 1111 + "px";
-      else return 1343 + "px";
+      else return 1115 + "px";
     }
   }
 
@@ -317,7 +329,7 @@ export class AppComponent implements OnInit {
   getColor() {
     if (this.overallBest && this.timer < this.overallBest) return "#c5c900";
     if (this.best && this.timer > this.best) return "red";
-    if (!this.best) return "white";
+    if (!this.best) return "rgb(209, 209, 199)";
     return "green";
   }
 
@@ -336,6 +348,7 @@ export class AppComponent implements OnInit {
 
   clickStart() {
     clearInterval(this.interval);
+    this.typing = "";
     this.pickMusic.currentTime = 0;
     this.page = "pause";
     if (this.typeGame == "Pick Français" && this.pick_fr[0]) this.overallBest = this.pick_fr[0].temps;

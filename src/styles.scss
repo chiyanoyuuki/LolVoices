@@ -35,7 +35,7 @@ select {
     background-color: #303030;
     border-radius: 20px;
     padding: 5px 10px;
-    color: white;
+    color: rgb(209, 209, 199);
     font-weight: bold;
     text-align: center;
     margin: 5px;
@@ -54,7 +54,7 @@ select:hover {
 }
 
 p {
-    color: white;
+    color: rgb(209, 209, 199);
     font-weight: bold;
     text-align: center;
 }
@@ -83,7 +83,7 @@ p {
 
 .hiddenHover:hover p,
 .maxHiddenHover:hover p {
-    color: white;
+    color: rgb(209, 209, 199);
 }
 
 .disabledButton {
@@ -117,7 +117,7 @@ p {
 }
 
 table {
-    color: white;
+    color: rgb(209, 209, 199);
     border-collapse: collapse;
 }
 
@@ -152,7 +152,7 @@ td {
 }
 
 .ligne p {
-    border: 1px solid white;
+    border: 1px solid #303030;
     padding: 5px;
 }
 
@@ -183,7 +183,7 @@ td {
 }
 
 .rank:nth-of-type(1) p {
-    color: #c5c900 !important;
+    color: rgb(170, 130, 0) !important;
     font-weight: bold;
     background-color: #50505080;
 }
@@ -247,6 +247,20 @@ td {
     }
 }
 
+.rotate2 {
+    animation: rotation2 160s infinite linear;
+}
+
+@keyframes rotation2 {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
 .chat {
     position: absolute;
     bottom: 70px;
@@ -264,4 +278,25 @@ td {
 
 .chat .yellow {
     color: rgb(170, 130, 0);
+}
+
+.textPick {
+    top: 18px;
+}
+
+.textPick p {
+    margin: auto;
+    font-size: 14px;
+    width: 100%;
+    color: rgb(206, 167, 42);
+}
+
+.textPickLeft p {
+    text-align: right;
+    right: 10px;
+}
+
+.textPickRight p {
+    text-align: left;
+    left: 10px;
 }

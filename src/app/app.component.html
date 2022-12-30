@@ -52,7 +52,9 @@
               <p style="text-align: right; right: -20px">
                 {{ score.temps }}s
                 <span *ngIf="data[i - 1]" style="color: #772323 !important"
-                  >(-{{ score.temps - data[0].temps }}s)</span
+                  >(-{{
+                    score.temps - data[0].temps | number : "1.1-1"
+                  }}s)</span
                 >
               </p>
             </div>
@@ -79,7 +81,9 @@
               <p style="text-align: left; left: -20px">
                 {{ score.temps }}s
                 <span *ngIf="data[i - 1]" style="color: #772323 !important"
-                  >(-{{ score.temps - data[0].temps }}s)</span
+                  >(-{{
+                    score.temps - data[0].temps | number : "1.1-1"
+                  }}s)</span
                 >
               </p>
             </div>

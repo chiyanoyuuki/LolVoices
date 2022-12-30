@@ -149,6 +149,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
+    this.debug = false;
     if (this.debug) {
       this.nomJoueur = 'DEBUG J2';
       this.pick_fr = this.debugData;
@@ -288,11 +289,11 @@ export class AppComponent implements OnInit {
           (a: any) => a.pseudo == this.pick_fr[i].pseudo
         );
         if (tmp) {
-          let last = this.pick_en[i].lastgame;
+          let last = tmp.lastgame;
           let dat = new Date(last);
           if (date.getTime() - dat.getTime() < 1800000) {
             this.pick_fr[i].actif = true;
-            if (this.pick_en[i]) this.pick_en[i].actif = true;
+            tmp.actif = true;
           }
         }
       }

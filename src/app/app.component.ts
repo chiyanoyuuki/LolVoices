@@ -288,7 +288,7 @@ export class AppComponent implements OnInit {
           this.play();
       } else if (event.key == 'Tab' && this.page == 'jeu' && !this.end) {
         this.passer();
-      } else if (event.key == 'Escape' && this.page == 'jeu' && !this.end) {
+      } else if (event.key == 'Escape' && this.page == 'jeu') {
         this.clickReplay();
       }
     }

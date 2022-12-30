@@ -1,697 +1,697 @@
 {
-    "data": [
-        {
-            "code": "bhxquwrmmdndbwzkzizwkyxwqrjhnaoveopuwqlflblwhexoil",
-            "nom": "Aatrox"
-        },
-        {
-            "code": "zvgoedipfcfltsqpqvrqseqmixakjfjvhplrwekrfrpraukkng",
-            "nom": "Ahri"
-        },
-        {
-            "code": "vzpdaimuljpagfumfzdlqsjjwdntsxcqylqsndzslwhvgcyjeu",
-            "nom": "Akali"
-        },
-        {
-            "code": "vxkplqrzqxufyxbrqoeqexwlegejaxnzxscqctmnhvbkuixojb",
-            "nom": "Akshan"
-        },
-        {
-            "code": "gwcjxmynheamhvepfmftctvlrlciscoqgterssktjcmpmycfoi",
-            "nom": "Alistar"
-        },
-        {
-            "code": "dcjlkbibnvwhtipobdqtwudqvpyiecfsrchimiraawcxstxqqp",
-            "nom": "Amumu"
-        },
-        {
-            "code": "cfrvwribpwdijiavkoovtpyczkmhedfxybkfdmfkemklmuphyr",
-            "nom": "Anivia"
-        },
-        {
-            "code": "rjmmyxmmmtzdbflmxpkxwprvzfcwvixmiwhxorptyslnqnnuln",
-            "nom": "Annie"
-        },
-        {
-            "code": "gkukkzjsbswbskedvoplqkspqhzvyoqdmpmlybpcubhudixlba",
-            "nom": "Aphelios"
-        },
-        {
-            "code": "psihdozxgzoolzkqbtlvmqdqpwrwwvcnhqugcrzmownmylcvfc",
-            "nom": "Ashe"
-        },
-        {
-            "code": "qeprkzysgcoghvdznaocpflinbofwmljyqnvtdamdjanvaewbx",
-            "nom": "Aurelion_Sol",
-            "other": "Aurelion"
-        },
-        {
-            "code": "uigwpwbyegcjqjlipkkopjkkrmxwjjxdbgbsmmloyyxymhfsfm",
-            "nom": "Azir"
-        },
-        {
-            "code": "oahcikjevlmvmdmklunddfalthsejpflnrgwjupksfgmxcipav",
-            "nom": "Bard"
-        },
-        {
-            "code": "tqlztdplvonfhvpfbhtporyxszvclyhuiajaybvwzwxtgttpwb",
-            "nom": "Bel'Veth"
-        },
-        {
-            "code": "utvnpruqqqzibodysebgyzfenevntfntfftgylbskjdrgczext",
-            "nom": "Blitzcrank",
-            "other": "Blitz"
-        },
-        {
-            "code": "nizkeplthoxbhktiojooltnvijkzzxbgxubjtocsopuxicuzag",
-            "nom": "Brand"
-        },
-        {
-            "code": "iuwvtoxmwnlfsohgqonaxbieknyoqaeofgavctrhzvggqhupuj",
-            "nom": "Braum"
-        },
-        {
-            "code": "mrdtwhbgklrykzvfkhkjzxojvvyohctincmmfnfasfyebkmgfv",
-            "nom": "Caitlyn",
-            "other": "Cait"
-        },
-        {
-            "code": "sfkoesjmglubwcngflutywzjpgnwwajhnrtjtmfrlqevegszsd",
-            "nom": "Camille"
-        },
-        {
-            "code": "eevownlnujhcdduodfyoiuxhjxgygtdlhytokgwvtfwhyzqdko",
-            "nom": "Cassiopeia",
-            "other": "Cassio"
-        },
-        {
-            "code": "tphchdydulfthkavbcdkhvidgvzwigfcichjkvybktdbolxxol",
-            "nom": "Cho'Gath"
-        },
-        {
-            "code": "hzykyojgfmduhlelmjwqkotlueskixuiorvuuqnnljtsbzqkoa",
-            "nom": "Corki"
-        },
-        {
-            "code": "ylimuwaynyiaelxtszdgscqnsylpylhpkgvhmjtqvrtkvxyisz",
-            "nom": "Darius"
-        },
-        {
-            "code": "osqxrrboppcyvdfbdnmeptrazdiarbtnljpzvnfwjnawdowcgp",
-            "nom": "Diana"
-        },
-        {
-            "code": "sxghhicjjoeanmtklxedbhwjshwovslphsrlclxhuusozjxikk",
-            "nom": "Dr._Mundo",
-            "other": "Mundo"
-        },
-        {
-            "code": "cmzctnpxhevtvouvznykkusgjvwmuzmxcqmqabvkkjymfrwsrx",
-            "nom": "Draven"
-        },
-        {
-            "code": "kqmijlqbfslizgdmwagdgyeojwkrgdsrkvamuklxqlwxzytaiq",
-            "nom": "Ekko"
-        },
-        {
-            "code": "ecjxywvmyjudpmhkhbatqaoiuahsgkkscobnbrmfljuyfpxorp",
-            "nom": "Elise"
-        },
-        {
-            "code": "zxucxhgfckyjjfafjpclhufafmqskxntvbmkmqbpfehaactabh",
-            "nom": "Evelynn",
-            "other": "Eve"
-        },
-        {
-            "code": "tpbdoossvyyjzvujymhvyhdbxzwkidiogvamjyemeccckoqdhg",
-            "nom": "Ezreal",
-            "other": "Ez"
-        },
-        {
-            "code": "ddufqiuvcykzhdprscbzrwitgsvhxjqetngyadgoibjdpeiabw",
-            "nom": "Fiddlesticks",
-            "other": "Fiddle"
-        },
-        {
-            "code": "ffprdvkskagolztvnmtxtyfimwynuerqmewuqpclwznmjnzbja",
-            "nom": "Fiora"
-        },
-        {
-            "code": "uqtgdtqttncfdbatmhkvkzwjquyjxytkgcgrmnlynydrldtaqo",
-            "nom": "Fizz"
-        },
-        {
-            "code": "qfxyxxxzrgbqccwvpxngmljdwdjorwpnerzjrdyyotghowvtrf",
-            "nom": "Galio"
-        },
-        {
-            "code": "dygbgrveqxvzhtmvexysytdllakykijiodyhnxkpiuyruwrzxa",
-            "nom": "Gangplank",
-            "other": "Gp"
-        },
-        {
-            "code": "oqmmxmkdjlvosbofabznmwyvncrphlzizjjtpvcsiuibqwvvbj",
-            "nom": "Garen"
-        },
-        {
-            "code": "nrmzgumchrhlzrsreztwcespogtldpyyechparcqhnuyxqdzuf",
-            "nom": "Gnar"
-        },
-        {
-            "code": "uskeneovlifxsbnfhcionnkvbypjlxgmshgdpgbxvjabkuegkp",
-            "nom": "Gragas"
-        },
-        {
-            "code": "yuhujwnggsdxjuybrxmyimisndfhxejdsmhrhjhjqespoajkuq",
-            "nom": "Graves"
-        },
-        {
-            "code": "ohnhuvichnaulqnvvclfidrvofvinmmjnjpejupgiwzqwzpwtg",
-            "nom": "Gwen"
-        },
-        {
-            "code": "khsynepxexobihdlalyvtgrpyzlcxhpenkcdpyaylkrlhjmhbi",
-            "nom": "Hecarim",
-            "other": "Heca"
-        },
-        {
-            "code": "lkttcjfcadxpnstfswdmkgkqdwpblznopmczocdzngllhjewhj",
-            "nom": "Heimerdinger",
-            "other": "Heimer"
-        },
-        {
-            "code": "esatwjsarlsjjgcotsxbzurcviywqugnqbslmpryyxtabakafx",
-            "nom": "Illaoi"
-        },
-        {
-            "code": "nztlkofyhjlcytuqsrlvqyurddshxfjbenabvhmoplapihegmr",
-            "nom": "Irelia"
-        },
-        {
-            "code": "plylndeumsvdujfyxlcapazbwwfbwloccelwfznlnruyecscgx",
-            "nom": "Ivern"
-        },
-        {
-            "code": "egmzexewywkjryszzeyydaljovenneujibgqjbbjfgeuogzvtr",
-            "nom": "Janna"
-        },
-        {
-            "code": "fcidenxullqcgqnrhjymqhgaofgzhbhvfatdzaybplviprjrgr",
-            "nom": "Jarvan_IV",
-            "other": "Jarvan"
-        },
-        {
-            "code": "dlqiemhlmqpqgfjihldmngrsayhnzwgjihqwmebeiegeahqoze",
-            "nom": "Jax"
-        },
-        {
-            "code": "axllnuyqfuvygnwadgkwvsoqazktdeblnvfepksmoemofkhfqi",
-            "nom": "Jayce"
-        },
-        {
-            "code": "fgnwpejgwonxswmpfmnuktxtygslbcawqpuhiztvgsqjpacabz",
-            "nom": "Jhin"
-        },
-        {
-            "code": "yazglbepoombkbqxlsdlwfjqhppktipljmskxdbbjbgzotbfxz",
-            "nom": "Jinx"
-        },
-        {
-            "code": "anqztzlpduwvodujrpiyemqftfrhrcmwxvkwrximtxcvdzcfgj",
-            "nom": "K'Sante"
-        },
-        {
-            "code": "qnxhouflywjobrusaydadfhltuliaqzkkaqfnzeritpmpxwxwy",
-            "nom": "Kai'Sa"
-        },
-        {
-            "code": "pvmwdgbyuofiztceepvdgrkbpfihrdlbdaqhdsoxxjyopzqwsn",
-            "nom": "Kalista"
-        },
-        {
-            "code": "riupovocmtyrplhzchdvhnlpoblwrafwppnujnubjhhryrxuxi",
-            "nom": "Karma"
-        },
-        {
-            "code": "gfhtccgumanurzqyirgzeexqptpaqtijcyytgmmyndpruabujp",
-            "nom": "Karthus"
-        },
-        {
-            "code": "cngnmeyawcyhdzrwghjddqmgwwapxtkjhdlyfygjlaxsijvjsu",
-            "nom": "Kassadin",
-            "other": "Kassa"
-        },
-        {
-            "code": "uopmlbdzuxroihtrvpgzoonsdxftznlezvsayjrazhlswkxeyi",
-            "nom": "Katarina",
-            "other": "Kata"
-        },
-        {
-            "code": "licuyjdhjxilpnyvfqgmxfccnhcwhlllaqeyxhlsdvovuwglph",
-            "nom": "Kayle"
-        },
-        {
-            "code": "efwnevtfpiqlbcfwwazijnobcvafryzmgddstftqdbkublvaso",
-            "nom": "Kayn"
-        },
-        {
-            "code": "zmehhwqjiydjsgnpbrapieivoupvlblcpmgbbeeepjncgkbksm",
-            "nom": "Kennen"
-        },
-        {
-            "code": "cduywtwbheyljdxorxumkzbsmjadibpfooylckvcqwfruyxtmz",
-            "nom": "Kha'Zix"
-        },
-        {
-            "code": "iyawlvqbbfvitpkvqpixcuxrtmeufnybnokefazglmpetftaxw",
-            "nom": "Kindred"
-        },
-        {
-            "code": "rfggxeyqthrheefjaeytmxesniydfmucnjyujaoqdzpqhachag",
-            "nom": "Kled"
-        },
-        {
-            "code": "zvyvovlfixwdidkpfcuzzqqojgkikupkotgxuvqpukjisrvguf",
-            "nom": "Kog'Maw",
-            "other": "Kog"
-        },
-        {
-            "code": "jcpqffvnvepnrpyhigizgdnmzrlzjarjdrrxfeayqckdqcoiwu",
-            "nom": "LeBlanc",
-            "other": "Lb"
-        },
-        {
-            "code": "kbkwwuvaqyaejijwzdrhsudyfrqhbcqgfupshieyzikfrnrtos",
-            "nom": "Lee_Sin",
-            "other": "Lee"
-        },
-        {
-            "code": "wbpsdlfvndskjpqjotyssditbxjpbnpsjenljlfrbpvrikszrk",
-            "nom": "Leona",
-            "other": "Leo"
-        },
-        {
-            "code": "exkmirhkihpcwfcqysiblsaoqtsmpwrggioxevwhiiapecgdvk",
-            "nom": "Lillia"
-        },
-        {
-            "code": "exknxcgzqirzfsjlkfvunbnkwvosogbvmknfwkrxqkzqqwtquh",
-            "nom": "Lissandra",
-            "other": "Liss"
-        },
-        {
-            "code": "cvpegkphywdrxoqlxodzziuzoxczfliqernpvysiwovbkarmmn",
-            "nom": "Lucian"
-        },
-        {
-            "code": "nbftujonobwnyhygunpkjvfpqchhxyzgdrwmxdheilofykifrs",
-            "nom": "Lulu"
-        },
-        {
-            "code": "scocuapzuowrxqrfbedhzyjplhwcibimcluxsgwwudywreicgc",
-            "nom": "Lux"
-        },
-        {
-            "code": "jwjoffnttfypwwvkqoguyridgslvwtbafzsbdldhslnmlblbkp",
-            "nom": "Malphite",
-            "other": "Malph"
-        },
-        {
-            "code": "lclfzkgbhudpimlvmgqcmtyfrazyoczyvlrarhkbcuicnlcefd",
-            "nom": "Malzahar",
-            "other": "Malz"
-        },
-        {
-            "code": "tezvkzsgljddupctbiqpgoentqumyyokddlzijofcviegacphe",
-            "nom": "Maokai",
-            "other": "Mao"
-        },
-        {
-            "code": "bleuuijrnjimyxjbpelocmuphvovsvshsoazjzptvfuevpfkib",
-            "nom": "Master_Yi",
-            "other": "Yi"
-        },
-        {
-            "code": "uufetyhgjizcstlnusaxolvbrqhvxuqighycmngvxddoukkvzk",
-            "nom": "Miss_Fortune",
-            "other": "Mf"
-        },
-        {
-            "code": "xjkkgjlqyqznlsawdaiguiyzmxmmlmmywrbjaarrtaktnjvxjh",
-            "nom": "Mordekaiser",
-            "other": "Morde"
-        },
-        {
-            "code": "fmmhhuurpjceuttxovxlsaqkqvnlszawmmfyudhfngvlqggtbe",
-            "nom": "Morgana",
-            "other": "Morg"
-        },
-        {
-            "code": "xzpfimkpyrrginvhaniubdkqhyfbansulernryapzpvmpmqijd",
-            "nom": "Nami"
-        },
-        {
-            "code": "oigntooorciizbqxoulqbczrrtvyglbhgjzznbqdtyjdbesyhv",
-            "nom": "Nasus"
-        },
-        {
-            "code": "stzjdykoeupaxczssnmljkoysfgynqzocwgkpxxetxmpgqsxuk",
-            "nom": "Nautilus",
-            "other": "Nauti"
-        },
-        {
-            "code": "vmnlolhotmjafmheascmjjhfupbpwwdeopmwhhskkvpxhkvxfr",
-            "nom": "Neeko"
-        },
-        {
-            "code": "yktcptiugkihvqecqdriversquhyrmdvjwmvachtfnyoiajzdc",
-            "nom": "Nidalee",
-            "other": "Nida"
-        },
-        {
-            "code": "lwqnqkeqtylbglatktpviubqxubsnrvqvetgmpvgubzpteulia",
-            "nom": "Nilah"
-        },
-        {
-            "code": "yrjircuhhvuwsznzkqhemxoxgikwdbbmtllirbvywaltteyqxs",
-            "nom": "Nocturne",
-            "other": "Noc"
-        },
-        {
-            "code": "gvjuvujgijorjugnmwxrzxobjgrabqbqexrsqjzatdmiphnzxi",
-            "nom": "Nunu"
-        },
-        {
-            "code": "sjushkoetrhrnnfuvjfnjilpnbmaqkvhlzkakvodjadjoeukti",
-            "nom": "Olaf"
-        },
-        {
-            "code": "svxzagdrqlvueqzbkzewkrpgnwbgquilccahinxmxcjazwdxfb",
-            "nom": "Orianna",
-            "other": "Ori"
-        },
-        {
-            "code": "fhxhuoaoczzdpzvooolrrecdmutkaelqlqrozslqmjvyeplzqo",
-            "nom": "Ornn"
-        },
-        {
-            "code": "sbhgfmwklhitewuucxsrarybtxjgosqjwvbrohfrxqlafofsop",
-            "nom": "Pantheon",
-            "other": "Panth"
-        },
-        {
-            "code": "bgyqdorbrqpevilvrtlmbnwrpwcynosnspayrgjlgvejbcyfpp",
-            "nom": "Poppy"
-        },
-        {
-            "code": "tkaekzzrexuhzlyhkhzqjefgtvqxonszvpheutykbuxjfptats",
-            "nom": "Pyke"
-        },
-        {
-            "code": "ojjxyiidcoazqscjtdkneeemhozqvjbgklsbxrlzknnsxclfiz",
-            "nom": "Qiyana"
-        },
-        {
-            "code": "zgxsvhmpbnytnakmpcztqprkrmdkduzywoyahttxcbdnaankwf",
-            "nom": "Quinn"
-        },
-        {
-            "code": "efumahgspnucoopbybiimrswfifnebpqbysvkrjhetbyetygya",
-            "nom": "Rakan"
-        },
-        {
-            "code": "iubophxkqgkekvhzadevmjffnckxtulamehyrybfwfgbthmhar",
-            "nom": "Rammus"
-        },
-        {
-            "code": "yztpaxkfzspqjokmgepozofvecwqhyhdbmbxrxfeghbmgvqqpn",
-            "nom": "Rek'Sai"
-        },
-        {
-            "code": "wgkvduakabuuswdnrqeooszvewdrbupucextlqujzmzvhqlcec",
-            "nom": "Rell"
-        },
-        {
-            "code": "cojomgesoiquxbtuomezegiskeqkzhgdfqwzaxlzlfppchorxh",
-            "nom": "Renata_Glasc",
-            "other": "Renata"
-        },
-        {
-            "code": "pjarlhcovraklnsatwjhwpfxcxcmreroypcsnxstoqucnbvaeu",
-            "nom": "Renekton",
-            "other": "Renek"
-        },
-        {
-            "code": "ndmbkxnpcruolbifapqsfvinjagvnyfsbfsqylbprwneionqwu",
-            "nom": "Rengar"
-        },
-        {
-            "code": "zqwgslrvzscljepqqgxdqicfywqjkclpnflhzkvbvonvaewfxj",
-            "nom": "Riven"
-        },
-        {
-            "code": "rmwxknyrtbkryqbapypgpyhifcmvxmmtybvvdybrfnktnzrcwr",
-            "nom": "Rumble"
-        },
-        {
-            "code": "qfocalnpjtiuggorzgflufrpilxpytexjklpbkbshviwiclmsj",
-            "nom": "Ryze"
-        },
-        {
-            "code": "juffzmbmnnryagsdtvphdxbdvyjzumkrabukpqrlucsainhdeg",
-            "nom": "Samira"
-        },
-        {
-            "code": "ltebvsccfzidkaomiybqppnjoozuttrmuvpeocpntdsbzmpdtu",
-            "nom": "Sejuani",
-            "other": "Sej"
-        },
-        {
-            "code": "bgwmgzeptsjsuadgrzjqxhanzusislimxdixvakruqckctemcc",
-            "nom": "Senna"
-        },
-        {
-            "code": "cjzexkdhdqrfhgiogylkqerimzijuzwbqvnuwlfkxtgnclizon",
-            "nom": "Seraphine"
-        },
-        {
-            "code": "ejsdhkspsanndpoaaogyotyjvxnikdatcldybxqbtaquxvovlb",
-            "nom": "Sett"
-        },
-        {
-            "code": "hbkakqylmanfolrclonluzrrnaignkhqqfiizgwqbyseixsnng",
-            "nom": "Shaco"
-        },
-        {
-            "code": "ezoksgsjjoqsiymieanucfrapxaufnhglkwtmmwrekfwiciegj",
-            "nom": "Shen"
-        },
-        {
-            "code": "vojcnzxmdqvslxzxjpkqedjzixoshjssfmdziwdlfssqgmxnnd",
-            "nom": "Shyvana",
-            "other": "Shyv"
-        },
-        {
-            "code": "kdnyplsvuzbvfxwdxrgiyanryddvmzwywwaqirzbrxxiukpqld",
-            "nom": "Singed"
-        },
-        {
-            "code": "msnesjgxijgyocehxivbowjnmnsocynnmxhrpdcmxaxagtwsxt",
-            "nom": "Sion"
-        },
-        {
-            "code": "kuelaidoauqnjvdehjzjfxkofbcvznmdacznxrqcqtqojlqyyi",
-            "nom": "Sivir"
-        },
-        {
-            "code": "gyitrlyehptjdfyvpuxggojwrhzezqrymccqlusdjzrobkvyxu",
-            "nom": "Skarner"
-        },
-        {
-            "code": "wiuirmihxgtkpzdryrndqbkrghyzgbzwmjeubqqlvfpdsftogr",
-            "nom": "Sona"
-        },
-        {
-            "code": "ocaitazdphrmnrcudfwdduikzaqqdrahehuspcgjsthvhshbem",
-            "nom": "Soraka",
-            "other": "Raka"
-        },
-        {
-            "code": "jkmgrveftlzmtxezpokcotrlbjqqqupjurivjbqiftxtatmpgk",
-            "nom": "Swain"
-        },
-        {
-            "code": "ugksxotluuudsjxncycagtetxlrtrftfphygsjbksvxghnclcu",
-            "nom": "Sylas"
-        },
-        {
-            "code": "gdgbdcltmtfjbdcudguvfluqnsvlhsblpmxdmqpogozpyfkjuy",
-            "nom": "Syndra"
-        },
-        {
-            "code": "xhjbalauyuhuoeoewzioafvktnpjntjdprxwwjpeicdxwszdgd",
-            "nom": "Tahm_Kench",
-            "other": "Tahm"
-        },
-        {
-            "code": "hhwurnywuszrvgmhluvbfhljwxvljqpqwqwcaovytcajvbdbfz",
-            "nom": "Taliyah"
-        },
-        {
-            "code": "bdmebjmsbbrpmxodhywzolrctvslkxwvcklcjkgrzlirrtwvii",
-            "nom": "Talon"
-        },
-        {
-            "code": "syhvxlfegmfpzrfllhficylfrsoszeqemqfwrpsfrqtaxwccop",
-            "nom": "Taric"
-        },
-        {
-            "code": "hkrjmkzzsvpxnviataxvrevqngoppftcwtqotutdqsevrcsyaw",
-            "nom": "Teemo"
-        },
-        {
-            "code": "pqeqrxynnhiwvyfujinxqzjenwkvshkqfkvcsezzwlwrhyrffu",
-            "nom": "Thresh"
-        },
-        {
-            "code": "anyjyfvcyaqhvyqqdvwtxozyjklauhrhaxbmpwvmjpyuczxkts",
-            "nom": "Tristana",
-            "other": "Trist"
-        },
-        {
-            "code": "vnzybhflgurmlgflchwkqqvhjnlkselcstugdawgtlzxigxerm",
-            "nom": "Trundle"
-        },
-        {
-            "code": "guixwpwrdqetncerekgqrriysqkvqrgaxdepmhmmvzyholtnii",
-            "nom": "Tryndamere",
-            "other": "Tryn"
-        },
-        {
-            "code": "ingiihbvcxupsxujkpfvezdwbfytclrftlsfzvwddcqwxatqhg",
-            "nom": "Twisted_Fate",
-            "other": "Tf"
-        },
-        {
-            "code": "pejxqnkcbuzkaubhibzoupsatmhvualxcwywjdgtsrqbdavakt",
-            "nom": "Twitch"
-        },
-        {
-            "code": "rtszexdmplfawmuplfvhifwpyfudabelvewlpisjmtvqzckpge",
-            "nom": "Udyr"
-        },
-        {
-            "code": "yxmmlbcvlzqwkufgqtnvabqdwpkrdynsmdtouinoyyrlsigaqw",
-            "nom": "Urgot"
-        },
-        {
-            "code": "fllcvhftshiijzbgvirtntptzonhhsezzbzznztvsqgkanzvqe",
-            "nom": "Varus"
-        },
-        {
-            "code": "mxlemhbkoljjyzfchaapsfbernzbwklfgselbvckxycdczvbgf",
-            "nom": "Vayne"
-        },
-        {
-            "code": "fyawgpuzympdqmcnppkgnxadersfssqddshqxpdclkxbyjllve",
-            "nom": "Veigar"
-        },
-        {
-            "code": "uljphyuirknzdwyfnertqoznageqdbmqnisufzikvqturpgyix",
-            "nom": "Vel'Koz"
-        },
-        {
-            "code": "gwckloprxklddlslivrudcxqxdwgmcgljxtcoismeyzcxgtyez",
-            "nom": "Vex"
-        },
-        {
-            "code": "cenhriwtcoxjpfhtszbhmygsxonjfdoltgzddruropvnerwjnx",
-            "nom": "Vi"
-        },
-        {
-            "code": "hemastgftgzvopwcwjgbdrsbjshpkxvwxxlbursguomhdkmcir",
-            "nom": "Viego"
-        },
-        {
-            "code": "dswanqskhxoyxgjonxrdhwmtvwathrnfjykjjempxppbiqjzhy",
-            "nom": "Viktor"
-        },
-        {
-            "code": "skgukjrngzvyrtgknrakyekqkjbrpoolotfgnxiibelhrtqpnv",
-            "nom": "Vladimir",
-            "other": "Vlad"
-        },
-        {
-            "code": "egtstghsgxwmkxzitmftpqjnirygamyjoepfricxjojbpsincj",
-            "nom": "Volibear",
-            "other": "Voli"
-        },
-        {
-            "code": "voyjcfgpdzpsktyfjvarmggxxwuiepkstyifbdxhwqigtmccxs",
-            "nom": "Warwick",
-            "other": "Ww"
-        },
-        {
-            "code": "fgaqbnzhakizakmgznqkvftzegodvdnvfjerkcduoveyvfmqvt",
-            "nom": "Wukong"
-        },
-        {
-            "code": "esmiiqflljrhvckaaxxhanimogjcalgewmaoborrbftcdhochv",
-            "nom": "Xayah"
-        },
-        {
-            "code": "qbeeazyngoiyndttrayfldqnfwxigtidgdlgmscbnqzbglyfae",
-            "nom": "Xerath"
-        },
-        {
-            "code": "mvmhcfihandhboylnqpkoexnapxctwjfkznfbmmsysdmucaayk",
-            "nom": "Xin_Zhao",
-            "other": "Xin"
-        },
-        {
-            "code": "cttwfrrhlnhjnlwblyvcczeqfdruuinvecrhenwfkiayyvxvwn",
-            "nom": "Yasuo",
-            "other": "Yas"
-        },
-        {
-            "code": "ytqondboinrtylchvzzifgxjfpscmnttvpuiilklnixktznrku",
-            "nom": "Yone"
-        },
-        {
-            "code": "mexhxjtcbdkkmyzambokyedmuqkcyjczwaumfagtzzdsgpacru",
-            "nom": "Yorick"
-        },
-        {
-            "code": "umnynkiavdqrghqethwcaxvexfyeiqvbjzaiqruuglmsjvbhxe",
-            "nom": "Yuumi"
-        },
-        {
-            "code": "admfmegfdvntlrjtjqugwtbuwofpncryfdogubeylvcfxvoxay",
-            "nom": "Zac"
-        },
-        {
-            "code": "fjpuxislvvkxmuyhjgcxicxuevwvrejiusigynvatooumplogz",
-            "nom": "Zed"
-        },
-        {
-            "code": "swrbrqlfcytfoqazomcanstroowmnsezsmngxylxflluqjtsun",
-            "nom": "Zeri"
-        },
-        {
-            "code": "xgfbrmzkfpsybgpwnbmwsmlnhgwbxblweiupkjaaljvaqbrcae",
-            "nom": "Ziggs"
-        },
-        {
-            "code": "rzxxqlatilpehjtvhwfjnrlayudvqfcfnryneuzlbuyefklgsq",
-            "nom": "Zilean"
-        },
-        {
-            "code": "atoahdopnyfqukvcsrisuqrbwognroaxdekevewxpovjdgdlsg",
-            "nom": "Zoe"
-        },
-        {
-            "code": "esjgwflcxnurjyjopgfqlcdhhrdupwkmryvlizuwycbwnzbrln",
-            "nom": "Zyra"
-        }
-    ]
+  "data": [
+    {
+      "code": "bhxquwrmmdndbwzkzizwkyxwqrjhnaoveopuwqlflblwhexoil",
+      "nom": "Aatrox"
+    },
+    {
+      "code": "zvgoedipfcfltsqpqvrqseqmixakjfjvhplrwekrfrpraukkng",
+      "nom": "Ahri"
+    },
+    {
+      "code": "vzpdaimuljpagfumfzdlqsjjwdntsxcqylqsndzslwhvgcyjeu",
+      "nom": "Akali"
+    },
+    {
+      "code": "vxkplqrzqxufyxbrqoeqexwlegejaxnzxscqctmnhvbkuixojb",
+      "nom": "Akshan"
+    },
+    {
+      "code": "gwcjxmynheamhvepfmftctvlrlciscoqgterssktjcmpmycfoi",
+      "nom": "Alistar"
+    },
+    {
+      "code": "dcjlkbibnvwhtipobdqtwudqvpyiecfsrchimiraawcxstxqqp",
+      "nom": "Amumu"
+    },
+    {
+      "code": "cfrvwribpwdijiavkoovtpyczkmhedfxybkfdmfkemklmuphyr",
+      "nom": "Anivia"
+    },
+    {
+      "code": "rjmmyxmmmtzdbflmxpkxwprvzfcwvixmiwhxorptyslnqnnuln",
+      "nom": "Annie"
+    },
+    {
+      "code": "gkukkzjsbswbskedvoplqkspqhzvyoqdmpmlybpcubhudixlba",
+      "nom": "Aphelios"
+    },
+    {
+      "code": "psihdozxgzoolzkqbtlvmqdqpwrwwvcnhqugcrzmownmylcvfc",
+      "nom": "Ashe"
+    },
+    {
+      "code": "qeprkzysgcoghvdznaocpflinbofwmljyqnvtdamdjanvaewbx",
+      "nom": "Aurelion_Sol",
+      "other": "Aurelion"
+    },
+    {
+      "code": "uigwpwbyegcjqjlipkkopjkkrmxwjjxdbgbsmmloyyxymhfsfm",
+      "nom": "Azir"
+    },
+    {
+      "code": "oahcikjevlmvmdmklunddfalthsejpflnrgwjupksfgmxcipav",
+      "nom": "Bard"
+    },
+    {
+      "code": "tqlztdplvonfhvpfbhtporyxszvclyhuiajaybvwzwxtgttpwb",
+      "nom": "Bel'Veth"
+    },
+    {
+      "code": "utvnpruqqqzibodysebgyzfenevntfntfftgylbskjdrgczext",
+      "nom": "Blitzcrank",
+      "other": "Blitz"
+    },
+    {
+      "code": "nizkeplthoxbhktiojooltnvijkzzxbgxubjtocsopuxicuzag",
+      "nom": "Brand"
+    },
+    {
+      "code": "iuwvtoxmwnlfsohgqonaxbieknyoqaeofgavctrhzvggqhupuj",
+      "nom": "Braum"
+    },
+    {
+      "code": "mrdtwhbgklrykzvfkhkjzxojvvyohctincmmfnfasfyebkmgfv",
+      "nom": "Caitlyn",
+      "other": "Cait"
+    },
+    {
+      "code": "sfkoesjmglubwcngflutywzjpgnwwajhnrtjtmfrlqevegszsd",
+      "nom": "Camille"
+    },
+    {
+      "code": "eevownlnujhcdduodfyoiuxhjxgygtdlhytokgwvtfwhyzqdko",
+      "nom": "Cassiopeia",
+      "other": "Cassio"
+    },
+    {
+      "code": "tphchdydulfthkavbcdkhvidgvzwigfcichjkvybktdbolxxol",
+      "nom": "Cho'Gath"
+    },
+    {
+      "code": "hzykyojgfmduhlelmjwqkotlueskixuiorvuuqnnljtsbzqkoa",
+      "nom": "Corki"
+    },
+    {
+      "code": "ylimuwaynyiaelxtszdgscqnsylpylhpkgvhmjtqvrtkvxyisz",
+      "nom": "Darius"
+    },
+    {
+      "code": "osqxrrboppcyvdfbdnmeptrazdiarbtnljpzvnfwjnawdowcgp",
+      "nom": "Diana"
+    },
+    {
+      "code": "sxghhicjjoeanmtklxedbhwjshwovslphsrlclxhuusozjxikk",
+      "nom": "Dr._Mundo",
+      "other": "Mundo"
+    },
+    {
+      "code": "cmzctnpxhevtvouvznykkusgjvwmuzmxcqmqabvkkjymfrwsrx",
+      "nom": "Draven"
+    },
+    {
+      "code": "kqmijlqbfslizgdmwagdgyeojwkrgdsrkvamuklxqlwxzytaiq",
+      "nom": "Ekko"
+    },
+    {
+      "code": "ecjxywvmyjudpmhkhbatqaoiuahsgkkscobnbrmfljuyfpxorp",
+      "nom": "Elise"
+    },
+    {
+      "code": "zxucxhgfckyjjfafjpclhufafmqskxntvbmkmqbpfehaactabh",
+      "nom": "Evelynn",
+      "other": "Eve"
+    },
+    {
+      "code": "tpbdoossvyyjzvujymhvyhdbxzwkidiogvamjyemeccckoqdhg",
+      "nom": "Ezreal",
+      "other": "Ez"
+    },
+    {
+      "code": "ddufqiuvcykzhdprscbzrwitgsvhxjqetngyadgoibjdpeiabw",
+      "nom": "Fiddlesticks",
+      "other": "Fiddle"
+    },
+    {
+      "code": "ffprdvkskagolztvnmtxtyfimwynuerqmewuqpclwznmjnzbja",
+      "nom": "Fiora"
+    },
+    {
+      "code": "uqtgdtqttncfdbatmhkvkzwjquyjxytkgcgrmnlynydrldtaqo",
+      "nom": "Fizz"
+    },
+    {
+      "code": "qfxyxxxzrgbqccwvpxngmljdwdjorwpnerzjrdyyotghowvtrf",
+      "nom": "Galio"
+    },
+    {
+      "code": "dygbgrveqxvzhtmvexysytdllakykijiodyhnxkpiuyruwrzxa",
+      "nom": "Gangplank",
+      "other": "Gp"
+    },
+    {
+      "code": "oqmmxmkdjlvosbofabznmwyvncrphlzizjjtpvcsiuibqwvvbj",
+      "nom": "Garen"
+    },
+    {
+      "code": "nrmzgumchrhlzrsreztwcespogtldpyyechparcqhnuyxqdzuf",
+      "nom": "Gnar"
+    },
+    {
+      "code": "uskeneovlifxsbnfhcionnkvbypjlxgmshgdpgbxvjabkuegkp",
+      "nom": "Gragas"
+    },
+    {
+      "code": "yuhujwnggsdxjuybrxmyimisndfhxejdsmhrhjhjqespoajkuq",
+      "nom": "Graves"
+    },
+    {
+      "code": "ohnhuvichnaulqnvvclfidrvofvinmmjnjpejupgiwzqwzpwtg",
+      "nom": "Gwen"
+    },
+    {
+      "code": "khsynepxexobihdlalyvtgrpyzlcxhpenkcdpyaylkrlhjmhbi",
+      "nom": "Hecarim",
+      "other": "Heca"
+    },
+    {
+      "code": "lkttcjfcadxpnstfswdmkgkqdwpblznopmczocdzngllhjewhj",
+      "nom": "Heimerdinger",
+      "other": "Heimer"
+    },
+    {
+      "code": "esatwjsarlsjjgcotsxbzurcviywqugnqbslmpryyxtabakafx",
+      "nom": "Illaoi"
+    },
+    {
+      "code": "nztlkofyhjlcytuqsrlvqyurddshxfjbenabvhmoplapihegmr",
+      "nom": "Irelia"
+    },
+    {
+      "code": "plylndeumsvdujfyxlcapazbwwfbwloccelwfznlnruyecscgx",
+      "nom": "Ivern"
+    },
+    {
+      "code": "egmzexewywkjryszzeyydaljovenneujibgqjbbjfgeuogzvtr",
+      "nom": "Janna"
+    },
+    {
+      "code": "fcidenxullqcgqnrhjymqhgaofgzhbhvfatdzaybplviprjrgr",
+      "nom": "Jarvan_IV",
+      "other": "Jarvan"
+    },
+    {
+      "code": "dlqiemhlmqpqgfjihldmngrsayhnzwgjihqwmebeiegeahqoze",
+      "nom": "Jax"
+    },
+    {
+      "code": "axllnuyqfuvygnwadgkwvsoqazktdeblnvfepksmoemofkhfqi",
+      "nom": "Jayce"
+    },
+    {
+      "code": "fgnwpejgwonxswmpfmnuktxtygslbcawqpuhiztvgsqjpacabz",
+      "nom": "Jhin"
+    },
+    {
+      "code": "yazglbepoombkbqxlsdlwfjqhppktipljmskxdbbjbgzotbfxz",
+      "nom": "Jinx"
+    },
+    {
+      "code": "anqztzlpduwvodujrpiyemqftfrhrcmwxvkwrximtxcvdzcfgj",
+      "nom": "K'Sante"
+    },
+    {
+      "code": "qnxhouflywjobrusaydadfhltuliaqzkkaqfnzeritpmpxwxwy",
+      "nom": "Kai'Sa"
+    },
+    {
+      "code": "pvmwdgbyuofiztceepvdgrkbpfihrdlbdaqhdsoxxjyopzqwsn",
+      "nom": "Kalista"
+    },
+    {
+      "code": "riupovocmtyrplhzchdvhnlpoblwrafwppnujnubjhhryrxuxi",
+      "nom": "Karma"
+    },
+    {
+      "code": "gfhtccgumanurzqyirgzeexqptpaqtijcyytgmmyndpruabujp",
+      "nom": "Karthus"
+    },
+    {
+      "code": "cngnmeyawcyhdzrwghjddqmgwwapxtkjhdlyfygjlaxsijvjsu",
+      "nom": "Kassadin",
+      "other": "Kassa"
+    },
+    {
+      "code": "uopmlbdzuxroihtrvpgzoonsdxftznlezvsayjrazhlswkxeyi",
+      "nom": "Katarina",
+      "other": "Kata"
+    },
+    {
+      "code": "licuyjdhjxilpnyvfqgmxfccnhcwhlllaqeyxhlsdvovuwglph",
+      "nom": "Kayle"
+    },
+    {
+      "code": "efwnevtfpiqlbcfwwazijnobcvafryzmgddstftqdbkublvaso",
+      "nom": "Kayn"
+    },
+    {
+      "code": "zmehhwqjiydjsgnpbrapieivoupvlblcpmgbbeeepjncgkbksm",
+      "nom": "Kennen"
+    },
+    {
+      "code": "cduywtwbheyljdxorxumkzbsmjadibpfooylckvcqwfruyxtmz",
+      "nom": "Kha'Zix"
+    },
+    {
+      "code": "iyawlvqbbfvitpkvqpixcuxrtmeufnybnokefazglmpetftaxw",
+      "nom": "Kindred"
+    },
+    {
+      "code": "rfggxeyqthrheefjaeytmxesniydfmucnjyujaoqdzpqhachag",
+      "nom": "Kled"
+    },
+    {
+      "code": "zvyvovlfixwdidkpfcuzzqqojgkikupkotgxuvqpukjisrvguf",
+      "nom": "Kog'Maw",
+      "other": "Kog"
+    },
+    {
+      "code": "jcpqffvnvepnrpyhigizgdnmzrlzjarjdrrxfeayqckdqcoiwu",
+      "nom": "LeBlanc",
+      "other": "Lb"
+    },
+    {
+      "code": "kbkwwuvaqyaejijwzdrhsudyfrqhbcqgfupshieyzikfrnrtos",
+      "nom": "Lee_Sin",
+      "other": "Lee"
+    },
+    {
+      "code": "wbpsdlfvndskjpqjotyssditbxjpbnpsjenljlfrbpvrikszrk",
+      "nom": "Leona",
+      "other": "Leo"
+    },
+    {
+      "code": "exkmirhkihpcwfcqysiblsaoqtsmpwrggioxevwhiiapecgdvk",
+      "nom": "Lillia"
+    },
+    {
+      "code": "exknxcgzqirzfsjlkfvunbnkwvosogbvmknfwkrxqkzqqwtquh",
+      "nom": "Lissandra",
+      "other": "Liss"
+    },
+    {
+      "code": "cvpegkphywdrxoqlxodzziuzoxczfliqernpvysiwovbkarmmn",
+      "nom": "Lucian"
+    },
+    {
+      "code": "nbftujonobwnyhygunpkjvfpqchhxyzgdrwmxdheilofykifrs",
+      "nom": "Lulu"
+    },
+    {
+      "code": "scocuapzuowrxqrfbedhzyjplhwcibimcluxsgwwudywreicgc",
+      "nom": "Lux"
+    },
+    {
+      "code": "jwjoffnttfypwwvkqoguyridgslvwtbafzsbdldhslnmlblbkp",
+      "nom": "Malphite",
+      "other": "Malph"
+    },
+    {
+      "code": "lclfzkgbhudpimlvmgqcmtyfrazyoczyvlrarhkbcuicnlcefd",
+      "nom": "Malzahar",
+      "other": "Malz"
+    },
+    {
+      "code": "tezvkzsgljddupctbiqpgoentqumyyokddlzijofcviegacphe",
+      "nom": "Maokai",
+      "other": "Mao"
+    },
+    {
+      "code": "bleuuijrnjimyxjbpelocmuphvovsvshsoazjzptvfuevpfkib",
+      "nom": "Master_Yi",
+      "other": "Yi"
+    },
+    {
+      "code": "uufetyhgjizcstlnusaxolvbrqhvxuqighycmngvxddoukkvzk",
+      "nom": "Miss_Fortune",
+      "other": "Mf"
+    },
+    {
+      "code": "xjkkgjlqyqznlsawdaiguiyzmxmmlmmywrbjaarrtaktnjvxjh",
+      "nom": "Mordekaiser",
+      "other": "Morde"
+    },
+    {
+      "code": "fmmhhuurpjceuttxovxlsaqkqvnlszawmmfyudhfngvlqggtbe",
+      "nom": "Morgana",
+      "other": "Morg"
+    },
+    {
+      "code": "xzpfimkpyrrginvhaniubdkqhyfbansulernryapzpvmpmqijd",
+      "nom": "Nami"
+    },
+    {
+      "code": "oigntooorciizbqxoulqbczrrtvyglbhgjzznbqdtyjdbesyhv",
+      "nom": "Nasus"
+    },
+    {
+      "code": "stzjdykoeupaxczssnmljkoysfgynqzocwgkpxxetxmpgqsxuk",
+      "nom": "Nautilus",
+      "other": "Nauti"
+    },
+    {
+      "code": "vmnlolhotmjafmheascmjjhfupbpwwdeopmwhhskkvpxhkvxfr",
+      "nom": "Neeko"
+    },
+    {
+      "code": "yktcptiugkihvqecqdriversquhyrmdvjwmvachtfnyoiajzdc",
+      "nom": "Nidalee",
+      "other": "Nida"
+    },
+    {
+      "code": "lwqnqkeqtylbglatktpviubqxubsnrvqvetgmpvgubzpteulia",
+      "nom": "Nilah"
+    },
+    {
+      "code": "yrjircuhhvuwsznzkqhemxoxgikwdbbmtllirbvywaltteyqxs",
+      "nom": "Nocturne",
+      "other": "Noc"
+    },
+    {
+      "code": "gvjuvujgijorjugnmwxrzxobjgrabqbqexrsqjzatdmiphnzxi",
+      "nom": "Nunu"
+    },
+    {
+      "code": "sjushkoetrhrnnfuvjfnjilpnbmaqkvhlzkakvodjadjoeukti",
+      "nom": "Olaf"
+    },
+    {
+      "code": "svxzagdrqlvueqzbkzewkrpgnwbgquilccahinxmxcjazwdxfb",
+      "nom": "Orianna",
+      "other": "Ori"
+    },
+    {
+      "code": "fhxhuoaoczzdpzvooolrrecdmutkaelqlqrozslqmjvyeplzqo",
+      "nom": "Ornn"
+    },
+    {
+      "code": "sbhgfmwklhitewuucxsrarybtxjgosqjwvbrohfrxqlafofsop",
+      "nom": "Pantheon",
+      "other": "Panth"
+    },
+    {
+      "code": "bgyqdorbrqpevilvrtlmbnwrpwcynosnspayrgjlgvejbcyfpp",
+      "nom": "Poppy"
+    },
+    {
+      "code": "tkaekzzrexuhzlyhkhzqjefgtvqxonszvpheutykbuxjfptats",
+      "nom": "Pyke"
+    },
+    {
+      "code": "ojjxyiidcoazqscjtdkneeemhozqvjbgklsbxrlzknnsxclfiz",
+      "nom": "Qiyana"
+    },
+    {
+      "code": "zgxsvhmpbnytnakmpcztqprkrmdkduzywoyahttxcbdnaankwf",
+      "nom": "Quinn"
+    },
+    {
+      "code": "efumahgspnucoopbybiimrswfifnebpqbysvkrjhetbyetygya",
+      "nom": "Rakan"
+    },
+    {
+      "code": "iubophxkqgkekvhzadevmjffnckxtulamehyrybfwfgbthmhar",
+      "nom": "Rammus"
+    },
+    {
+      "code": "yztpaxkfzspqjokmgepozofvecwqhyhdbmbxrxfeghbmgvqqpn",
+      "nom": "Rek'Sai"
+    },
+    {
+      "code": "wgkvduakabuuswdnrqeooszvewdrbupucextlqujzmzvhqlcec",
+      "nom": "Rell"
+    },
+    {
+      "code": "cojomgesoiquxbtuomezegiskeqkzhgdfqwzaxlzlfppchorxh",
+      "nom": "Renata_Glasc",
+      "other": "Renata"
+    },
+    {
+      "code": "pjarlhcovraklnsatwjhwpfxcxcmreroypcsnxstoqucnbvaeu",
+      "nom": "Renekton",
+      "other": "Renek"
+    },
+    {
+      "code": "ndmbkxnpcruolbifapqsfvinjagvnyfsbfsqylbprwneionqwu",
+      "nom": "Rengar"
+    },
+    {
+      "code": "zqwgslrvzscljepqqgxdqicfywqjkclpnflhzkvbvonvaewfxj",
+      "nom": "Riven"
+    },
+    {
+      "code": "rmwxknyrtbkryqbapypgpyhifcmvxmmtybvvdybrfnktnzrcwr",
+      "nom": "Rumble"
+    },
+    {
+      "code": "qfocalnpjtiuggorzgflufrpilxpytexjklpbkbshviwiclmsj",
+      "nom": "Ryze"
+    },
+    {
+      "code": "juffzmbmnnryagsdtvphdxbdvyjzumkrabukpqrlucsainhdeg",
+      "nom": "Samira"
+    },
+    {
+      "code": "ltebvsccfzidkaomiybqppnjoozuttrmuvpeocpntdsbzmpdtu",
+      "nom": "Sejuani",
+      "other": "Sej"
+    },
+    {
+      "code": "bgwmgzeptsjsuadgrzjqxhanzusislimxdixvakruqckctemcc",
+      "nom": "Senna"
+    },
+    {
+      "code": "cjzexkdhdqrfhgiogylkqerimzijuzwbqvnuwlfkxtgnclizon",
+      "nom": "Seraphine"
+    },
+    {
+      "code": "ejsdhkspsanndpoaaogyotyjvxnikdatcldybxqbtaquxvovlb",
+      "nom": "Sett"
+    },
+    {
+      "code": "hbkakqylmanfolrclonluzrrnaignkhqqfiizgwqbyseixsnng",
+      "nom": "Shaco"
+    },
+    {
+      "code": "ezoksgsjjoqsiymieanucfrapxaufnhglkwtmmwrekfwiciegj",
+      "nom": "Shen"
+    },
+    {
+      "code": "vojcnzxmdqvslxzxjpkqedjzixoshjssfmdziwdlfssqgmxnnd",
+      "nom": "Shyvana",
+      "other": "Shyv"
+    },
+    {
+      "code": "kdnyplsvuzbvfxwdxrgiyanryddvmzwywwaqirzbrxxiukpqld",
+      "nom": "Singed"
+    },
+    {
+      "code": "msnesjgxijgyocehxivbowjnmnsocynnmxhrpdcmxaxagtwsxt",
+      "nom": "Sion"
+    },
+    {
+      "code": "kuelaidoauqnjvdehjzjfxkofbcvznmdacznxrqcqtqojlqyyi",
+      "nom": "Sivir"
+    },
+    {
+      "code": "gyitrlyehptjdfyvpuxggojwrhzezqrymccqlusdjzrobkvyxu",
+      "nom": "Skarner"
+    },
+    {
+      "code": "wiuirmihxgtkpzdryrndqbkrghyzgbzwmjeubqqlvfpdsftogr",
+      "nom": "Sona"
+    },
+    {
+      "code": "ocaitazdphrmnrcudfwdduikzaqqdrahehuspcgjsthvhshbem",
+      "nom": "Soraka",
+      "other": "Raka"
+    },
+    {
+      "code": "jkmgrveftlzmtxezpokcotrlbjqqqupjurivjbqiftxtatmpgk",
+      "nom": "Swain"
+    },
+    {
+      "code": "ugksxotluuudsjxncycagtetxlrtrftfphygsjbksvxghnclcu",
+      "nom": "Sylas"
+    },
+    {
+      "code": "gdgbdcltmtfjbdcudguvfluqnsvlhsblpmxdmqpogozpyfkjuy",
+      "nom": "Syndra"
+    },
+    {
+      "code": "xhjbalauyuhuoeoewzioafvktnpjntjdprxwwjpeicdxwszdgd",
+      "nom": "Tahm_Kench",
+      "other": "Tahm"
+    },
+    {
+      "code": "hhwurnywuszrvgmhluvbfhljwxvljqpqwqwcaovytcajvbdbfz",
+      "nom": "Taliyah"
+    },
+    {
+      "code": "bdmebjmsbbrpmxodhywzolrctvslkxwvcklcjkgrzlirrtwvii",
+      "nom": "Talon"
+    },
+    {
+      "code": "syhvxlfegmfpzrfllhficylfrsoszeqemqfwrpsfrqtaxwccop",
+      "nom": "Taric"
+    },
+    {
+      "code": "hkrjmkzzsvpxnviataxvrevqngoppftcwtqotutdqsevrcsyaw",
+      "nom": "Teemo"
+    },
+    {
+      "code": "pqeqrxynnhiwvyfujinxqzjenwkvshkqfkvcsezzwlwrhyrffu",
+      "nom": "Thresh"
+    },
+    {
+      "code": "anyjyfvcyaqhvyqqdvwtxozyjklauhrhaxbmpwvmjpyuczxkts",
+      "nom": "Tristana",
+      "other": "Trist"
+    },
+    {
+      "code": "vnzybhflgurmlgflchwkqqvhjnlkselcstugdawgtlzxigxerm",
+      "nom": "Trundle"
+    },
+    {
+      "code": "guixwpwrdqetncerekgqrriysqkvqrgaxdepmhmmvzyholtnii",
+      "nom": "Tryndamere",
+      "other": "Tryn"
+    },
+    {
+      "code": "ingiihbvcxupsxujkpfvezdwbfytclrftlsfzvwddcqwxatqhg",
+      "nom": "Twisted_Fate",
+      "other": "Tf"
+    },
+    {
+      "code": "pejxqnkcbuzkaubhibzoupsatmhvualxcwywjdgtsrqbdavakt",
+      "nom": "Twitch"
+    },
+    {
+      "code": "rtszexdmplfawmuplfvhifwpyfudabelvewlpisjmtvqzckpge",
+      "nom": "Udyr"
+    },
+    {
+      "code": "yxmmlbcvlzqwkufgqtnvabqdwpkrdynsmdtouinoyyrlsigaqw",
+      "nom": "Urgot"
+    },
+    {
+      "code": "fllcvhftshiijzbgvirtntptzonhhsezzbzznztvsqgkanzvqe",
+      "nom": "Varus"
+    },
+    {
+      "code": "mxlemhbkoljjyzfchaapsfbernzbwklfgselbvckxycdczvbgf",
+      "nom": "Vayne"
+    },
+    {
+      "code": "fyawgpuzympdqmcnppkgnxadersfssqddshqxpdclkxbyjllve",
+      "nom": "Veigar"
+    },
+    {
+      "code": "uljphyuirknzdwyfnertqoznageqdbmqnisufzikvqturpgyix",
+      "nom": "Vel'Koz"
+    },
+    {
+      "code": "gwckloprxklddlslivrudcxqxdwgmcgljxtcoismeyzcxgtyez",
+      "nom": "Vex"
+    },
+    {
+      "code": "cenhriwtcoxjpfhtszbhmygsxonjfdoltgzddruropvnerwjnx",
+      "nom": "Vi"
+    },
+    {
+      "code": "hemastgftgzvopwcwjgbdrsbjshpkxvwxxlbursguomhdkmcir",
+      "nom": "Viego"
+    },
+    {
+      "code": "dswanqskhxoyxgjonxrdhwmtvwathrnfjykjjempxppbiqjzhy",
+      "nom": "Viktor"
+    },
+    {
+      "code": "skgukjrngzvyrtgknrakyekqkjbrpoolotfgnxiibelhrtqpnv",
+      "nom": "Vladimir",
+      "other": "Vlad"
+    },
+    {
+      "code": "egtstghsgxwmkxzitmftpqjnirygamyjoepfricxjojbpsincj",
+      "nom": "Volibear",
+      "other": "Voli"
+    },
+    {
+      "code": "voyjcfgpdzpsktyfjvarmggxxwuiepkstyifbdxhwqigtmccxs",
+      "nom": "Warwick",
+      "other": "Ww"
+    },
+    {
+      "code": "fgaqbnzhakizakmgznqkvftzegodvdnvfjerkcduoveyvfmqvt",
+      "nom": "Wukong"
+    },
+    {
+      "code": "esmiiqflljrhvckaaxxhanimogjcalgewmaoborrbftcdhochv",
+      "nom": "Xayah"
+    },
+    {
+      "code": "qbeeazyngoiyndttrayfldqnfwxigtidgdlgmscbnqzbglyfae",
+      "nom": "Xerath"
+    },
+    {
+      "code": "mvmhcfihandhboylnqpkoexnapxctwjfkznfbmmsysdmucaayk",
+      "nom": "Xin_Zhao",
+      "other": "Xin"
+    },
+    {
+      "code": "cttwfrrhlnhjnlwblyvcczeqfdruuinvecrhenwfkiayyvxvwn",
+      "nom": "Yasuo",
+      "other": "Yas"
+    },
+    {
+      "code": "ytqondboinrtylchvzzifgxjfpscmnttvpuiilklnixktznrku",
+      "nom": "Yone"
+    },
+    {
+      "code": "mexhxjtcbdkkmyzambokyedmuqkcyjczwaumfagtzzdsgpacru",
+      "nom": "Yorick"
+    },
+    {
+      "code": "umnynkiavdqrghqethwcaxvexfyeiqvbjzaiqruuglmsjvbhxe",
+      "nom": "Yuumi"
+    },
+    {
+      "code": "admfmegfdvntlrjtjqugwtbuwofpncryfdogubeylvcfxvoxay",
+      "nom": "Zac"
+    },
+    {
+      "code": "fjpuxislvvkxmuyhjgcxicxuevwvrejiusigynvatooumplogz",
+      "nom": "Zed"
+    },
+    {
+      "code": "swrbrqlfcytfoqazomcanstroowmnsezsmngxylxflluqjtsun",
+      "nom": "Zeri"
+    },
+    {
+      "code": "xgfbrmzkfpsybgpwnbmwsmlnhgwbxblweiupkjaaljvaqbrcae",
+      "nom": "Ziggs"
+    },
+    {
+      "code": "rzxxqlatilpehjtvhwfjnrlayudvqfcfnryneuzlbuyefklgsq",
+      "nom": "Zilean"
+    },
+    {
+      "code": "atoahdopnyfqukvcsrisuqrbwognroaxdekevewxpovjdgdlsg",
+      "nom": "Zoe"
+    },
+    {
+      "code": "esjgwflcxnurjyjopgfqlcdhhrdupwkmryvlizuwycbwnzbrln",
+      "nom": "Zyra"
+    }
+  ]
 }

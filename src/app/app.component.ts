@@ -115,7 +115,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    if(this.debug)this.nomJoueur = "DEBUG J2";
+    if (this.debug) this.nomJoueur = "DEBUG J2";
     this.getData();
     this.pickMusic = new Audio();
     this.pickMusic.loop = true;
@@ -191,7 +191,7 @@ export class AppComponent implements OnInit {
 
   async getdata2() {
     console.log("getData(fr)");
-    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.sort(this.pick_fr); this.nbGames = this.getNbGames(); console.log(data) })
+    this.http.get<any>("https://www.chiya-no-yuuki.fr/pick_fr_select").subscribe(data => { this.pick_fr = data; this.sort(this.pick_fr); this.nbGames = this.getNbGames(); })
   }
 
   public sort(tab: any) {
@@ -401,7 +401,7 @@ export class AppComponent implements OnInit {
 
   getColor() {
     if (this.overallBest && this.timer < this.overallBest) return "#c5c900";
-    if (this.best && this.timer > this.best) return "red";
+    if (this.best && this.timer > this.best) return "#772323";
     if (!this.best) return "rgb(209, 209, 199)";
     return "green";
   }

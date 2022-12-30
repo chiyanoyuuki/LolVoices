@@ -329,3 +329,28 @@ td {
     left: 20px;
     top: 0px;
 }
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:hover {
+    width: 300px;
+    height: 100px;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    color: red;
+    background-color: blue;
+    scrollbar-color: green;
+}
+
+.tabScore {
+    overflow-y: scroll;
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px black;
+    scrollbar-color: #303030bb black;
+    scrollbar-width: thin;
+}

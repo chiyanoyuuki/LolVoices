@@ -54,7 +54,7 @@
 
         <div style="margin-top:140px;width: fit-content;margin-left: 432px;">
             <p style="position: absolute;top: -155px;width: 100%;font-size: 35px;white-space: nowrap;"
-                [style.color]="invalidName()?'red':'rgb(209, 209, 199)'">{{topText()}}</p>
+                [style.color]="invalidName()?'#772323':'rgb(209, 209, 199)'">{{topText()}}</p>
             <div *ngIf="page=='pause' || page=='jeu'">
                 <div style="width:fit-content;margin:auto;position:relative;">
                     <p style="text-align: center;font-size: 60px;position: absolute;width:100%;top: -120px;"
@@ -109,7 +109,7 @@
             </div>
             <div style="margin-top:20px;display:flex;justify-content: center;">
                 <div [style.max-height]="page=='start'?'300px':'380px'"
-                    style="overflow-y:auto;border-radius: 15px;box-shadow: 5px 5px 20px black;">
+                    class="tabScore">
                     <div class="ligne" style="opacity:1!important;background-color:'#00000080'">
                         <p style="display:none"></p>
                         <p>Rang</p>

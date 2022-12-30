@@ -1,153 +1,252 @@
-<div class="flex justify-content:center" style="margin:2% 0px">
-    <div [ngClass]="{pickBg:true}" style="overflow:hidden">
-        <div class="chat">
-            <p class="gray">GameMaster à rejoint le salon</p>
-            <p><span class="yellow">GameMaster </span> Le nombre total de games joueés est de {{nbGames}}</p>
-            <p><span class="yellow">GameMaster </span> Merci à tous, vous êtes les boss !</p>
-        </div>
-        <img src="./assets/centerRotate.png" class="rotate2"
-            style="position:absolute;width: 750px;height: 750px;left: 345px;" />
-        <img src="./assets/topFond.png" style="top:0px;left:384px;position:absolute;width:674px;" />
-        <img src="./assets/botFond.png" style="bottom:-2px;width:700px;left:378px;position:absolute" />
-
-
-        <ng-container *ngIf="page=='jeu'">
-            <ng-container *ngFor="let perso of randomChamps;let i=index;">
-
-                <div *ngIf="i<nbFound" style="position: absolute;display:flex;width:300px;"
-                    [style.justify-content]="getJustify(i)" [style.top]="getTop(i,1)" [style.left]="getLeft(i,1)">
-                    <div *ngIf="i>4" class="textPick textPickLeft">
-                        <p style="color:rgb(209, 209, 199);right:15px;">{{smallFormat(perso.nom) | uppercase }}</p>
-                        <p style="color:rgb(209, 209, 199);right:15px;">{{pick_fr[i]?pick_fr[i].pseudo:creatures[i]}}
-                        </p>
-                    </div>
-                    <img src="./assets/imgs/{{perso.nom}}.png" style="border-radius: 100%;width: 64px" />
-                    <div *ngIf="i<5" class="textPick textPickRight">
-                        <p style="color:rgb(209, 209, 199);left:15px;">{{smallFormat(perso.nom) | uppercase }}</p>
-                        <p style="color:rgb(209, 209, 199);left:15px;">{{pick_fr[i]?pick_fr[i].pseudo:creatures[i]}}</p>
-                    </div>
-                </div>
-
-                <div *ngIf="i==nbFound" style="position: absolute;display:flex;width:300px;"
-                    [style.justify-content]="getJustify(i)" [style.top]="getTop(i,2)" [style.left]="getLeft(i,2)">
-                    <div *ngIf="i>4" class="textPick textPickLeft">
-                        <img src="./assets/actual2.png"
-                            style="position:absolute;right: -100px;top: -27px;height: 90px;">
-                        <p> Picking...</p>
-                        <p>{{pick_fr[i]?pick_fr[i].pseudo:creatures[i]}}</p>
-                    </div>
-
-                    <img src="./assets/loading{{i<5?'':'2'}}.png" class="rotate" style="width:72px;height:72px" />
-
-                    <div *ngIf="i<5" class="textPick textPickRight">
-                        <img src="./assets/actual.png" style="position:absolute;left: -100px;top: -27px;height: 90px;">
-                        <p>Picking...</p>
-                        <p>{{pick_fr[i]?pick_fr[i].pseudo:creatures[i]}}</p>
-                    </div>
-
-                </div>
-
-            </ng-container>
-        </ng-container>
-
-
-
-        <div style="margin-top:140px;width: fit-content;margin-left: 432px;">
-            <p style="position: absolute;top: -155px;width: 100%;font-size: 35px;white-space: nowrap;"
-                [style.color]="invalidName()?'#772323':'rgb(209, 209, 199)'">{{topText()}}</p>
-            <div *ngIf="page=='pause' || page=='jeu'">
-                <div style="width:fit-content;margin:auto;position:relative;">
-                    <p style="text-align: center;font-size: 60px;position: absolute;width:100%;top: -120px;"
-                        [style.color]="getColor()">
-                        {{(page=='jeu'?timer :timer2) | number: '1.1-1' }}</p>
-                    <div [ngClass]="{paused:page=='pause'}">
-                        <div style="display:flex;justify-content: center;" *ngIf="!end">
-                            <button (click)="play()" [ngClass]="{disabled:sound&&sound.currentTime < 1}"
-                                [disabled]="sound&&sound.currentTime < 1">🔊</button>
-                            <input id="typeBar" type="text" [(ngModel)]="typing" tabindex="-1"
-                                style="margin-right:20px;margin-left:20px;" (keydown.enter)="validate()" focus="true"
-                                autofocus />
-                            <button (click)="validate()">Ok</button>
-                        </div>
-                        <div style="display:flex;justify-content: center">
-                            <button (click)="clickMenu()">Menu principal</button>
-                            <button *ngIf="!end" (click)="passer()">Passer</button>
-                            <button (click)="clickReplay()">Rejouer</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div *ngIf="page=='start'">
-                <div style="display:flex;justify-content: center">
-                    <input type="text" [(ngModel)]="nomJoueur" placeholder="Rentrez un pseudo.."/>
-                    <select [(ngModel)]="typeGame">
-                        <option>Pick Anglais</option>
-                        <option>Pick Français</option>
-                    </select>
-                    <button (click)="clickStart()" [ngClass]="{disabledButton:invalidName()}"
-                        [disabled]="invalidName()">Jouer</button>
-                </div>
-
-                <div style="display:flex;justify-content: center;margin-top:20px;">
-                    <div>
-                        <div style="opacity:0.5">
-                            <p>Raccourcis</p>
-                            <div style="display:flex;justify-content:space-between">
-                                <p>Control : Rejouer son</p>
-                                <p>Tab : Passer</p>
-                            </div>
-                            <div style="display:flex;justify-content:space-between">
-                                <p>Echap : Rejouer</p>
-                                <p>&nbsp;</p>
-                            </div>
-                        </div>
-
-                        <p>Vous pouvez directement selectionner votre ligne dans le tableau des scores</p>
-                    </div>
-                </div>
-            </div>
-            <div style="margin-top:20px;display:flex;justify-content: center;">
-                <div [style.max-height]="page=='start'?'300px':'380px'"
-                    class="tabScore">
-                    <div class="ligne" style="opacity:1!important;background-color:'#00000080'">
-                        <p style="display:none"></p>
-                        <p>Rang</p>
-                        <p>Pseudo</p>
-                        <p>Record</p>
-                        <p *ngIf="false">Essais</p>
-                        <p>Derniere partie</p>
-                    </div>
-                    <div *ngIf="typeGame=='Pick Anglais'">
-                        <div class="ligne rank" *ngFor="let score of debug?debugData:pick_en; let i=index"
-                            (click)="page=='start'?nomJoueur = score.pseudo:null"
-                            [ngClass]="{selected:nomJoueur==score.pseudo}">
-                            <img src="./assets/elos/{{i<8?i:8}}.png" class="elo"/>
-                            <p>{{(i+1)}}</p>
-                            <p>{{score.pseudo}}</p>
-                            <p>{{score.temps}}</p>
-                            <p *ngIf="false">{{score.nbgame}}</p>
-                            <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>
-                        </div>
-                    </div>
-                    <div *ngIf="typeGame=='Pick Français'">
-                        <div class="ligne rank" *ngFor="let score of debug?debugData:pick_fr; let i=index"
-                            (click)="page=='start'?nomJoueur = score.pseudo:null"
-                            [ngClass]="{selected:nomJoueur==score.pseudo}">
-                            <img src="./assets/elos/{{i<8?i:8}}.png" class="elo"/>
-                            <p>{{(i+1)}}</p>
-                            <p>{{score.pseudo}}</p>
-                            <p>{{score.temps}} <span *ngIf="false&&i!=0" style="color:#772323!important">()</span></p>
-                            <p *ngIf="false">{{score.nbgame}}</p>
-                            <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
+<div class="flex justify-content:center" style="margin: 2% 0px">
+  <div [ngClass]="{ pickBg: true }" style="overflow: hidden">
+    <div class="chat">
+      <p class="gray">GameMaster à rejoint le salon</p>
+      <p>
+        <span class="yellow">GameMaster </span> Le nombre total de games joueés
+        est de {{ nbGames }}
+      </p>
+      <p>
+        <span class="yellow">GameMaster </span> Merci à tous, vous êtes les boss
+        !
+      </p>
     </div>
+    <img
+      src="./assets/centerRotate.png"
+      class="rotate2"
+      style="position: absolute; width: 750px; height: 750px; left: 345px"
+    />
+    <img
+      src="./assets/topFond.png"
+      style="top: 0px; left: 384px; position: absolute; width: 674px"
+    />
+    <img
+      src="./assets/botFond.png"
+      style="bottom: -2px; width: 700px; left: 378px; position: absolute"
+    />
 
+    <ng-container *ngIf="page == 'jeu'">
+      <ng-container *ngFor="let perso of randomChamps; let i = index">
+        <div
+          *ngIf="i < nbFound"
+          style="position: absolute; display: flex; width: 300px"
+          [style.justify-content]="getJustify(i)"
+          [style.top]="getTop(i, 1)"
+          [style.left]="getLeft(i, 1)"
+        >
+          <div *ngIf="i > 4" class="textPick textPickLeft">
+            <p style="color: rgb(209, 209, 199); right: 15px">
+              {{ smallFormat(perso.nom) | uppercase }}
+            </p>
+            <p style="color: rgb(209, 209, 199); right: 15px">
+              {{ pick_fr[i] ? pick_fr[i].pseudo : creatures[i] }}
+            </p>
+          </div>
+          <img
+            src="./assets/imgs/{{ perso.nom }}.png"
+            style="border-radius: 100%; width: 64px"
+          />
+          <div *ngIf="i < 5" class="textPick textPickRight">
+            <p style="color: rgb(209, 209, 199); left: 15px">
+              {{ smallFormat(perso.nom) | uppercase }}
+            </p>
+            <p style="color: rgb(209, 209, 199); left: 15px">
+              {{ pick_fr[i] ? pick_fr[i].pseudo : creatures[i] }}
+            </p>
+          </div>
+        </div>
 
+        <div
+          *ngIf="i == nbFound"
+          style="position: absolute; display: flex; width: 300px"
+          [style.justify-content]="getJustify(i)"
+          [style.top]="getTop(i, 2)"
+          [style.left]="getLeft(i, 2)"
+        >
+          <div *ngIf="i > 4" class="textPick textPickLeft">
+            <img
+              src="./assets/actual2.png"
+              style="
+                position: absolute;
+                right: -100px;
+                top: -27px;
+                height: 90px;
+              "
+            />
+            <p>Picking...</p>
+            <p>{{ pick_fr[i] ? pick_fr[i].pseudo : creatures[i] }}</p>
+          </div>
+
+          <img
+            src="./assets/loading{{ i < 5 ? '' : '2' }}.png"
+            class="rotate"
+            style="width: 72px; height: 72px"
+          />
+
+          <div *ngIf="i < 5" class="textPick textPickRight">
+            <img
+              src="./assets/actual.png"
+              style="position: absolute; left: -100px; top: -27px; height: 90px"
+            />
+            <p>Picking...</p>
+            <p>{{ pick_fr[i] ? pick_fr[i].pseudo : creatures[i] }}</p>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div style="margin-top: 140px; width: fit-content; margin-left: 432px">
+      <p
+        style="
+          position: absolute;
+          top: -155px;
+          width: 100%;
+          font-size: 35px;
+          white-space: nowrap;
+        "
+        [style.color]="invalidName() ? '#772323' : 'rgb(209, 209, 199)'"
+      >
+        {{ topText() }}
+      </p>
+      <div *ngIf="page == 'pause' || page == 'jeu'">
+        <div style="width: fit-content; margin: auto; position: relative">
+          <p
+            style="
+              text-align: center;
+              font-size: 60px;
+              position: absolute;
+              width: 100%;
+              top: -120px;
+            "
+            [style.color]="getColor()"
+          >
+            {{ (page == "jeu" ? timer : timer2) | number : "1.1-1" }}
+          </p>
+          <div [ngClass]="{ paused: page == 'pause' }">
+            <div style="display: flex; justify-content: center" *ngIf="!end">
+              <button
+                (click)="play()"
+                [ngClass]="{
+                  disabled: audios[nbFound] && audios[nbFound].currentTime < 1
+                }"
+                [disabled]="audios[nbFound] && audios[nbFound].currentTime < 1"
+              >
+                🔊
+              </button>
+              <input
+                id="typeBar"
+                type="text"
+                [(ngModel)]="typing"
+                tabindex="-1"
+                style="margin-right: 20px; margin-left: 20px"
+                (keydown.enter)="validate()"
+                focus="true"
+                autofocus
+              />
+              <button (click)="validate()">Ok</button>
+            </div>
+            <div style="display: flex; justify-content: center">
+              <button (click)="clickMenu()">Menu principal</button>
+              <button *ngIf="!end" (click)="passer()">Passer</button>
+              <button (click)="clickReplay()">Rejouer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="page == 'start'">
+        <div style="display: flex; justify-content: center">
+          <input
+            type="text"
+            [(ngModel)]="nomJoueur"
+            placeholder="Rentrez un pseudo.."
+          />
+          <select [(ngModel)]="typeGame">
+            <option>Pick Anglais</option>
+            <option>Pick Français</option>
+          </select>
+          <button
+            (click)="clickStart()"
+            [ngClass]="{ disabledButton: invalidName() }"
+            [disabled]="invalidName()"
+          >
+            Jouer
+          </button>
+        </div>
+
+        <div style="display: flex; justify-content: center; margin-top: 20px">
+          <div>
+            <div style="opacity: 0.5">
+              <p>Raccourcis</p>
+              <div style="display: flex; justify-content: space-between">
+                <p>Control : Rejouer son</p>
+                <p>Tab : Passer</p>
+              </div>
+              <div style="display: flex; justify-content: space-between">
+                <p>Echap : Rejouer</p>
+                <p>&nbsp;</p>
+              </div>
+            </div>
+
+            <p>
+              Vous pouvez directement selectionner votre ligne dans le tableau
+              des scores
+            </p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 20px; display: flex; justify-content: center">
+        <div
+          [style.max-height]="page == 'start' ? '300px' : '380px'"
+          class="tabScore"
+        >
+          <div
+            class="ligne"
+            style="opacity: 1 !important; background-color: '#00000080'"
+          >
+            <p style="display: none"></p>
+            <p>Rang</p>
+            <p>Pseudo</p>
+            <p>Record</p>
+            <p *ngIf="false">Essais</p>
+            <p>Derniere partie</p>
+          </div>
+          <div *ngIf="typeGame == 'Pick Anglais'">
+            <div
+              class="ligne rank"
+              *ngFor="let score of debug ? debugData : pick_en; let i = index"
+              (click)="page == 'start' ? (nomJoueur = score.pseudo) : null"
+              [ngClass]="{ selected: nomJoueur == score.pseudo }"
+            >
+              <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" class="elo" />
+              <p>{{ i + 1 }}</p>
+              <p>{{ score.pseudo }}</p>
+              <p>{{ score.temps }}</p>
+              <p *ngIf="false">{{ score.nbgame }}</p>
+              <p>{{ score.lastgame | date : "HH:mm - dd/MM/yyyy" }}</p>
+            </div>
+          </div>
+          <div *ngIf="typeGame == 'Pick Français'">
+            <div
+              class="ligne rank"
+              *ngFor="let score of debug ? debugData : pick_fr; let i = index"
+              (click)="page == 'start' ? (nomJoueur = score.pseudo) : null"
+              [ngClass]="{ selected: nomJoueur == score.pseudo }"
+            >
+              <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" class="elo" />
+              <p>{{ i + 1 }}</p>
+              <p>{{ score.pseudo }}</p>
+              <p>
+                {{ score.temps }}
+                <span *ngIf="false && i != 0" style="color: #772323 !important"
+                  >()</span
+                >
+              </p>
+              <p *ngIf="false">{{ score.nbgame }}</p>
+              <p>{{ score.lastgame | date : "HH:mm - dd/MM/yyyy" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

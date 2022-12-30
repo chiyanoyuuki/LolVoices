@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
     pseudo: string;
     temps: number;
     lastgame: string;
+    actif?: boolean;
   }[] = [];
   public pick_fr: {
     id: number;
@@ -43,6 +44,15 @@ export class AppComponent implements OnInit {
     pseudo: string;
     temps: number;
     lastgame: string;
+    actif?: boolean;
+  }[] = [];
+  public data: {
+    id: number;
+    nbgame: number;
+    pseudo: string;
+    temps: number;
+    lastgame: string;
+    actif?: boolean;
   }[] = [];
   public page = 'start';
   public typeGame = 'Pick Français';
@@ -65,35 +75,35 @@ export class AppComponent implements OnInit {
       nbgame: 450,
       pseudo: 'DEBUG J1',
       temps: 20,
-      lastgame: '2022-12-29 20:27:31',
+      lastgame: '2022-12-30 23:57:31',
     },
     {
       id: 7,
       nbgame: 450,
       pseudo: 'DEBUG J2',
       temps: 30,
-      lastgame: '2022-12-29 20:27:31',
+      lastgame: '2022-12-31 00:27:00',
     },
     {
       id: 8,
       nbgame: 450,
       pseudo: 'DEBUG J3',
       temps: 40,
-      lastgame: '2022-12-29 20:27:31',
+      lastgame: '2022-12-30 23:22:31',
     },
     {
       id: 9,
       nbgame: 450,
       pseudo: 'DEBUG J4',
       temps: 50,
-      lastgame: '2022-12-29 20:27:31',
+      lastgame: '2022-12-30 20:27:31',
     },
     {
       id: 10,
       nbgame: 450,
       pseudo: 'DEBUG J5',
       temps: 60,
-      lastgame: '2022-12-29 20:27:31',
+      lastgame: '2022-12-31 00:27:00',
     },
     {
       id: 7,
@@ -139,7 +149,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    if (this.debug) this.nomJoueur = 'DEBUG J2';
+    if (this.debug) {
+      this.nomJoueur = 'DEBUG J2';
+      this.pick_fr = this.debugData;
+      this.pick_en = [this.debugData[0], this.debugData[1], this.debugData[2]];
+      this.checkPresence();
+      this.data = this.pick_fr;
+    }
     this.getData();
     this.pickMusic = new Audio();
     this.pickMusic.loop = true;
@@ -147,6 +163,11 @@ export class AppComponent implements OnInit {
     this.pickMusic.volume = 0.4;
     this.victory = new Audio();
     this.victory.src = './assets/victory.wav';
+  }
+
+  public changeData() {
+    if (this.typeGame == 'Pick Anglais') this.data = this.pick_en;
+    else if (this.typeGame == 'Pick Français') this.data = this.pick_fr;
   }
 
   async newRecordd() {
@@ -245,7 +266,37 @@ export class AppComponent implements OnInit {
         this.pick_fr = data;
         this.sort(this.pick_fr);
         this.nbGames = this.getNbGames();
+        this.checkPresence();
+        this.changeData();
       });
+  }
+
+  public checkPresence() {
+    //3600000 = 1h
+    //60000 = 1min
+    let date = new Date();
+    for (let i = 0; i < this.pick_fr.length; i++) {
+      this.pick_fr[i].actif = false;
+      if (this.pick_en[i]) this.pick_en[i].actif = false;
+      let last = this.pick_fr[i].lastgame;
+      let dat = new Date(last);
+      if (date.getTime() - dat.getTime() < 1800000) {
+        this.pick_fr[i].actif = true;
+        if (this.pick_en[i]) this.pick_en[i].actif = true;
+      } else {
+        let tmp = this.pick_en.find(
+          (a: any) => a.pseudo == this.pick_fr[i].pseudo
+        );
+        if (tmp) {
+          let last = this.pick_en[i].lastgame;
+          let dat = new Date(last);
+          if (date.getTime() - dat.getTime() < 1800000) {
+            this.pick_fr[i].actif = true;
+            if (this.pick_en[i]) this.pick_en[i].actif = true;
+          }
+        }
+      }
+    }
   }
 
   public sort(tab: any) {
@@ -299,10 +350,7 @@ export class AppComponent implements OnInit {
     this.pickMusic.pause();
     if (this.audios[this.nbFound]) this.audios[this.nbFound].pause();
     if (!this.end) {
-      let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
-      if (this.typeGame == 'Pick Français') {
-        exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur);
-      }
+      let exists = this.data.find((j: any) => j.pseudo == this.nomJoueur);
       if (exists) {
         this.addGame();
       }
@@ -351,11 +399,14 @@ export class AppComponent implements OnInit {
   getTop(i: number, x: number) {
     if (i < 5) {
       if (x == 1) return 119 + 90 * i + 'px';
-      else return 115 + 90 * i + 'px';
+      else if (x == 2) return 115 + 90 * i + 'px';
+      else if (x == 3) return 82 + 90 * i + 'px';
     } else {
       if (x == 1) return 119 + 90 * (i - 5) + 'px';
-      else return 115 + 90 * (i - 5) + 'px';
+      else if (x == 2) return 115 + 90 * (i - 5) + 'px';
+      else if (x == 3) return 75 + 90 * (i - 5) + 'px';
     }
+    return '';
   }
 
   smallFormat(nom: string) {
@@ -369,11 +420,14 @@ export class AppComponent implements OnInit {
   getLeft(i: number, x: number) {
     if (i < 5) {
       if (x == 1) return 31 + 'px';
-      else return 28 + 'px';
+      else if (x == 2) return 28 + 'px';
+      else if (x == 3) return -2 + 'px';
     } else {
       if (x == 1) return 1111 + 'px';
-      else return 1115 + 'px';
+      else if (x == 2) return 1115 + 'px';
+      else if (x == 3) return 1110 + 'px';
     }
+    return '';
   }
 
   getJustify(i: number) {
@@ -405,10 +459,7 @@ export class AppComponent implements OnInit {
     this.victory.play();
     this.pickMusic.currentTime = 0;
     this.pickMusic.pause();
-    let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
-    if (this.typeGame == 'Pick Français') {
-      exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur);
-    }
+    let exists = this.data.find((j: any) => j.pseudo == this.nomJoueur);
     if (!exists) {
       this.newData();
     } else if (this.timer < this.best) {
@@ -469,10 +520,7 @@ export class AppComponent implements OnInit {
     if (this.audios[this.nbFound]) this.audios[this.nbFound].pause();
     this.nbFound = 0;
     if (!this.end) {
-      let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
-      if (this.typeGame == 'Pick Français') {
-        exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur);
-      }
+      let exists = this.data.find((j: any) => j.pseudo == this.nomJoueur);
       if (exists) {
         this.addGame();
       }
@@ -487,14 +535,8 @@ export class AppComponent implements OnInit {
     this.typing = '';
     this.pickMusic.currentTime = 0;
     this.page = 'pause';
-    if (this.typeGame == 'Pick Français' && this.pick_fr[0])
-      this.overallBest = this.pick_fr[0].temps;
-    else if (this.typeGame == 'Pick Anglais' && this.pick_en[0])
-      this.overallBest = this.pick_en[0].temps;
-    let exists = this.pick_en.find((j: any) => j.pseudo == this.nomJoueur);
-    if (this.typeGame == 'Pick Français') {
-      exists = this.pick_fr.find((j: any) => j.pseudo == this.nomJoueur);
-    }
+    if (this.data[0]) this.overallBest = this.data[0].temps;
+    let exists = this.data.find((j: any) => j.pseudo == this.nomJoueur);
     if (exists) {
       this.best = exists.temps;
     }

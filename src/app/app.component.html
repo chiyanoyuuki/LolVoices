@@ -25,6 +25,69 @@
       style="bottom: -2px; width: 700px; left: 378px; position: absolute"
     />
 
+    <div *ngIf="page == 'start'">
+      <div
+        class="classementJoueur"
+        *ngFor="let score of data; let i = index"
+        [style.left]="getLeft(i, 3)"
+        [style.top]="getTop(i, 3)"
+        style="display: flex"
+      >
+        <ng-container *ngIf="i < 10">
+          <div *ngIf="i > 4">
+            <p
+              class="state"
+              [style.background-color]="data[i].actif ? 'green' : 'red'"
+              style="top: 34px; left: 190px"
+            >
+              &nbsp;
+            </p>
+            <div
+              [class]="'classement-' + (i < 8 ? i : 8)"
+              style="width: 200px; top: 19px; right: 15px"
+            >
+              <p style="text-align: right">
+                {{ score.pseudo }}
+              </p>
+              <p style="text-align: right; right: -20px">
+                {{ score.temps }}s
+                <span *ngIf="data[i - 1]" style="color: #772323 !important"
+                  >(-{{ score.temps - data[0].temps }}s)</span
+                >
+              </p>
+            </div>
+          </div>
+          <img
+            src="./assets/elos/{{ i < 8 ? i : 8 }}.png"
+            [style.width]="i < 5 ? '90px' : '100px'"
+          />
+          <div *ngIf="i < 5">
+            <p
+              class="state"
+              [style.background-color]="data[i].actif ? 'green' : 'red'"
+              style="top: 34px"
+            >
+              &nbsp;
+            </p>
+            <div
+              [class]="'classement-' + (i < 8 ? i : 8)"
+              style="top: 19px; left: 15px"
+            >
+              <p style="text-align: left">
+                {{ score.pseudo }}
+              </p>
+              <p style="text-align: left; left: -20px">
+                {{ score.temps }}s
+                <span *ngIf="data[i - 1]" style="color: #772323 !important"
+                  >(-{{ score.temps - data[0].temps }}s)</span
+                >
+              </p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
     <ng-container *ngIf="page == 'jeu'">
       <ng-container *ngFor="let perso of randomChamps; let i = index">
         <div
@@ -160,7 +223,7 @@
             [(ngModel)]="nomJoueur"
             placeholder="Rentrez un pseudo.."
           />
-          <select [(ngModel)]="typeGame">
+          <select [(ngModel)]="typeGame" (ngModelChange)="changeData()">
             <option>Pick Anglais</option>
             <option>Pick Français</option>
           </select>
@@ -205,42 +268,29 @@
           >
             <p style="display: none"></p>
             <p>Rang</p>
+            <p style="padding: 0px; border: none"></p>
             <p>Pseudo</p>
             <p>Record</p>
             <p *ngIf="false">Essais</p>
             <p>Derniere partie</p>
           </div>
-          <div *ngIf="typeGame == 'Pick Anglais'">
+          <div>
             <div
               class="ligne rank"
-              *ngFor="let score of debug ? debugData : pick_en; let i = index"
+              *ngFor="let score of data; let i = index"
               (click)="page == 'start' ? (nomJoueur = score.pseudo) : null"
               [ngClass]="{ selected: nomJoueur == score.pseudo }"
             >
               <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" class="elo" />
               <p>{{ i + 1 }}</p>
+              <p
+                class="state"
+                [style.background-color]="data[i].actif ? 'green' : 'red'"
+              >
+                &nbsp;
+              </p>
               <p>{{ score.pseudo }}</p>
               <p>{{ score.temps }}</p>
-              <p *ngIf="false">{{ score.nbgame }}</p>
-              <p>{{ score.lastgame | date : "HH:mm - dd/MM/yyyy" }}</p>
-            </div>
-          </div>
-          <div *ngIf="typeGame == 'Pick Français'">
-            <div
-              class="ligne rank"
-              *ngFor="let score of debug ? debugData : pick_fr; let i = index"
-              (click)="page == 'start' ? (nomJoueur = score.pseudo) : null"
-              [ngClass]="{ selected: nomJoueur == score.pseudo }"
-            >
-              <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" class="elo" />
-              <p>{{ i + 1 }}</p>
-              <p>{{ score.pseudo }}</p>
-              <p>
-                {{ score.temps }}
-                <span *ngIf="false && i != 0" style="color: #772323 !important"
-                  >()</span
-                >
-              </p>
               <p *ngIf="false">{{ score.nbgame }}</p>
               <p>{{ score.lastgame | date : "HH:mm - dd/MM/yyyy" }}</p>
             </div>

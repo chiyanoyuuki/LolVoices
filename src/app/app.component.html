@@ -80,7 +80,7 @@
             </div>
             <div *ngIf="page=='start'">
                 <div style="display:flex;justify-content: center">
-                    <input type="text" [(ngModel)]="nomJoueur" />
+                    <input type="text" [(ngModel)]="nomJoueur" placeholder="Rentrez un pseudo.."/>
                     <select [(ngModel)]="typeGame">
                         <option>Pick Anglais</option>
                         <option>Pick Français</option>
@@ -137,7 +137,7 @@
                             <img src="./assets/elos/{{i<8?i:8}}.png" class="elo"/>
                             <p>{{(i+1)}}</p>
                             <p>{{score.pseudo}}</p>
-                            <p>{{score.temps}}</p>
+                            <p>{{score.temps}} <span *ngIf="false&&i!=0" style="color:#772323!important">()</span></p>
                             <p *ngIf="false">{{score.nbgame}}</p>
                             <p>{{score.lastgame | date : "HH:mm - dd/MM/yyyy"}}</p>
                         </div>

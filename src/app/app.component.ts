@@ -288,23 +288,27 @@ export class AppComponent implements OnInit {
     let date = new Date();
     for (let i = 0; i < this.pick_fr.length; i++) {
       this.pick_fr[i].actif = false;
-      if (this.pick_en[i]) this.pick_en[i].actif = false;
+      let tmp = this.pick_en.find(
+        (a: any) => a.pseudo == this.pick_fr[i].pseudo
+      );
+      if (tmp) tmp.actif = false;
       let last = this.pick_fr[i].lastgame;
       let dat = new Date(last);
       if (date.getTime() - dat.getTime() < 1800000) {
         this.pick_fr[i].actif = true;
-        if (this.pick_en[i]) this.pick_en[i].actif = true;
-      } else {
-        let tmp = this.pick_en.find(
-          (a: any) => a.pseudo == this.pick_fr[i].pseudo
-        );
-        if (tmp) {
-          let last = tmp.lastgame;
-          let dat = new Date(last);
-          if (date.getTime() - dat.getTime() < 1800000) {
-            this.pick_fr[i].actif = true;
-            tmp.actif = true;
-          }
+        if (tmp) tmp.actif = true;
+      }
+    }
+    for (let i = 0; i < this.pick_en.length; i++) {
+      let tmp = this.pick_fr.find(
+        (a: any) => a.pseudo == this.pick_en[i].pseudo
+      );
+      if (!tmp) {
+        this.pick_en[i].actif = false;
+        let last = this.pick_en[i].lastgame;
+        let dat = new Date(last);
+        if (date.getTime() - dat.getTime() < 1800000) {
+          this.pick_en[i].actif = true;
         }
       }
     }

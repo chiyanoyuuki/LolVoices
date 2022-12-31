@@ -60,6 +60,7 @@ export class AppComponent implements OnInit {
   }[] = [];
   public page = 'start';
   public typeGame = 'Pick Français';
+  public actualData: any;
   public nbGames = 0;
   public creatures = [
     'Gromp',
@@ -75,74 +76,52 @@ export class AppComponent implements OnInit {
   ];
   public debugData = [
     {
+      id: 1,
+      nbgame: 617,
+      pseudo: 'Charles',
+      temps: 17.5,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
+    },
+    {
+      id: 3,
+      nbgame: 354,
+      pseudo: 'Yet',
+      temps: 18.8,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [1.9, 3.8, 5.6, 7.5, 9.4, 11.3, 13.2, 15, 16.9, 18.8],
+    },
+    {
       id: 6,
-      nbgame: 450,
-      pseudo: 'DEBUG J1',
-      temps: 20,
-      lastgame: '2022-12-30 23:57:31',
-    },
-    {
-      id: 7,
-      nbgame: 450,
-      pseudo: 'DEBUG J2',
-      temps: 30,
-      lastgame: '2022-12-31 00:27:00',
-    },
-    {
-      id: 8,
-      nbgame: 450,
-      pseudo: 'DEBUG J3',
-      temps: 40,
-      lastgame: '2022-12-30 23:22:31',
+      nbgame: 629,
+      pseudo: 'Yozz',
+      temps: 18.9,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [1.9, 3.8, 5.7, 7.6, 9.4, 11.3, 13.2, 15.1, 17, 18.9],
     },
     {
       id: 9,
-      nbgame: 450,
-      pseudo: 'DEBUG J4',
-      temps: 50,
-      lastgame: '2022-12-30 20:27:31',
+      nbgame: 946,
+      pseudo: 'Paul',
+      temps: 22.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
     },
     {
-      id: 10,
-      nbgame: 450,
-      pseudo: 'DEBUG J5',
-      temps: 60,
-      lastgame: '2022-12-31 00:27:00',
+      id: 14,
+      nbgame: 110,
+      pseudo: 'Hyrolia',
+      temps: 24.6,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.5, 4.9, 7.4, 9.8, 12.3, 14.8, 17.2, 19.7, 22.1, 24.6],
     },
     {
-      id: 7,
-      nbgame: 450,
-      pseudo: 'DEBUG J6',
-      temps: 70,
-      lastgame: '2022-12-29 20:27:31',
-    },
-    {
-      id: 8,
-      nbgame: 450,
-      pseudo: 'DEBUG J7',
-      temps: 80,
-      lastgame: '2022-12-29 20:27:31',
-    },
-    {
-      id: 9,
-      nbgame: 450,
-      pseudo: 'DEBUG J8',
-      temps: 90,
-      lastgame: '2022-12-29 20:27:31',
-    },
-    {
-      id: 10,
-      nbgame: 450,
-      pseudo: 'DEBUG J9',
-      temps: 95,
-      lastgame: '2022-12-29 20:27:31',
-    },
-    {
-      id: 11,
-      nbgame: 450,
-      pseudo: 'DEBUG J10',
-      temps: 95,
-      lastgame: '2022-12-29 20:27:31',
+      id: 2,
+      nbgame: 271,
+      pseudo: 'Beta',
+      temps: 24.8,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
     },
   ];
   public debug = false;
@@ -153,13 +132,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    this.debug = false;
     if (this.debug) {
-      this.nomJoueur = 'DEBUG J2';
       this.pick_fr = this.debugData;
       this.pick_en = [this.debugData[0], this.debugData[1], this.debugData[2]];
       this.checkPresence();
       this.data = this.pick_fr;
+      this.nomJoueur = this.data[0].pseudo;
     }
     this.getData();
     this.pickMusic = new Audio();
@@ -279,6 +257,18 @@ export class AppComponent implements OnInit {
         this.nbGames = this.getNbGames();
         this.checkPresence();
         this.changeData();
+        for (let i = 0; i < this.pick_en.length; i++) {
+          let cpt = '[';
+          let moy = this.pick_en[i].temps / 10;
+          let tot = moy;
+          for (let x = 0; x < 10; x++) {
+            if (x > 0) {
+              cpt += ',';
+              tot += moy;
+            }
+            cpt += tot.toFixed(1);
+          }
+        }
       });
   }
 
@@ -458,6 +448,7 @@ export class AppComponent implements OnInit {
 
   beginGame() {
     this.checkpoints = [];
+    this.actualData = this.data.find((x: any) => x.pseudo == this.nomJoueur);
     this.end = false;
     this.newRecord = -1;
     this.timer = 0;

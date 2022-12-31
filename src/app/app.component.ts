@@ -140,10 +140,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    this.debug = false;
     if (this.debug) {
       this.pick_fr = this.debugData;
-      this.pick_en = [this.debugData[0], this.debugData[1], this.debugData[2]];
+      this.pick_en = [
+        {
+          id: 24,
+          nbgame: 30,
+          pseudo: 'Charles',
+          temps: 20.7,
+          lastgame: '2022-12-31 12:12:04',
+          checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
+        },
+      ];
       this.checkValues();
       this.checkPresence();
       this.data = this.pick_fr;
@@ -307,11 +315,12 @@ export class AppComponent implements OnInit {
       );
       if (!tmp) {
         this.pick_en[i].actif = false;
-        let last = this.pick_en[i].lastgame;
-        let dat = new Date(last);
-        if (date.getTime() - dat.getTime() < 1800000) {
-          this.pick_en[i].actif = true;
-        }
+      }
+      let last = this.pick_en[i].lastgame;
+      let dat = new Date(last);
+      if (date.getTime() - dat.getTime() < 1800000) {
+        this.pick_en[i].actif = true;
+        if (tmp) tmp.actif = true;
       }
     }
   }

@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   public victory: any;
   public end!: boolean;
   public newRecord!: number;
+  public checkpoints: any = [];
   public nomJoueur = '';
   public audios: any = [];
   public pick_en: {
@@ -36,6 +37,7 @@ export class AppComponent implements OnInit {
     pseudo: string;
     temps: number;
     lastgame: string;
+    checkpoints?: number[];
     actif?: boolean;
   }[] = [];
   public pick_fr: {
@@ -44,6 +46,7 @@ export class AppComponent implements OnInit {
     pseudo: string;
     temps: number;
     lastgame: string;
+    checkpoints?: number[];
     actif?: boolean;
   }[] = [];
   public data: {
@@ -52,6 +55,7 @@ export class AppComponent implements OnInit {
     pseudo: string;
     temps: number;
     lastgame: string;
+    checkpoints?: number[];
     actif?: boolean;
   }[] = [];
   public page = 'start';
@@ -182,7 +186,10 @@ export class AppComponent implements OnInit {
           '_record?pseudo=' +
           this.nomJoueur.replaceAll(' ', '%20') +
           '&temps=' +
-          this.timer.toFixed(1),
+          this.timer.toFixed(1) +
+          '&checkpoints="[' +
+          this.checkpoints +
+          ']"',
         {
           body: '',
           headers: {
@@ -232,7 +239,10 @@ export class AppComponent implements OnInit {
           '_insert?nbgame=1&pseudo=' +
           this.nomJoueur.replaceAll(' ', '%20') +
           '&temps=' +
-          this.timer.toFixed(1),
+          this.timer.toFixed(1) +
+          '&checkpoints="[' +
+          this.checkpoints +
+          ']"',
         {
           body: '',
           headers: {
@@ -443,6 +453,7 @@ export class AppComponent implements OnInit {
   }
 
   beginGame() {
+    this.checkpoints = [];
     this.end = false;
     this.newRecord = -1;
     this.timer = 0;
@@ -475,6 +486,7 @@ export class AppComponent implements OnInit {
   }
 
   good() {
+    this.checkpoints[this.nbFound] = this.timer.toFixed(1);
     this.nbFound++;
     if (this.nbFound == 10) {
       if (this.audios[this.nbFound - 1]) this.audios[this.nbFound - 1].pause();

@@ -140,6 +140,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
+    this.debug = false;
     if (this.debug) {
       this.pick_fr = this.debugData;
       this.pick_en = [
@@ -159,7 +160,6 @@ export class AppComponent implements OnInit {
     }
     this.getData();
     this.pickMusic = new Audio();
-    this.pickMusic.loop = true;
     this.pickMusic.src = './assets/pickMusic.mp3';
     this.pickMusic.volume = 0.4;
     this.victory = new Audio();
@@ -372,8 +372,8 @@ export class AppComponent implements OnInit {
   }
 
   public clickMenu() {
-    this.pickMusic.currentTime = 0;
     this.pickMusic.pause();
+    this.pickMusic.currentTime = 0;
     if (this.audios[this.nbFound]) this.audios[this.nbFound].pause();
     if (!this.end) {
       let exists = this.data.find((j: any) => j.pseudo == this.nomJoueur);
@@ -485,8 +485,8 @@ export class AppComponent implements OnInit {
 
   over() {
     this.victory.play();
-    this.pickMusic.currentTime = 0;
     this.pickMusic.pause();
+    this.pickMusic.currentTime = 0;
     let exists = this.data.find((j: any) => j.pseudo == this.nomJoueur);
     if (!exists) {
       this.newData();
@@ -502,13 +502,12 @@ export class AppComponent implements OnInit {
   }
 
   good() {
+    if (this.audios[this.nbFound]) this.audios[this.nbFound].pause();
     this.checkpoints[this.nbFound] = this.timer.toFixed(1);
     this.nbFound++;
     if (this.nbFound == 10) {
-      if (this.audios[this.nbFound - 1]) this.audios[this.nbFound - 1].pause();
       this.over();
     } else {
-      if (this.audios[this.nbFound - 1]) this.audios[this.nbFound - 1].pause();
       this.champActuel = this.randomChamps[this.nbFound];
       this.audios[this.nbFound].play();
     }

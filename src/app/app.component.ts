@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     pseudo: string;
     temps: number;
     lastgame: string;
-    checkpoints?: number[];
+    checkpoints?: any;
     actif?: boolean;
   }[] = [];
   public pick_fr: {
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     pseudo: string;
     temps: number;
     lastgame: string;
-    checkpoints?: number[];
+    checkpoints?: any;
     actif?: boolean;
   }[] = [];
   public data: {
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
     pseudo: string;
     temps: number;
     lastgame: string;
-    checkpoints?: number[];
+    checkpoints?: any;
     actif?: boolean;
   }[] = [];
   public page = 'start';
@@ -123,6 +123,14 @@ export class AppComponent implements OnInit {
       lastgame: '2022-12-31 11:01:56',
       checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
     },
+    {
+      id: 18,
+      nbgame: 2,
+      pseudo: 'Test',
+      temps: 73.6,
+      lastgame: '2022-12-31 11:47:19',
+      checkpoints: '[10.1,19.9,30.9,40.0,49.9,60.0,62.6,65.6,69.5,73.6]',
+    },
   ];
   public debug = false;
 
@@ -132,9 +140,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
+    this.debug = false;
     if (this.debug) {
       this.pick_fr = this.debugData;
       this.pick_en = [this.debugData[0], this.debugData[1], this.debugData[2]];
+      this.checkValues();
       this.checkPresence();
       this.data = this.pick_fr;
       this.nomJoueur = this.data[0].pseudo;
@@ -146,6 +156,19 @@ export class AppComponent implements OnInit {
     this.pickMusic.volume = 0.4;
     this.victory = new Audio();
     this.victory.src = './assets/victory.wav';
+  }
+
+  public checkValues() {
+    for (let i = 0; i < this.pick_fr.length; i++) {
+      if (typeof this.pick_fr[i].checkpoints == 'string') {
+        this.pick_fr[i].checkpoints = JSON.parse(this.pick_fr[i].checkpoints);
+      }
+    }
+    for (let i = 0; i < this.pick_en.length; i++) {
+      if (typeof this.pick_en[i].checkpoints == 'string') {
+        this.pick_en[i].checkpoints = JSON.parse(this.pick_en[i].checkpoints);
+      }
+    }
   }
 
   public changeData() {
@@ -257,18 +280,7 @@ export class AppComponent implements OnInit {
         this.nbGames = this.getNbGames();
         this.checkPresence();
         this.changeData();
-        for (let i = 0; i < this.pick_en.length; i++) {
-          let cpt = '[';
-          let moy = this.pick_en[i].temps / 10;
-          let tot = moy;
-          for (let x = 0; x < 10; x++) {
-            if (x > 0) {
-              cpt += ',';
-              tot += moy;
-            }
-            cpt += tot.toFixed(1);
-          }
-        }
+        this.checkValues();
       });
   }
 

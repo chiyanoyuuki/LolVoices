@@ -109,7 +109,7 @@
             <p style="color: rgb(209, 209, 199); right: 15px">
               {{ pick_fr[i] ? pick_fr[i].pseudo : creatures[i] }}
             </p>
-            <p *ngIf="checkpoints[i]" style="color: white">
+            <p *ngIf="checkpoints[i] && actualData" style="color: white">
               {{ checkpoints[i] }}s
               <span
                 [style.color]="
@@ -123,6 +123,9 @@
                 }})</span
               >
             </p>
+            <p *ngIf="checkpoints[i] && !actualData" style="color: white">
+              {{ checkpoints[i] }}s
+            </p>
           </div>
           <img
             src="./assets/imgs/{{ perso.nom }}.png"
@@ -135,7 +138,7 @@
             <p style="color: rgb(209, 209, 199); left: 15px">
               {{ pick_fr[i] ? pick_fr[i].pseudo : creatures[i] }}
             </p>
-            <p *ngIf="checkpoints[i]" style="color: white">
+            <p *ngIf="checkpoints[i] && actualData" style="color: white">
               <span
                 [style.color]="
                   actualData.checkpoints[i] - checkpoints[i] > 0
@@ -147,6 +150,9 @@
                   actualData.checkpoints[i] - checkpoints[i] | number : "1.1-1"
                 }})</span
               >
+              {{ checkpoints[i] }}s
+            </p>
+            <p *ngIf="checkpoints[i] && !actualData" style="color: white">
               {{ checkpoints[i] }}s
             </p>
           </div>

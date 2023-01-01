@@ -140,7 +140,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    this.debug = false;
     if (this.debug) {
       this.pick_fr = this.debugData;
       this.pick_en = [
@@ -349,6 +348,7 @@ export class AppComponent implements OnInit {
 
   @HostListener('document:keydown.tab', ['$event'])
   onKeydownHandler(event: KeyboardEvent) {
+    console.log('disabel');
     event.preventDefault();
   }
 

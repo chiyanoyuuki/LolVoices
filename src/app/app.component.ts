@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
   public typeGame = 'Pick Français';
   public actualData: any;
   public nbGames = 0;
-  public classement: { pseudo: string, score: number, actif?: boolean }[] = [];
+  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number }[] = [];
   public creatures = [
     'Gromp',
     'Scuttle Crab',
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
       checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
       type: "pick",
       langue: "fr",
-      lastgametext:"",
+      lastgametext: "",
     },
     {
       id: 3,
@@ -83,7 +83,7 @@ export class AppComponent implements OnInit {
       checkpoints: [1.9, 3.8, 5.6, 7.5, 9.4, 11.3, 13.2, 15, 16.9, 18.8],
       type: "pick",
       langue: "fr",
-      lastgametext:"",
+      lastgametext: "",
     },
     {
       id: 6,
@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
       checkpoints: [1.9, 3.8, 5.7, 7.6, 9.4, 11.3, 13.2, 15.1, 17, 18.9],
       type: "pick",
       langue: "fr",
-      lastgametext:"",
+      lastgametext: "",
     },
     {
       id: 9,
@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
       checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
       type: "pick",
       langue: "fr",
-      lastgametext:"",
+      lastgametext: "",
     },
     {
       id: 14,
@@ -116,7 +116,7 @@ export class AppComponent implements OnInit {
       checkpoints: [2.5, 4.9, 7.4, 9.8, 12.3, 14.8, 17.2, 19.7, 22.1, 24.6],
       type: "pick",
       langue: "fr",
-      lastgametext:"",
+      lastgametext: "",
     },
     {
       id: 2,
@@ -127,7 +127,7 @@ export class AppComponent implements OnInit {
       checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
       type: "pick",
       langue: "fr",
-      lastgametext:"",
+      lastgametext: "",
     },
     {
       id: 18,
@@ -138,7 +138,7 @@ export class AppComponent implements OnInit {
       checkpoints: '[10.1,19.9,30.9,40.0,49.9,60.0,62.6,65.6,69.5,73.6]',
       type: "pick",
       langue: "fr",
-      lastgametext:"",
+      lastgametext: "",
     },
     {
       id: 24,
@@ -149,7 +149,7 @@ export class AppComponent implements OnInit {
       checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
       type: "pick",
       langue: "en",
-      lastgametext:"",
+      lastgametext: "",
     },
     {
       id: 24,
@@ -160,7 +160,7 @@ export class AppComponent implements OnInit {
       checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
       type: "ban",
       langue: "en",
-      lastgametext:"",
+      lastgametext: "",
     },
     {
       id: 24,
@@ -171,7 +171,7 @@ export class AppComponent implements OnInit {
       checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
       type: "ban",
       langue: "fr",
-      lastgametext:"",
+      lastgametext: "",
     }
   ];
   public debug = false;
@@ -182,6 +182,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
+    this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.pick_fr = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "fr");
@@ -211,15 +212,44 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif }
-        for (let x = 0; x < this.pick_fr.length; x++) { if (this.pick_fr[x].pseudo == pseudo) { joueur.score += 9 - (x>8?8:x) } }
-        for (let x = 0; x < this.pick_en.length; x++) { if (this.pick_en[x].pseudo == pseudo) { joueur.score += 9 - (x>8?8:x) } }
-        for (let x = 0; x < this.ban_fr.length; x++) { if (this.ban_fr[x].pseudo == pseudo) { joueur.score += 9 - (x>8?8:x) } }
-        for (let x = 0; x < this.ban_en.length; x++) { if (this.ban_en[x].pseudo == pseudo) { joueur.score += 9 - (x>8?8:x) } }
+        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0 }
+        for (let x = 0; x < this.pick_fr.length; x++) {
+          if (this.pick_fr[x].pseudo == pseudo) {
+            joueur.score += 9 - (x > 8 ? 8 : x);
+            joueur.nbgame += 1;
+            joueur.tempstotal += this.pick_fr[x].temps;
+          }
+        }
+        for (let x = 0; x < this.pick_en.length; x++) {
+          if (this.pick_en[x].pseudo == pseudo) {
+            joueur.score += 9 - (x > 8 ? 8 : x);
+            joueur.nbgame += 1;
+            joueur.tempstotal += this.pick_en[x].temps;
+          }
+        }
+        for (let x = 0; x < this.ban_fr.length; x++) {
+          if (this.ban_fr[x].pseudo == pseudo) {
+            joueur.score += 9 - (x > 8 ? 8 : x);
+            joueur.nbgame += 1;
+            joueur.tempstotal += this.ban_fr[x].temps;
+          }
+        }
+        for (let x = 0; x < this.ban_en.length; x++) {
+          if (this.ban_en[x].pseudo == pseudo) {
+            joueur.score += 9 - (x > 8 ? 8 : x);
+            joueur.nbgame += 1;
+            joueur.tempstotal += this.ban_en[x].temps;
+          }
+        }
         this.classement.push(joueur);
       }
     }
-    this.classement.sort((a: any, b: any) => { return b.score - a.score });
+    this.classement.sort((a: any, b: any) => {
+      if (a.score != b.score) return (b.score < a.score) ? -3 : 3;
+      else if (a.nbgame != b.nbgame) return (b.nbgame < a.nbgame) ? -2 : 2;
+      else return (b.tempstotal > a.tempstotal) ? -1 : 1;
+    });
+    console.log(this.classement);
   }
 
   public checkValues() {
@@ -366,10 +396,10 @@ export class AppComponent implements OnInit {
         if (tmpdate.toDateString() == today.toDateString()) jour = "Auj"
         let date: string = "" + (tmpdate.getHours() < 10 ? "0" : "") + tmpdate.getHours() + ":" + (tmpdate.getMinutes() < 10 ? "0" : "") + tmpdate.getMinutes() + " " + jour + " " + (tmpdate.getDate() < 10 ? "0" : "") + tmpdate.getDate() + "/" + (tmpdate.getMonth() + 1 < 10 ? "0" : "") + (tmpdate.getMonth() + 1);
         let lastgame = allDataFromPlayer[0].type + " " + allDataFromPlayer[0].langue;
-        for (let x = 0; x < allDataFromPlayer.length; x++) { 
-          allDataFromPlayer[x].lastgame = allDataFromPlayer[0].lastgame; 
-          allDataFromPlayer[x].lastgametext = date; 
-          allDataFromPlayer[x].typelastgame = lastgame; 
+        for (let x = 0; x < allDataFromPlayer.length; x++) {
+          allDataFromPlayer[x].lastgame = allDataFromPlayer[0].lastgame;
+          allDataFromPlayer[x].lastgametext = date;
+          allDataFromPlayer[x].typelastgame = lastgame;
         }
       }
     }

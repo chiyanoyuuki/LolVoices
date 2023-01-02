@@ -20,7 +20,15 @@
     <div *ngIf="page == 'start'">
       <div class="classementJoueur" *ngFor="let score of classement; let i = index" [style.left]="getLeft(i, 3)"
         [style.top]="getTop(i, 3)" style="display: flex">
+
         <ng-container *ngIf="i < 10">
+          <div *ngIf="nomJoueur==score.pseudo&&i>4" style="width: 420px;
+            position: absolute;
+            height: 88px;
+            left: -110px;
+            top: 12px;
+            background: linear-gradient(to left, green,rgb(8,15,20) 70%);
+            opacity: 0.2;z-index:9"></div>
           <div *ngIf="i > 4">
             <p class="state" [style.background-color]="score.actif ? 'green' : 'red'" style="top: 34px; left: 190px">
               &nbsp;
@@ -32,10 +40,21 @@
               <p style="text-align: right; right: -15px">
                 {{ score.score }} LP
               </p>
+              <p style="text-align: right; right: -15px;opacity:0.4">
+                {{ score.ranks }}
+              </p>
             </div>
           </div>
           <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" [style.width]="i < 5 ? '90px' : '100px'" />
+          <div *ngIf="nomJoueur==score.pseudo&&i<5" style="width: 420px;
+            position: absolute;
+            height: 88px;
+            left: -18px;
+            top: 5px;
+            background: linear-gradient(to right, green,rgb(8,15,20) 70%);
+            opacity: 0.2;z-index:9"></div>
           <div *ngIf="i < 5">
+
             <p class="state" [style.background-color]="score.actif ? 'green' : 'red'" style="top: 34px">
               &nbsp;
             </p>
@@ -46,7 +65,12 @@
               <p style="text-align: left; left: -15px">
                 {{ score.score }} LP
               </p>
+
+              <p style="text-align: left; left: -15px;opacity:0.4">
+                {{ score.ranks }}
+              </p>
             </div>
+
           </div>
         </ng-container>
       </div>
@@ -107,6 +131,13 @@
 
         <div *ngIf="i == nbFound" style="position: absolute; display: flex; width: 300px"
           [style.justify-content]="getJustify(i)" [style.top]="getTop(i, 2)" [style.left]="getLeft(i, 2)">
+          <div *ngIf="i==nbFound&&i>4" style="width: 420px;
+            position: absolute;
+            height: 89px;
+            left: -100px;
+            top: -8px;
+            background: linear-gradient(to left, rgb(140,20,20),rgb(8,15,20) 70%);
+            opacity: 0.2;z-index:9"></div>
           <div *ngIf="i > 4" class="textPick textPickLeft">
             <img src="./assets/actual2.png" style="
                 position: absolute;
@@ -120,6 +151,13 @@
 
           <img src="./assets/loading{{ i < 5 ? '' : '2' }}.png" class="rotate" style="width: 72px; height: 72px" />
 
+          <div *ngIf="i==nbFound&&i<5" style="width: 420px;
+            position: absolute;
+            height: 89px;
+            left: -19px;
+            top: -8px;
+            background: linear-gradient(to right, rgb(209, 209, 199),rgb(8,15,20) 70%);
+            opacity: 0.2;z-index:9"></div>
           <div *ngIf="i < 5" class="textPick textPickRight">
             <img src="./assets/actual.png" style="position: absolute; left: -100px; top: -27px; height: 90px" />
             <p>Picking...</p>
@@ -227,8 +265,8 @@
               <p>{{ score.pseudo }}</p>
               <p>{{ score.temps }}</p>
               <p *ngIf="false">{{ score.nbgame }}</p>
-              <p style="text-align:right" [ngClass]="{grised:!score.lastgametext.includes('Auj')}">{{ score.lastgametext }}<span
-                  style="color:#505050;opacity:0.4;width:70px;display:inline-block;top:5px;">{{score.typelastgame}}</span>
+              <p style="text-align:right" [ngClass]="{grised:!score.lastgametext.includes('Auj')}">{{ score.lastgametext
+                }}<span style="opacity:0.6;width:70px;display:inline-block;top:5px;">{{score.typelastgame}}</span>
               </p>
             </div>
           </div>

@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
   public typeGame = 'Pick Français';
   public actualData: any;
   public nbGames = 0;
-  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number }[] = [];
+  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks?:string }[] = [];
   public creatures = [
     'Gromp',
     'Scuttle Crab',
@@ -182,7 +182,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    this.debug = false;
+    //this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.pick_fr = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "fr");
@@ -205,6 +205,12 @@ export class AppComponent implements OnInit {
     this.victory.src = './assets/victory.wav';
   }
 
+  public getRank(x:number)
+  {
+    if(x==0) return "1er";
+    else return (x+1)+"eme";
+  }
+
   public getClassements() {
     this.classement = [];
     let tmp: string[] = [];
@@ -212,12 +218,13 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0 }
+        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: "" }
         for (let x = 0; x < this.pick_fr.length; x++) {
           if (this.pick_fr[x].pseudo == pseudo) {
             joueur.score += 9 - (x > 8 ? 8 : x);
             joueur.nbgame += 1;
             joueur.tempstotal += this.pick_fr[x].temps;
+            joueur.ranks += this.getRank(x);
           }
         }
         for (let x = 0; x < this.pick_en.length; x++) {
@@ -225,6 +232,8 @@ export class AppComponent implements OnInit {
             joueur.score += 9 - (x > 8 ? 8 : x);
             joueur.nbgame += 1;
             joueur.tempstotal += this.pick_en[x].temps;
+            if(joueur.ranks!="")joueur.ranks+=" ";
+            joueur.ranks += this.getRank(x);
           }
         }
         for (let x = 0; x < this.ban_fr.length; x++) {
@@ -232,6 +241,8 @@ export class AppComponent implements OnInit {
             joueur.score += 9 - (x > 8 ? 8 : x);
             joueur.nbgame += 1;
             joueur.tempstotal += this.ban_fr[x].temps;
+            if(joueur.ranks!="")joueur.ranks+=" ";
+            joueur.ranks += this.getRank(x);
           }
         }
         for (let x = 0; x < this.ban_en.length; x++) {
@@ -239,6 +250,8 @@ export class AppComponent implements OnInit {
             joueur.score += 9 - (x > 8 ? 8 : x);
             joueur.nbgame += 1;
             joueur.tempstotal += this.ban_en[x].temps;
+            if(joueur.ranks!="")joueur.ranks+=" ";
+            joueur.ranks += this.getRank(x);
           }
         }
         this.classement.push(joueur);

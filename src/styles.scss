@@ -203,9 +203,17 @@ td {
   color: rgb(55, 127, 139) !important;
 }
 
+.linear-0 {
+  background: linear-gradient(to right, rgb(55, 127, 139), rgb(8, 15, 20) 70%);
+}
+
 .rank:nth-of-type(2) p,
 .classement-1 p {
   color: #772323 !important;
+}
+
+.linear-1 {
+  background: linear-gradient(to right, #772323, rgb(8, 15, 20) 70%);
 }
 
 .rank:nth-of-type(3) p,
@@ -213,9 +221,17 @@ td {
   color: #69135e !important;
 }
 
+.linear-2 {
+  background: linear-gradient(to right, #69135e, rgb(8, 15, 20) 70%);
+}
+
 .rank:nth-of-type(4) p,
 .classement-3 p {
   color: #365a83 !important;
+}
+
+.linear-3 {
+  background: linear-gradient(to right, #365a83, rgb(8, 15, 20) 70%);
 }
 
 .rank:nth-of-type(5) p,
@@ -223,9 +239,17 @@ td {
   color: #17776f !important;
 }
 
+.linear-4 {
+  background: linear-gradient(to right, #17776f, rgb(8, 15, 20) 70%);
+}
+
 .rank:nth-of-type(6) p,
 .classement-5 p {
   color: #5c5a00 !important;
+}
+
+.linear-5 {
+  background: linear-gradient(to left, #5c5a00, rgb(8, 15, 20) 70%);
 }
 
 .rank:nth-of-type(7) p,
@@ -233,14 +257,26 @@ td {
   color: #72726d !important;
 }
 
+.linear-6 {
+  background: linear-gradient(to left, #72726d, rgb(8, 15, 20) 70%);
+}
+
 .rank:nth-of-type(8) p,
 .classement-7 p {
   color: #503e17 !important;
 }
 
+.linear-7 {
+  background: linear-gradient(to left, #503e17, rgb(8, 15, 20) 70%);
+}
+
 .rank p,
 .classement-8 p {
   color: #4e453c;
+}
+
+.linear-8 {
+  background: linear-gradient(to left, #4e453c, rgb(8, 15, 20) 70%);
 }
 
 
@@ -256,6 +292,8 @@ td {
 .topInfos p {
   white-space: nowrap;
 }
+
+
 
 .pickBg {
   background: url("./assets/pickFond.png");

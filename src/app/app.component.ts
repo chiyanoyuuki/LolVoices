@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
   public typeGame = 'Pick Français';
   public actualData: any;
   public nbGames = 0;
-  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks?:string }[] = [];
+  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks?: string }[] = [];
   public creatures = [
     'Gromp',
     'Scuttle Crab',
@@ -172,6 +172,39 @@ export class AppComponent implements OnInit {
       type: "ban",
       langue: "fr",
       lastgametext: "",
+    },
+    {
+      id: 24,
+      nbgame: 30,
+      pseudo: 'Yozz2',
+      temps: 22.7,
+      lastgame: '2023-01-02 15:05:04',
+      checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
+      type: "pick",
+      langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 24,
+      nbgame: 30,
+      pseudo: 'Yozz3',
+      temps: 22.7,
+      lastgame: '2023-01-02 15:05:04',
+      checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
+      type: "pick",
+      langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 24,
+      nbgame: 30,
+      pseudo: 'Yozz4',
+      temps: 22.7,
+      lastgame: '2023-01-02 15:05:04',
+      checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
+      type: "pick",
+      langue: "fr",
+      lastgametext: "",
     }
   ];
   public debug = false;
@@ -186,9 +219,13 @@ export class AppComponent implements OnInit {
     if (this.debug) {
       this.allData = this.debugData;
       this.pick_fr = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "fr");
+      this.sort(this.pick_fr);
       this.pick_en = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "en");
+      this.sort(this.pick_en);
       this.ban_fr = this.allData.filter((dat: Data) => dat.type == "ban" && dat.langue == "fr");
+      this.sort(this.ban_fr);
       this.ban_en = this.allData.filter((dat: Data) => dat.type == "ban" && dat.langue == "en");
+      this.sort(this.ban_en);
       this.nbGames = this.getNbGames();
       this.getLastGame();
       this.checkPresence();
@@ -205,10 +242,9 @@ export class AppComponent implements OnInit {
     this.victory.src = './assets/victory.wav';
   }
 
-  public getRank(x:number)
-  {
-    if(x==0) return "1er";
-    else return (x+1)+"eme";
+  public getRank(x: number) {
+    if (x == 0) return "1er";
+    else return (x + 1) + "eme";
   }
 
   public getClassements() {
@@ -232,7 +268,7 @@ export class AppComponent implements OnInit {
             joueur.score += 9 - (x > 8 ? 8 : x);
             joueur.nbgame += 1;
             joueur.tempstotal += this.pick_en[x].temps;
-            if(joueur.ranks!="")joueur.ranks+=" ";
+            if (joueur.ranks != "") joueur.ranks += " ";
             joueur.ranks += this.getRank(x);
           }
         }
@@ -241,7 +277,7 @@ export class AppComponent implements OnInit {
             joueur.score += 9 - (x > 8 ? 8 : x);
             joueur.nbgame += 1;
             joueur.tempstotal += this.ban_fr[x].temps;
-            if(joueur.ranks!="")joueur.ranks+=" ";
+            if (joueur.ranks != "") joueur.ranks += " ";
             joueur.ranks += this.getRank(x);
           }
         }
@@ -250,7 +286,7 @@ export class AppComponent implements OnInit {
             joueur.score += 9 - (x > 8 ? 8 : x);
             joueur.nbgame += 1;
             joueur.tempstotal += this.ban_en[x].temps;
-            if(joueur.ranks!="")joueur.ranks+=" ";
+            if (joueur.ranks != "") joueur.ranks += " ";
             joueur.ranks += this.getRank(x);
           }
         }

@@ -7,6 +7,7 @@ export class Data {
     public checkpoints?: any;
     public actif?: boolean;
     public typelastgame?: string;
+	public lastgametext!: string;
 	public type!: string;
 	public langue!: string;
 }

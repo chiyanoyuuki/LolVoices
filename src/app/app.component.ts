@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
   public typeGame = 'Pick Français';
   public actualData: any;
   public nbGames = 0;
+  public classement: { pseudo: string, score: number, actif?: boolean }[] = [];
   public creatures = [
     'Gromp',
     'Scuttle Crab',
@@ -67,10 +68,11 @@ export class AppComponent implements OnInit {
       nbgame: 617,
       pseudo: 'Charles',
       temps: 17.5,
-      lastgame: '2022-12-31 11:01:56',
+      lastgame: '2023-01-02 17:01:56',
       checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
       type: "pick",
-      langue: "fr"
+      langue: "fr",
+      lastgametext:"",
     },
     {
       id: 3,
@@ -80,7 +82,8 @@ export class AppComponent implements OnInit {
       lastgame: '2022-12-31 11:01:56',
       checkpoints: [1.9, 3.8, 5.6, 7.5, 9.4, 11.3, 13.2, 15, 16.9, 18.8],
       type: "pick",
-      langue: "fr"
+      langue: "fr",
+      lastgametext:"",
     },
     {
       id: 6,
@@ -90,7 +93,8 @@ export class AppComponent implements OnInit {
       lastgame: '2022-12-31 11:01:56',
       checkpoints: [1.9, 3.8, 5.7, 7.6, 9.4, 11.3, 13.2, 15.1, 17, 18.9],
       type: "pick",
-      langue: "fr"
+      langue: "fr",
+      lastgametext:"",
     },
     {
       id: 9,
@@ -100,7 +104,8 @@ export class AppComponent implements OnInit {
       lastgame: '2022-12-31 11:01:56',
       checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
       type: "pick",
-      langue: "fr"
+      langue: "fr",
+      lastgametext:"",
     },
     {
       id: 14,
@@ -110,7 +115,8 @@ export class AppComponent implements OnInit {
       lastgame: '2022-12-31 11:01:56',
       checkpoints: [2.5, 4.9, 7.4, 9.8, 12.3, 14.8, 17.2, 19.7, 22.1, 24.6],
       type: "pick",
-      langue: "fr"
+      langue: "fr",
+      lastgametext:"",
     },
     {
       id: 2,
@@ -120,7 +126,8 @@ export class AppComponent implements OnInit {
       lastgame: '2022-12-31 11:01:56',
       checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
       type: "pick",
-      langue: "fr"
+      langue: "fr",
+      lastgametext:"",
     },
     {
       id: 18,
@@ -130,7 +137,8 @@ export class AppComponent implements OnInit {
       lastgame: '2022-12-31 08:47:19',
       checkpoints: '[10.1,19.9,30.9,40.0,49.9,60.0,62.6,65.6,69.5,73.6]',
       type: "pick",
-      langue: "fr"
+      langue: "fr",
+      lastgametext:"",
     },
     {
       id: 24,
@@ -140,7 +148,8 @@ export class AppComponent implements OnInit {
       lastgame: '2023-01-01 12:12:04',
       checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
       type: "pick",
-      langue: "en"
+      langue: "en",
+      lastgametext:"",
     },
     {
       id: 24,
@@ -150,7 +159,8 @@ export class AppComponent implements OnInit {
       lastgame: '2022-12-31 12:12:04',
       checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
       type: "ban",
-      langue: "en"
+      langue: "en",
+      lastgametext:"",
     },
     {
       id: 24,
@@ -160,7 +170,8 @@ export class AppComponent implements OnInit {
       lastgame: '2023-01-02 15:05:04',
       checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
       type: "ban",
-      langue: "fr"
+      langue: "fr",
+      lastgametext:"",
     }
   ];
   public debug = false;
@@ -177,12 +188,12 @@ export class AppComponent implements OnInit {
       this.pick_en = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "en");
       this.ban_fr = this.allData.filter((dat: Data) => dat.type == "ban" && dat.langue == "fr");
       this.ban_en = this.allData.filter((dat: Data) => dat.type == "ban" && dat.langue == "en");
-      console.log(this.pick_fr);
       this.nbGames = this.getNbGames();
       this.getLastGame();
       this.checkPresence();
       this.changeData();
       this.checkValues();
+      this.getClassements();
       this.nomJoueur = this.data[0].pseudo;
     }
     this.getData();
@@ -191,6 +202,24 @@ export class AppComponent implements OnInit {
     this.pickMusic.volume = 0.4;
     this.victory = new Audio();
     this.victory.src = './assets/victory.wav';
+  }
+
+  public getClassements() {
+    this.classement = [];
+    let tmp: string[] = [];
+    for (let i = 0; i < this.allData.length; i++) {
+      let pseudo = this.allData[i].pseudo;
+      if (!tmp.includes(pseudo)) {
+        tmp.push(pseudo);
+        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif }
+        for (let x = 0; x < this.pick_fr.length; x++) { if (this.pick_fr[x].pseudo == pseudo) { joueur.score += 9 - (x>8?8:x) } }
+        for (let x = 0; x < this.pick_en.length; x++) { if (this.pick_en[x].pseudo == pseudo) { joueur.score += 9 - (x>8?8:x) } }
+        for (let x = 0; x < this.ban_fr.length; x++) { if (this.ban_fr[x].pseudo == pseudo) { joueur.score += 9 - (x>8?8:x) } }
+        for (let x = 0; x < this.ban_en.length; x++) { if (this.ban_en[x].pseudo == pseudo) { joueur.score += 9 - (x>8?8:x) } }
+        this.classement.push(joueur);
+      }
+    }
+    this.classement.sort((a: any, b: any) => { return b.score - a.score });
   }
 
   public checkValues() {
@@ -313,6 +342,7 @@ export class AppComponent implements OnInit {
         this.checkPresence();
         this.changeData();
         this.checkValues();
+        this.getClassements();
       });
   }
 
@@ -334,9 +364,13 @@ export class AppComponent implements OnInit {
         let tmpdate = new Date(allDataFromPlayer[0].lastgame);
         let jour = jours[tmpdate.getDay()];
         if (tmpdate.toDateString() == today.toDateString()) jour = "Auj"
-        let date: string = "" +(tmpdate.getHours()<10?"0":"")+tmpdate.getHours()+":"+(tmpdate.getMinutes()<10?"0":"")+tmpdate.getMinutes() + " " + jour + " " +(tmpdate.getDate()<10?"0":"")+tmpdate.getDate() + "/" + (tmpdate.getMonth()+1<10?"0":"")+(tmpdate.getMonth()+1) ;
+        let date: string = "" + (tmpdate.getHours() < 10 ? "0" : "") + tmpdate.getHours() + ":" + (tmpdate.getMinutes() < 10 ? "0" : "") + tmpdate.getMinutes() + " " + jour + " " + (tmpdate.getDate() < 10 ? "0" : "") + tmpdate.getDate() + "/" + (tmpdate.getMonth() + 1 < 10 ? "0" : "") + (tmpdate.getMonth() + 1);
         let lastgame = allDataFromPlayer[0].type + " " + allDataFromPlayer[0].langue;
-        for (let x = 0; x < allDataFromPlayer.length; x++) { allDataFromPlayer[x].lastgame = date; allDataFromPlayer[x].typelastgame = lastgame; }
+        for (let x = 0; x < allDataFromPlayer.length; x++) { 
+          allDataFromPlayer[x].lastgame = allDataFromPlayer[0].lastgame; 
+          allDataFromPlayer[x].lastgametext = date; 
+          allDataFromPlayer[x].typelastgame = lastgame; 
+        }
       }
     }
   }
@@ -350,16 +384,16 @@ export class AppComponent implements OnInit {
       let j = this.allData[i];
       if (!tmp.includes(j.pseudo)) {
         tmp.push(j.pseudo);
-        let allDataFromPlayer = this.allData.filter((dat: any) => dat.pseudo == j.pseudo);
+        let last = j.lastgame;
+        let dat = new Date(last);
         let actif = false;
-        for (let x = 0; x < allDataFromPlayer.length; x++) {
-          let last = allDataFromPlayer[x].lastgame;
-          let dat = new Date(last);
-          if (date.getTime() - dat.getTime() < 1800000) {
-            actif = true;
-          }
+        if (date.getTime() - dat.getTime() < 1800000) {
+          actif = true;
         }
-        for (let x = 0; x < allDataFromPlayer.length; x++) { allDataFromPlayer[x].actif = actif; }
+        let tmpx = this.allData.filter((dat: Data) => dat.pseudo == j.pseudo);
+        for (let x = 0; x < tmpx.length; x++) {
+          tmpx[x].actif = actif;
+        }
       }
     }
   }
@@ -384,7 +418,6 @@ export class AppComponent implements OnInit {
 
   @HostListener('document:keydown.tab', ['$event'])
   onKeydownHandler(event: KeyboardEvent) {
-    console.log('disabel');
     event.preventDefault();
   }
 

@@ -18,19 +18,20 @@
 
     <!-- CLASSEMENTS PAGE D ACCUEIL -->
     <div *ngIf="page == 'start'">
-      <div class="classementJoueur" *ngFor="let score of classement; let i = index" [style.left]="getLeft(i, 3)"
+      <div class="classementJoueur" *ngFor="let score of classement; let i = index" [style.left]="getLeft(i, 3)" (click)="nomJoueur=score.pseudo"
         [style.top]="getTop(i, 3)" style="display: flex">
 
         <ng-container *ngIf="i < 10">
-          <div *ngIf="nomJoueur==score.pseudo&&i>4"  [class]="'linear-' + (i < 8 ? i : 8)" style="width: 420px;
+          <div *ngIf="nomJoueur==score.pseudo&&i>4" [class]="'linear-' + (i < 8 ? i : 8)" style="width: 340px;
             position: absolute;
             height: 88px;
-            left: -110px;
+            left: -40px;
             top: 12px;
             
             opacity: 0.3;z-index:9"></div>
-          <div *ngIf="i > 4">
-            <p class="state" [style.background-color]="score.actif ? 'green' : 'red'" style="top: 34px; left: 190px">
+          <div *ngIf="i > 4" class="clickableClassement">
+            <p class="state" [style.background-color]="score.actif ? 'green' : 'red'"
+              style="top: 34px; left: 190px;text-decoration:unset!important">
               &nbsp;
             </p>
             <div [class]="'classement-' + (i < 8 ? i : 8)" style="width: 200px; top: 19px; right: 15px">
@@ -45,17 +46,19 @@
               </p>
             </div>
           </div>
-          <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" [style.width]="i < 5 ? '90px' : '100px'" />
-          <div *ngIf="nomJoueur==score.pseudo&&i<5" [class]="'linear-' + (i < 8 ? i : 8)" style="width: 420px;
+          <img class="clickableClassement" src="./assets/elos/{{ i < 8 ? i : 8 }}.png"
+            [style.width]="i < 5 ? '90px' : '100px'" />
+          <div *ngIf="nomJoueur==score.pseudo&&i<5" [class]="'linear-' + (i < 8 ? i : 8)" style="width: 348px;
           
             position: absolute;
-            height: 88px;
+            height: 89px;
             left: -18px;
             top: 5px;
             opacity: 0.3;z-index:9"></div>
-          <div *ngIf="i < 5">
+          <div *ngIf="i < 5" class="clickableClassement">
 
-            <p class="state" [style.background-color]="score.actif ? 'green' : 'red'" style="top: 34px">
+            <p class="state" [style.background-color]="score.actif ? 'green' : 'red'"
+              style="top: 34px;text-decoration:unset!important">
               &nbsp;
             </p>
             <div [class]="'classement-' + (i < 8 ? i : 8)" style="top: 19px; left: 15px">

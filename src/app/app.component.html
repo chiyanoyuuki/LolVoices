@@ -46,7 +46,7 @@
                   <ng-container *ngFor="let class of score.ranks;let j=index">
                     <div *ngIf="class>0&&j<5" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv" style="width:45px;">
                       <p  class="clickableText" style="text-align: left;top:5px">
-                        {{ class }}:
+                        {{ class }}x
                       </p>
                       <img src="./assets/elos/{{j}}.png" style="width:26px;height:26px;" />
                     </div>
@@ -58,7 +58,7 @@
                   <ng-container *ngFor="let class of score.ranks;let j=index">
                     <div *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv" style="width:45px;">
                       <p  style="text-align: left;top:5px">
-                        {{ class }}:
+                        {{ class }}x
                       </p>
                       <img src="./assets/elos/{{j}}.png" style="width:26px;height:26px;" />
                     </div>
@@ -104,7 +104,7 @@
                   <ng-container *ngFor="let class of score.ranks;let j=index">
                     <div *ngIf="class>0&&j<5" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv" style="width:45px;">
                       <p class="clickableText" style="text-align: left;top:5px">
-                        {{ class }}:
+                        {{ class }}x
                       </p>
                       <img src="./assets/elos/{{j}}.png" style="width:26px;height:26px;" />
                     </div>
@@ -116,7 +116,7 @@
                   <ng-container *ngFor="let class of score.ranks;let j=index">
                     <div *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv" style="width:45px;">
                       <p style="text-align: left;top:5px">
-                        {{ class }}:
+                        {{ class }}x
                       </p>
                       <img src="./assets/elos/{{j}}.png" style="width:26px;height:26px;" />
                     </div>

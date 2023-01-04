@@ -204,6 +204,160 @@ export class AppComponent implements OnInit {
       lastgametext: "",
     },
     {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Yozz',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "pick",
+      langue: "en",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Yozz',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "ban",
+      langue: "en",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Yozz',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "ban",
+      langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Yozz',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "comp",
+      langue: "all",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Paul',
+      temps: 22.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "pick",
+      langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Paul',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "pick",
+      langue: "en",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Paul',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "ban",
+      langue: "en",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Paul',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "ban",
+      langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Paul2',
+      temps: 0.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "ban",
+      langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Paul',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "comp",
+      langue: "all",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Hyrolia',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "pick",
+      langue: "en",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Hyrolia',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "ban",
+      langue: "en",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Hyrolia',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "ban",
+      langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 9,
+      nbgame: 946,
+      pseudo: 'Hyrolia',
+      temps: 50.3,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
+      type: "comp",
+      langue: "all",
+      lastgametext: "",
+    },
+    {
       id: 14,
       nbgame: 110,
       pseudo: 'Hyrolia',
@@ -283,7 +437,7 @@ export class AppComponent implements OnInit {
     {
       id: 2,
       nbgame: 271,
-      pseudo: 'COMP_R',
+      pseudo: 'Yozz',
       temps: 24.8,
       lastgame: '2022-12-31 11:01:56',
       checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
@@ -441,6 +595,7 @@ export class AppComponent implements OnInit {
   }
 
   clickRank(pseudo: string, j: number) {
+    this.nomJoueur = pseudo;
     let tmpType = this.typeGame;
     let tmpSpecific = this.specificTypeGame;
     if (this.data!=this.pick_fr && this.pick_fr.length > j && this.pick_fr[j].pseudo == pseudo) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
@@ -453,6 +608,25 @@ export class AppComponent implements OnInit {
     else if (this.data!=this.comp_z && this.comp_z.length > j && this.comp_z[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
     else if (this.data!=this.comp_e && this.comp_e.length > j && this.comp_e[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
     else if (this.data!=this.comp_r && this.comp_r.length > j && this.comp_r[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+
+    if(tmpType!=this.typeGame||this.specificTypeGame!=tmpSpecific)
+      this.changeSpecificData();
+  }
+
+  clickModeRestant(pseudo: string) {
+    this.nomJoueur = pseudo;
+    let tmpType = this.typeGame;
+    let tmpSpecific = this.specificTypeGame;
+    if      (this.data!=this.pick_fr && !this.pick_fr.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
+    else if (this.data!=this.pick_en && !this.pick_en.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
+    else if (this.data!=this.ban_fr && !this.ban_fr.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
+    else if (this.data!=this.ban_en && !this.ban_en.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
+    else if (this.data!=this.comp_all && !this.comp_all.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
+    else if (this.data!=this.comp_aa && !this.comp_aa.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
+    else if (this.data!=this.comp_a && !this.comp_a.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
+    else if (this.data!=this.comp_z && !this.comp_z.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
+    else if (this.data!=this.comp_e && !this.comp_e.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
+    else if (this.data!=this.comp_r && !this.comp_r.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
 
     if(tmpType!=this.typeGame||this.specificTypeGame!=tmpSpecific)
       this.changeSpecificData();
@@ -780,7 +954,7 @@ export class AppComponent implements OnInit {
     } else {
       if (x == 1) return 119 + 90 * (i - 5) + 'px';
       else if (x == 2) return 115 + 90 * (i - 5) + 'px';
-      else if (x == 3) return 75 + 90 * (i - 5) + 'px';
+      else if (x == 3) return 87 + 90 * (i - 5) + 'px';
     }
     return '';
   }

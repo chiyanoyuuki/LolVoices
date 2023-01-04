@@ -26,33 +26,50 @@
             position: absolute;
             height: 88px;
             left: -40px;
-            top: 12px;
+            top: 0px;
             
             opacity: 0.3;z-index:9"></div>
           <div *ngIf="i > 4">
-            <p class="state" [style.background-color]="score.actif ? 'green' : 'red'"
-              style="top: 34px; left: 190px;text-decoration:unset!important">
-              &nbsp;
-            </p>
-            <div [class]="'classement-' + (i < 8 ? i : 8)" style="width: 200px; top: 19px; right: 15px">
+
+            <div [class]="'classement-' + (i < 8 ? i : 8)" style="width: 200px; right: 15px">
+              <p class="state" [style.background-color]="score.actif ? 'green' : 'red'"
+                style="top: 15px; left: 203px;text-decoration:unset!important">
+                &nbsp;
+              </p>
               <p style="text-align: right" (click)="nomJoueur=score.pseudo" class="clickableText">
                 {{ score.pseudo }}
               </p>
               <p style="text-align: right; right: -15px">
                 {{ score.score }} LP
               </p>
-              <div style="display:flex;justify-content:right; right: -15px;opacity:0.5">
+              <div style="display:flex;justify-content:right; right: -15px;opacity:0.5;bottom:3px">
+                <p *ngIf="score.ranks[0]+score.ranks[1]+score.ranks[2]+score.ranks[3]+score.ranks[4]==0"
+                  style="width:45px;text-align: right;">&nbsp;</p>
                 <ng-container *ngFor="let class of score.ranks;let j=index">
-                  <p *ngIf="class>0" (click)="clickRank(score.pseudo,j)" class="clickableText">
+                  <p *ngIf="class>0&&j<5" (click)="clickRank(score.pseudo,j)" class="clickableText"
+                    style="width:45px;text-align: right;">
+                    &nbsp;{{ getRank(j)+":"+class }}
+                  </p>
+                </ng-container>
+              </div>
+              <div style="display:flex;justify-content:right; right: -15px;opacity:0.5;bottom:8px">
+                <ng-container *ngFor="let class of score.ranks;let j=index">
+                  <p *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="clickableText"
+                    style="width:45px;text-align: right;">
                     &nbsp;{{ getRank(j)+":"+class }}
                   </p>
                 </ng-container>
 
               </div>
 
+              <p *ngIf="score.nbgame&&score.nbgame<10"
+                style="position: absolute;right: -15px;top: 72px;color:#303030!important;white-space: nowrap;"
+                (click)="clickModeRestant(score.pseudo)" class="clickableText">
+                {{ 10-score.nbgame }} modes restants
+              </p>
             </div>
           </div>
-          <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" [style.width]="i < 5 ? '90px' : '100px'" />
+          <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" [style.width]="i < 5 ? '90px' : '100px'" [style.top]="i>4?'-10px':'unset'" [style.right]="i>4?'0px':'unset'" [style.position]="i>4?'absolute':'relative'"/>
           <div *ngIf="nomJoueur==score.pseudo&&i<5" [class]="'linear-' + (i < 8 ? i : 8)" style="width: 348px;
           
             position: absolute;
@@ -63,10 +80,10 @@
           <div *ngIf="i < 5">
 
             <p class="state" [style.background-color]="score.actif ? 'green' : 'red'"
-              style="top: 34px;text-decoration:unset!important">
+              style="top: 19px;text-decoration:unset!important">
               &nbsp;
             </p>
-            <div [class]="'classement-' + (i < 8 ? i : 8)" style="top: 19px; left: 15px">
+            <div [class]="'classement-' + (i < 8 ? i : 8)" style="top: 5px; left: 15px">
               <p style="text-align: left" (click)="nomJoueur=score.pseudo" class="clickableText">
                 {{ score.pseudo }}
               </p>
@@ -74,14 +91,32 @@
                 {{ score.score }} LP
               </p>
 
-              <div style="display:flex;justify-content:left; left: -15px;opacity:0.5">
+              <div style="display:flex;justify-content:left; left: -15px;opacity:0.5;bottom:3px">
                 <ng-container *ngFor="let class of score.ranks;let j=index">
-                  <p *ngIf="class>0" (click)="clickRank(score.pseudo,j)" class="clickableText">
+                  <p *ngIf="class>0&&j<5" (click)="clickRank(score.pseudo,j)" class="clickableText"
+                    style="width:45px;text-align: left;">
                     {{ getRank(j)+":"+class }}&nbsp;
                   </p>
                 </ng-container>
 
               </div>
+
+              <div style="display:flex;justify-content:left; left: -15px;opacity:0.5;bottom:8px">
+                <ng-container *ngFor="let class of score.ranks;let j=index">
+                  <p *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="clickableText"
+                    style="width:45px;text-align: left;">
+                    {{ getRank(j)+":"+class }}&nbsp;
+                  </p>
+                </ng-container>
+
+              </div>
+
+
+              <p *ngIf="score.nbgame&&score.nbgame<10"
+                style="position: absolute;left: -15px;top: 60px;color:#303030!important;white-space: nowrap;"
+                (click)="clickModeRestant(score.pseudo)" class="clickableText">
+                {{ 10-score.nbgame }} modes restants
+              </p>
             </div>
 
           </div>

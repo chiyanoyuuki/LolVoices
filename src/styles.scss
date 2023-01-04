@@ -451,3 +451,8 @@ td {
 .classementJoueur:hover p {
   text-decoration: underline;
 }
+
+.clickableChamp:hover {
+  cursor:pointer;
+  opacity:0.4;
+}

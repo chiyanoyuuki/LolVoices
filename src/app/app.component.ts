@@ -748,6 +748,13 @@ export class AppComponent implements OnInit {
     this.audios[this.nbFound].play();
   }
 
+  playSound(i:number) {
+    if(!this.end) return;
+    for(let i=0;i<this.audios.length;i++){this.audios[i].pause();}
+    this.audios[i].currentTime = 0;
+    this.audios[i].play();
+  }
+
   getTop(i: number, x: number) {
     if (i < 5) {
       if (x == 1) return 119 + 90 * i + 'px';

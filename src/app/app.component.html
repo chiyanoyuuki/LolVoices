@@ -47,9 +47,9 @@
                     &nbsp;{{ getRank(j)+":"+class }}
                   </p>
                 </ng-container>
-                
-                </div>
-              
+
+              </div>
+
             </div>
           </div>
           <img class="clickableClassement" src="./assets/elos/{{ i < 8 ? i : 8 }}.png"
@@ -81,8 +81,8 @@
                     {{ getRank(j)+":"+class }}&nbsp;
                   </p>
                 </ng-container>
-                
-                </div>
+
+              </div>
             </div>
 
           </div>
@@ -117,7 +117,14 @@
               {{ checkpoints[i] }}s
             </p>
           </div>
-          <div style="border-radius: 100%;overflow:hidden;width:64px;height:64px;">
+          
+          <div style="border-radius: 100%;overflow:hidden;width:64px;height:64px;" [ngClass]="{clickableChamp:end}" (click)="playSound(i)">
+            <p *ngIf="end" style="position: absolute;
+            z-index: 11;
+            left: 5px;
+            top: 5px;
+            font-size: 40px;
+            opacity: 0.6;">🔊</p>
             <img src="./assets/imgs/{{ perso.nom }}.png" style="width: 75px;top:-5px;left:-5px" />
           </div>
           <div *ngIf="i < 5" class="textPick textPickRight">

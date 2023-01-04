@@ -95,6 +95,7 @@
         <div *ngIf="i < nbFound" style="position: absolute; display: flex; width: 300px"
           [style.justify-content]="getJustify(i)" [style.top]="getTop(i, 1)" [style.left]="getLeft(i, 1)">
           <div *ngIf="i > 4" class="textPick textPickLeft">
+            <p *ngIf="passed[i]" style="position: absolute;top: -25px;font-size: 20px;">PASSED</p>
             <p style="color: rgb(209, 209, 199); right: 15px">
               {{ smallFormat(perso.nom) | uppercase }}
             </p>
@@ -120,6 +121,7 @@
             <img src="./assets/imgs/{{ perso.nom }}.png" style="width: 75px;top:-5px;left:-5px" />
           </div>
           <div *ngIf="i < 5" class="textPick textPickRight">
+            <p *ngIf="passed[i]" style="position: absolute;top: -25px;font-size: 20px;">PASSED</p>
             <p style="color: rgb(209, 209, 199); left: 15px">
               {{ smallFormat(perso.nom) | uppercase }}
             </p>
@@ -205,8 +207,8 @@
           <div [ngClass]="{ paused: page == 'pause' }">
             <div style="display: flex; justify-content: center" *ngIf="!end">
               <button (click)="play()" [ngClass]="{
-                  disabled: audios[nbFound] && audios[nbFound].currentTime < 1
-                }" [disabled]="audios[nbFound] && audios[nbFound].currentTime < 1">
+                  disabled: audios[nbFound] && audios[nbFound].currentTime < 0.4
+                }" [disabled]="audios[nbFound] && audios[nbFound].currentTime < 0.4">
                 🔊
               </button>
               <input id="typeBar" type="text" [(ngModel)]="typing" tabindex="-1"

@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
   public comp_e: Data[] = [];
   public comp_r: Data[] = [];
   public data: Data[] = [];
+  public passed: boolean[] = [];
   public page = 'start';
   public typeGame = 'Pick';
   public specificTypeGame = 'Français';
@@ -376,7 +377,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    this.debug = false;
+    //this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -683,7 +684,7 @@ export class AppComponent implements OnInit {
         if (
           !(
             this.audios[this.nbFound] &&
-            this.audios[this.nbFound].currentTime < 1
+            this.audios[this.nbFound].currentTime < 0.4
           )
         )
           this.play();
@@ -737,6 +738,7 @@ export class AppComponent implements OnInit {
   }
 
   passer() {
+    this.passed[this.nbFound] = true;
     this.timer += 10;
     this.good();
   }
@@ -792,6 +794,7 @@ export class AppComponent implements OnInit {
   }
 
   beginGame() {
+    this.passed = [];
     this.checkpoints = [];
     this.actualData = this.data.find((x: any) => x.pseudo == this.nomJoueur);
     this.end = false;

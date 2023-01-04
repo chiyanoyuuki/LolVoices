@@ -42,7 +42,7 @@
               <p style="text-align: right; right: -15px">
                 {{ score.score }} LP
               </p>
-              <div style="display:flex;justify-content:right; right: -15px;opacity:0.5;bottom:3px">
+              <div style="display:flex;justify-content:right; right: -15px;opacity:0.6;bottom:3px">
                 <p *ngIf="score.ranks[0]+score.ranks[1]+score.ranks[2]+score.ranks[3]+score.ranks[4]==0"
                   style="width:45px;text-align: right;">&nbsp;</p>
                 <ng-container *ngFor="let class of score.ranks;let j=index">
@@ -52,7 +52,7 @@
                   </p>
                 </ng-container>
               </div>
-              <div style="display:flex;justify-content:right; right: -15px;opacity:0.5;bottom:8px">
+              <div style="display:flex;justify-content:right; right: -15px;opacity:0.6;bottom:8px">
                 <ng-container *ngFor="let class of score.ranks;let j=index">
                   <p *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="clickableText"
                     style="width:45px;text-align: right;">
@@ -61,12 +61,13 @@
                 </ng-container>
 
               </div>
-
-              <p *ngIf="score.nbgame&&score.nbgame<10"
-                style="position: absolute;right: -15px;top: 72px;color:#303030!important;white-space: nowrap;"
+              <div *ngIf="score.nbgame&&score.nbgame<10" style="position: absolute;right: -15px;top: 72px;opacity:0.6;">
+                <p 
+                style="white-space: nowrap;"
                 (click)="clickModeRestant(score.pseudo)" class="clickableText">
                 {{ 10-score.nbgame }} modes restants
               </p>
+              </div>
             </div>
           </div>
           <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" [style.width]="i < 5 ? '90px' : '100px'" [style.top]="i>4?'-10px':'unset'" [style.right]="i>4?'0px':'unset'" [style.position]="i>4?'absolute':'relative'"/>
@@ -91,7 +92,7 @@
                 {{ score.score }} LP
               </p>
 
-              <div style="display:flex;justify-content:left; left: -15px;opacity:0.5;bottom:3px">
+              <div style="display:flex;justify-content:left; left: -15px;opacity:0.6;bottom:3px">
                 <ng-container *ngFor="let class of score.ranks;let j=index">
                   <p *ngIf="class>0&&j<5" (click)="clickRank(score.pseudo,j)" class="clickableText"
                     style="width:45px;text-align: left;">
@@ -101,7 +102,7 @@
 
               </div>
 
-              <div style="display:flex;justify-content:left; left: -15px;opacity:0.5;bottom:8px">
+              <div style="display:flex;justify-content:left; left: -15px;opacity:0.6;bottom:8px">
                 <ng-container *ngFor="let class of score.ranks;let j=index">
                   <p *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="clickableText"
                     style="width:45px;text-align: left;">
@@ -111,12 +112,14 @@
 
               </div>
 
-
-              <p *ngIf="score.nbgame&&score.nbgame<10"
-                style="position: absolute;left: -15px;top: 60px;color:#303030!important;white-space: nowrap;"
+              <div *ngIf="score.nbgame&&score.nbgame<10" style="opacity:0.6;position: absolute;left: -15px;top: 60px;">
+                <p 
+                style="white-space: nowrap;"
                 (click)="clickModeRestant(score.pseudo)" class="clickableText">
                 {{ 10-score.nbgame }} modes restants
               </p>
+              </div>
+              
             </div>
 
           </div>

@@ -443,16 +443,12 @@ td {
   min-width: 300px;
 }
 
-.classementJoueur:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.classementJoueur:hover p {
-  text-decoration: underline;
-}
-
 .clickableChamp:hover {
   cursor:pointer;
   opacity:0.4;
+}
+
+.clickableText:hover{
+  cursor:pointer;
+  opacity:0.5;
 }

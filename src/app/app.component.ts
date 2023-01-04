@@ -397,8 +397,7 @@ export class AppComponent implements OnInit {
     this.victory.src = './assets/victory.wav';
   }
 
-  initData()
-  {
+  initData() {
     this.pick_fr = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "fr");
     this.sort(this.pick_fr);
     this.pick_en = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "en");
@@ -439,6 +438,24 @@ export class AppComponent implements OnInit {
       }
     }
     return joueur;
+  }
+
+  clickRank(pseudo: string, j: number) {
+    let tmpType = this.typeGame;
+    let tmpSpecific = this.specificTypeGame;
+    if (this.data!=this.pick_fr && this.pick_fr.length > j && this.pick_fr[j].pseudo == pseudo) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
+    else if (this.data!=this.pick_en && this.pick_en.length > j && this.pick_en[j].pseudo == pseudo) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
+    else if (this.data!=this.ban_fr && this.ban_fr.length > j && this.ban_fr[j].pseudo == pseudo) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
+    else if (this.data!=this.ban_en && this.ban_en.length > j && this.ban_en[j].pseudo == pseudo) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
+    else if (this.data!=this.comp_all && this.comp_all.length > j && this.comp_all[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
+    else if (this.data!=this.comp_aa && this.comp_aa.length > j && this.comp_aa[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
+    else if (this.data!=this.comp_a && this.comp_a.length > j && this.comp_a[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
+    else if (this.data!=this.comp_z && this.comp_z.length > j && this.comp_z[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
+    else if (this.data!=this.comp_e && this.comp_e.length > j && this.comp_e[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
+    else if (this.data!=this.comp_r && this.comp_r.length > j && this.comp_r[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+
+    if(tmpType!=this.typeGame||this.specificTypeGame!=tmpSpecific)
+      this.changeSpecificData();
   }
 
   public getClassements() {
@@ -482,7 +499,7 @@ export class AppComponent implements OnInit {
     else if (this.typeGame == 'Pick' && this.specificTypeGame == "Français") this.data = this.pick_fr;
     else if (this.typeGame == 'Ban' && this.specificTypeGame == "Anglais") this.data = this.ban_en;
     else if (this.typeGame == 'Ban' && this.specificTypeGame == "Français") this.data = this.ban_fr;
-    else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Tous") this.data = this.comp_all;
+    else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Toutes") this.data = this.comp_all;
     else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Attaque") this.data = this.comp_aa;
     else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Sort A") this.data = this.comp_a;
     else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Sort Z") this.data = this.comp_z;
@@ -491,7 +508,7 @@ export class AppComponent implements OnInit {
   }
 
   public changeData() {
-    if (this.typeGame == "Compétences") this.specificTypeGame = "Tous";
+    if (this.typeGame == "Compétences") this.specificTypeGame = "Toutes";
     else this.specificTypeGame = "Français";
     this.switch();
   }
@@ -748,9 +765,9 @@ export class AppComponent implements OnInit {
     this.audios[this.nbFound].play();
   }
 
-  playSound(i:number) {
-    if(!this.end) return;
-    for(let i=0;i<this.audios.length;i++){this.audios[i].pause();}
+  playSound(i: number) {
+    if (!this.end) return;
+    for (let i = 0; i < this.audios.length; i++) { this.audios[i].pause(); }
     this.audios[i].currentTime = 0;
     this.audios[i].play();
   }
@@ -916,17 +933,15 @@ export class AppComponent implements OnInit {
           audio.src = './assets/' + type + '/' + langue + '/' + champ.code + '.wav';
         }
         else if (type == "comp") {
-          if(langue!="all")
-          {
+          if (langue != "all") {
             audio.src = './assets/champions/' + champ.nom + '/' + champ.code + langue + '.wav';
           }
-          else
-          {
-            let tmp = ["aa","a","z","e","r"]
-            let choice = tmp[Math.floor(Math.random()*5)];
+          else {
+            let tmp = ["aa", "a", "z", "e", "r"]
+            let choice = tmp[Math.floor(Math.random() * 5)];
             audio.src = './assets/champions/' + champ.nom + '/' + champ.code + choice + '.wav';
           }
-          
+
         }
 
         this.audios[this.audios.length] = audio;
@@ -948,13 +963,13 @@ export class AppComponent implements OnInit {
   public getLangue() {
     if (this.specificTypeGame == "Français") return "fr";
     else if (this.specificTypeGame == "Anglais") return "en";
-    else if (this.specificTypeGame == "Tous") return "all";
+    else if (this.specificTypeGame == "Toutes") return "all";
     else if (this.specificTypeGame == "Attaque") return "aa";
     else if (this.specificTypeGame == "Sort A") return "a";
     else if (this.specificTypeGame == "Sort Z") return "z";
     else if (this.specificTypeGame == "Sort E") return "e";
     else if (this.specificTypeGame == "Sort R") return "r";
-    else return "fr"
+    else return "fr";
   }
 
   validate() {

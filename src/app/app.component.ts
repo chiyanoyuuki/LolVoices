@@ -44,12 +44,19 @@ export class AppComponent implements OnInit {
   public pick_fr: Data[] = [];
   public ban_en: Data[] = [];
   public ban_fr: Data[] = [];
+  public comp_all: Data[] = [];
+  public comp_aa: Data[] = [];
+  public comp_a: Data[] = [];
+  public comp_z: Data[] = [];
+  public comp_e: Data[] = [];
+  public comp_r: Data[] = [];
   public data: Data[] = [];
   public page = 'start';
-  public typeGame = 'Pick Français';
+  public typeGame = 'Pick';
+  public specificTypeGame = 'Français';
   public actualData: any;
   public nbGames = 0;
-  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks?: string }[] = [];
+  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[] }[] = [];
   public creatures = [
     'Gromp',
     'Scuttle Crab',
@@ -72,6 +79,94 @@ export class AppComponent implements OnInit {
       checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
       type: "pick",
       langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 1,
+      nbgame: 617,
+      pseudo: 'Charles',
+      temps: 17.5,
+      lastgame: '2023-01-02 17:01:56',
+      checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
+      type: "ban",
+      langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 1,
+      nbgame: 617,
+      pseudo: 'Charles',
+      temps: 17.5,
+      lastgame: '2023-01-02 17:01:56',
+      checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
+      type: "ban",
+      langue: "en",
+      lastgametext: "",
+    },
+    {
+      id: 1,
+      nbgame: 617,
+      pseudo: 'Charles',
+      temps: 17.5,
+      lastgame: '2023-01-02 17:01:56',
+      checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
+      type: "comp",
+      langue: "all",
+      lastgametext: "",
+    },
+    {
+      id: 1,
+      nbgame: 617,
+      pseudo: 'Charles',
+      temps: 17.5,
+      lastgame: '2023-01-02 17:01:56',
+      checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
+      type: "comp",
+      langue: "aa",
+      lastgametext: "",
+    },
+    {
+      id: 1,
+      nbgame: 617,
+      pseudo: 'Charles',
+      temps: 17.5,
+      lastgame: '2023-01-02 17:01:56',
+      checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
+      type: "comp",
+      langue: "a",
+      lastgametext: "",
+    },
+    {
+      id: 1,
+      nbgame: 617,
+      pseudo: 'Charles',
+      temps: 17.5,
+      lastgame: '2023-01-02 17:01:56',
+      checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
+      type: "comp",
+      langue: "z",
+      lastgametext: "",
+    },
+    {
+      id: 1,
+      nbgame: 617,
+      pseudo: 'Charles',
+      temps: 17.5,
+      lastgame: '2023-01-02 17:01:56',
+      checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
+      type: "comp",
+      langue: "e",
+      lastgametext: "",
+    },
+    {
+      id: 1,
+      nbgame: 617,
+      pseudo: 'Charles',
+      temps: 17.5,
+      lastgame: '2023-01-02 17:01:56',
+      checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
+      type: "comp",
+      langue: "r",
       lastgametext: "",
     },
     {
@@ -127,6 +222,72 @@ export class AppComponent implements OnInit {
       checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
       type: "pick",
       langue: "fr",
+      lastgametext: "",
+    },
+    {
+      id: 2,
+      nbgame: 271,
+      pseudo: 'COMP_ALL',
+      temps: 24.8,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
+      type: "comp",
+      langue: "all",
+      lastgametext: "",
+    },
+    {
+      id: 2,
+      nbgame: 271,
+      pseudo: 'COMP_AA',
+      temps: 24.8,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
+      type: "comp",
+      langue: "aa",
+      lastgametext: "",
+    },
+    {
+      id: 2,
+      nbgame: 271,
+      pseudo: 'COMP_A',
+      temps: 24.8,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
+      type: "comp",
+      langue: "a",
+      lastgametext: "",
+    },
+    {
+      id: 2,
+      nbgame: 271,
+      pseudo: 'COMP_Z',
+      temps: 24.8,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
+      type: "comp",
+      langue: "z",
+      lastgametext: "",
+    },
+    {
+      id: 2,
+      nbgame: 271,
+      pseudo: 'COMP_E',
+      temps: 24.8,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
+      type: "comp",
+      langue: "e",
+      lastgametext: "",
+    },
+    {
+      id: 2,
+      nbgame: 271,
+      pseudo: 'COMP_R',
+      temps: 24.8,
+      lastgame: '2022-12-31 11:01:56',
+      checkpoints: [2.5, 5, 7.4, 9.9, 12.4, 14.9, 17.4, 19.8, 22.3, 24.8],
+      type: "comp",
+      langue: "r",
       lastgametext: "",
     },
     {
@@ -215,17 +376,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    //this.debug = false;
+    this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
-      this.pick_fr = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "fr");
-      this.sort(this.pick_fr);
-      this.pick_en = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "en");
-      this.sort(this.pick_en);
-      this.ban_fr = this.allData.filter((dat: Data) => dat.type == "ban" && dat.langue == "fr");
-      this.sort(this.ban_fr);
-      this.ban_en = this.allData.filter((dat: Data) => dat.type == "ban" && dat.langue == "en");
-      this.sort(this.ban_en);
+      this.initData();
       this.nbGames = this.getNbGames();
       this.getLastGame();
       this.checkPresence();
@@ -242,9 +396,48 @@ export class AppComponent implements OnInit {
     this.victory.src = './assets/victory.wav';
   }
 
+  initData()
+  {
+    this.pick_fr = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "fr");
+    this.sort(this.pick_fr);
+    this.pick_en = this.allData.filter((dat: Data) => dat.type == "pick" && dat.langue == "en");
+    this.sort(this.pick_en);
+    this.ban_fr = this.allData.filter((dat: Data) => dat.type == "ban" && dat.langue == "fr");
+    this.sort(this.ban_fr);
+    this.ban_en = this.allData.filter((dat: Data) => dat.type == "ban" && dat.langue == "en");
+    this.sort(this.ban_en);
+    this.comp_all = this.allData.filter((dat: Data) => dat.type == "comp" && dat.langue == "all");
+    this.sort(this.comp_all);
+    this.comp_aa = this.allData.filter((dat: Data) => dat.type == "comp" && dat.langue == "aa");
+    this.sort(this.comp_aa);
+    this.comp_a = this.allData.filter((dat: Data) => dat.type == "comp" && dat.langue == "a");
+    this.sort(this.comp_a);
+    this.comp_z = this.allData.filter((dat: Data) => dat.type == "comp" && dat.langue == "z");
+    this.sort(this.comp_z);
+    this.comp_e = this.allData.filter((dat: Data) => dat.type == "comp" && dat.langue == "e");
+    this.sort(this.comp_e);
+    this.comp_r = this.allData.filter((dat: Data) => dat.type == "comp" && dat.langue == "r");
+    this.sort(this.comp_r);
+  }
+
   public getRank(x: number) {
-    if (x == 0) return "1er";
-    else return (x + 1) + "eme";
+    if (x == 0) return "1st";
+    else if (x == 1) return "2nd";
+    else if (x == 2) return "3rd";
+    else return (x + 1) + "th";
+  }
+
+
+  calculateClassement(tab: any, joueur: any, pseudo: any) {
+    for (let x = 0; x < tab.length; x++) {
+      if (tab[x].pseudo == pseudo) {
+        joueur.score += (tab.length > 8 ? 9 : tab.length) - (x > 8 ? 8 : x);
+        joueur.nbgame += 1;
+        joueur.tempstotal += tab[x].temps;
+        joueur.ranks[x] = joueur.ranks[x] + 1;
+      }
+    }
+    return joueur;
   }
 
   public getClassements() {
@@ -254,42 +447,17 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: "" }
-        for (let x = 0; x < this.pick_fr.length; x++) {
-          if (this.pick_fr[x].pseudo == pseudo) {
-            joueur.score += 9 - (x > 8 ? 8 : x);
-            joueur.nbgame += 1;
-            joueur.tempstotal += this.pick_fr[x].temps;
-            joueur.ranks += this.getRank(x);
-          }
-        }
-        for (let x = 0; x < this.pick_en.length; x++) {
-          if (this.pick_en[x].pseudo == pseudo) {
-            joueur.score += 9 - (x > 8 ? 8 : x);
-            joueur.nbgame += 1;
-            joueur.tempstotal += this.pick_en[x].temps;
-            if (joueur.ranks != "") joueur.ranks += " ";
-            joueur.ranks += this.getRank(x);
-          }
-        }
-        for (let x = 0; x < this.ban_fr.length; x++) {
-          if (this.ban_fr[x].pseudo == pseudo) {
-            joueur.score += 9 - (x > 8 ? 8 : x);
-            joueur.nbgame += 1;
-            joueur.tempstotal += this.ban_fr[x].temps;
-            if (joueur.ranks != "") joueur.ranks += " ";
-            joueur.ranks += this.getRank(x);
-          }
-        }
-        for (let x = 0; x < this.ban_en.length; x++) {
-          if (this.ban_en[x].pseudo == pseudo) {
-            joueur.score += 9 - (x > 8 ? 8 : x);
-            joueur.nbgame += 1;
-            joueur.tempstotal += this.ban_en[x].temps;
-            if (joueur.ranks != "") joueur.ranks += " ";
-            joueur.ranks += this.getRank(x);
-          }
-        }
+        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0] }
+        joueur = this.calculateClassement(this.pick_fr, joueur, pseudo);
+        joueur = this.calculateClassement(this.pick_en, joueur, pseudo);
+        joueur = this.calculateClassement(this.ban_fr, joueur, pseudo);
+        joueur = this.calculateClassement(this.ban_en, joueur, pseudo);
+        joueur = this.calculateClassement(this.comp_all, joueur, pseudo);
+        joueur = this.calculateClassement(this.comp_aa, joueur, pseudo);
+        joueur = this.calculateClassement(this.comp_a, joueur, pseudo);
+        joueur = this.calculateClassement(this.comp_z, joueur, pseudo);
+        joueur = this.calculateClassement(this.comp_e, joueur, pseudo);
+        joueur = this.calculateClassement(this.comp_r, joueur, pseudo);
         this.classement.push(joueur);
       }
     }
@@ -298,7 +466,6 @@ export class AppComponent implements OnInit {
       else if (a.nbgame != b.nbgame) return (b.nbgame < a.nbgame) ? -2 : 2;
       else return (b.tempstotal > a.tempstotal) ? -1 : 1;
     });
-    console.log(this.classement);
   }
 
   public checkValues() {
@@ -309,18 +476,34 @@ export class AppComponent implements OnInit {
     }
   }
 
+  public switch() {
+    if (this.typeGame == 'Pick' && this.specificTypeGame == "Anglais") this.data = this.pick_en;
+    else if (this.typeGame == 'Pick' && this.specificTypeGame == "Français") this.data = this.pick_fr;
+    else if (this.typeGame == 'Ban' && this.specificTypeGame == "Anglais") this.data = this.ban_en;
+    else if (this.typeGame == 'Ban' && this.specificTypeGame == "Français") this.data = this.ban_fr;
+    else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Tous") this.data = this.comp_all;
+    else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Attaque") this.data = this.comp_aa;
+    else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Sort A") this.data = this.comp_a;
+    else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Sort Z") this.data = this.comp_z;
+    else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Sort E") this.data = this.comp_e;
+    else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Sort R") this.data = this.comp_r;
+  }
+
   public changeData() {
-    if (this.typeGame == 'Pick Anglais') this.data = this.pick_en;
-    else if (this.typeGame == 'Pick Français') this.data = this.pick_fr;
-    else if (this.typeGame == 'Ban Anglais') this.data = this.ban_en;
-    else if (this.typeGame == 'Ban Français') this.data = this.ban_fr;
+    if (this.typeGame == "Compétences") this.specificTypeGame = "Tous";
+    else this.specificTypeGame = "Français";
+    this.switch();
+  }
+
+  public changeSpecificData() {
+    this.switch();
   }
 
   async newRecordd() {
     if (this.debug) return;
     console.log('newRecord');
-    let langue = this.typeGame.endsWith("Anglais") ? 'en' : 'fr';
-    let type = this.typeGame.startsWith("Ban") ? 'ban' : 'pick';
+    let type = this.getType();
+    let langue = this.getLangue();
     from(
       fetch(
         'https://www.chiya-no-yuuki.fr/record?pseudo=' +
@@ -349,8 +532,8 @@ export class AppComponent implements OnInit {
   async addGame() {
     if (this.debug) return;
     console.log('addGame');
-    let langue = this.typeGame.endsWith("Anglais") ? 'en' : 'fr';
-    let type = this.typeGame.startsWith("Ban") ? 'ban' : 'pick';
+    let type = this.getType();
+    let langue = this.getLangue();
     from(
       fetch(
         'https://www.chiya-no-yuuki.fr/addgame?pseudo=' +
@@ -374,8 +557,8 @@ export class AppComponent implements OnInit {
   async newData() {
     if (this.debug) return;
     console.log('newData');
-    let langue = this.typeGame.endsWith("Anglais") ? 'en' : 'fr';
-    let type = this.typeGame.startsWith("Ban") ? 'ban' : 'pick';
+    let type = this.getType();
+    let langue = this.getLangue();
     from(
       fetch(
         'https://www.chiya-no-yuuki.fr/insert?nbgame=1&pseudo=' +
@@ -408,18 +591,11 @@ export class AppComponent implements OnInit {
       .get<any>('https://www.chiya-no-yuuki.fr/select')
       .subscribe((data) => {
         this.allData = data;
-        this.pick_en = data.filter((dat: any) => dat.type == "pick" && dat.langue == "en");
-        this.sort(this.pick_en);
-        this.pick_fr = data.filter((dat: any) => dat.type == "pick" && dat.langue == "fr");
-        this.sort(this.pick_fr);
-        this.ban_en = data.filter((dat: any) => dat.type == "ban" && dat.langue == "en");
-        this.sort(this.ban_en);
-        this.ban_fr = data.filter((dat: any) => dat.type == "ban" && dat.langue == "fr");
-        this.sort(this.ban_fr);
+        this.initData();
         this.nbGames = this.getNbGames();
         this.getLastGame();
         this.checkPresence();
-        this.changeData();
+        this.changeSpecificData();
         this.checkValues();
         this.getClassements();
       });
@@ -718,20 +894,31 @@ export class AppComponent implements OnInit {
     }
     this.randomChamps = [];
     this.audios = [];
-    let langue = this.typeGame.endsWith("Anglais") ? 'en' : 'fr';
-    let type = this.typeGame.startsWith("Ban") ? 'ban' : 'pick';
+    let type = this.getType();
+    let langue = this.getLangue();
     while (this.randomChamps.length < 10) {
       let rdm = Math.floor(Math.random() * this.champs.length);
       let champ = this.champs[rdm];
       if (!this.randomChamps.includes(champ)) {
         this.randomChamps[this.randomChamps.length] = champ;
         let audio = new Audio();
-        audio.src =
-          './assets/' + type + '/' +
-          langue +
-          '/' +
-          champ.code +
-          '.wav';
+        if (type == "pick" || type == "ban") {
+          audio.src = './assets/' + type + '/' + langue + '/' + champ.code + '.wav';
+        }
+        else if (type == "comp") {
+          if(langue!="all")
+          {
+            audio.src = './assets/champions/' + champ.nom + '/' + champ.code + langue + '.wav';
+          }
+          else
+          {
+            let tmp = ["aa","a","z","e","r"]
+            let choice = tmp[Math.floor(Math.random()*5)];
+            audio.src = './assets/champions/' + champ.nom + '/' + champ.code + choice + '.wav';
+          }
+          
+        }
+
         this.audios[this.audios.length] = audio;
       }
     }
@@ -739,6 +926,25 @@ export class AppComponent implements OnInit {
     this.pause = true;
     this.pickMusic.play();
     this.startTimer2();
+  }
+
+  public getType() {
+    if (this.typeGame == "Pick") return "pick";
+    else if (this.typeGame == "Ban") return "ban";
+    else if (this.typeGame == "Compétences") return "comp";
+    else return "pick"
+  }
+
+  public getLangue() {
+    if (this.specificTypeGame == "Français") return "fr";
+    else if (this.specificTypeGame == "Anglais") return "en";
+    else if (this.specificTypeGame == "Tous") return "all";
+    else if (this.specificTypeGame == "Attaque") return "aa";
+    else if (this.specificTypeGame == "Sort A") return "a";
+    else if (this.specificTypeGame == "Sort Z") return "z";
+    else if (this.specificTypeGame == "Sort E") return "e";
+    else if (this.specificTypeGame == "Sort R") return "r";
+    else return "fr"
   }
 
   validate() {

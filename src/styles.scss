@@ -41,6 +41,7 @@ select {
   text-align: center;
   margin: 5px;
   outline: none;
+  min-width: 100px;
 }
 
 .clickable:hover,
@@ -444,9 +445,9 @@ td {
 
 .classementJoueur:hover {
   cursor: pointer;
-  opacity:0.7;
+  opacity: 0.7;
 }
 
-.classementJoueur:hover p{
+.classementJoueur:hover p {
   text-decoration: underline;
 }

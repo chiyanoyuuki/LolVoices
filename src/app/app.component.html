@@ -68,9 +68,9 @@
                 </div>
               </div>
 
-              <div *ngIf="score.nbgame&&score.nbgame<10" style="position: absolute;right: -15px;top: 70px;opacity:0.6;">
+              <div *ngIf="score.nbgame&&score.nbgame<nbModes" style="position: absolute;right: -15px;top: 70px;opacity:0.6;">
                 <p style="white-space: nowrap;" (click)="clickModeRestant(score.pseudo)" class="clickableText">
-                  {{ 10-score.nbgame }} modes restants
+                  {{ nbModes-score.nbgame }} modes restants
                 </p>
               </div>
             </div>
@@ -128,9 +128,9 @@
 
 
 
-              <div *ngIf="score.nbgame&&score.nbgame<10" style="opacity:0.6;position: absolute;left: -15px;top: 70px;">
+              <div *ngIf="score.nbgame&&score.nbgame<nbModes" style="opacity:0.6;position: absolute;left: -15px;top: 70px;">
                 <p style="white-space: nowrap;" (click)="clickModeRestant(score.pseudo)" class="clickableText">
-                  {{ 10-score.nbgame }} modes restants
+                  {{ nbModes-score.nbgame }} modes restants
                 </p>
               </div>
 
@@ -146,7 +146,7 @@
         <div *ngIf="i < nbFound" style="position: absolute; display: flex; width: 300px"
           [style.justify-content]="getJustify(i)" [style.top]="getTop(i, 1)" [style.left]="getLeft(i, 1)">
           <div *ngIf="i > 4" class="textPick textPickLeft">
-            <p *ngIf="passed[i]" style="position: absolute;top: -25px;font-size: 20px;">PASSED</p>
+            <p *ngIf="passed[i]" style="position: absolute;top: -25px;font-size: 20px;width: fit-content;">PASSED</p>
             <p style="color: rgb(209, 209, 199); right: 15px">
               {{ smallFormat(perso.nom) | uppercase }}
             </p>
@@ -180,7 +180,7 @@
             <img src="./assets/imgs/{{ perso.nom }}.png" style="width: 75px;top:-5px;left:-5px" />
           </div>
           <div *ngIf="i < 5" class="textPick textPickRight">
-            <p *ngIf="passed[i]" style="position: absolute;top: -25px;font-size: 20px;">PASSED</p>
+            <p *ngIf="passed[i]" style="position: absolute;top: -25px;font-size: 20px;width: fit-content;">PASSED</p>
             <p style="color: rgb(209, 209, 199); left: 15px">
               {{ smallFormat(perso.nom) | uppercase }}
             </p>
@@ -288,10 +288,17 @@
           <select [(ngModel)]="typeGame" (ngModelChange)="changeData()">
             <option>Pick</option>
             <option>Ban</option>
+            <option>Joke</option>
+            <option>Rire</option>
+            <option>Taunt</option>
             <option>Compétences</option>
           </select>
 
           <select [(ngModel)]="specificTypeGame" (ngModelChange)="changeSpecificData()">
+            <ng-container *ngIf="typeGame=='Rire'||typeGame=='Joke'||typeGame=='Taunt'">
+              <option>Anglais</option>
+            </ng-container>
+
             <ng-container *ngIf="typeGame=='Pick'||typeGame=='Ban'">
               <option>Français</option>
               <option>Anglais</option>
@@ -339,7 +346,7 @@
             <p>Rang</p>
             <p style="padding: 0px; border: none"></p>
             <p>Pseudo</p>
-            <p>{{data[0].type | titlecase }} {{data[0].langue | titlecase}}</p>
+            <p>{{ (data[0]?(data[0].type +" "+data[0].langue):" ") | titlecase }}</p>
             <p *ngIf="false">Essais</p>
             <p>Derniere partie</p>
             <p>Mode</p>

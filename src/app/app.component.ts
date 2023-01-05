@@ -50,6 +50,9 @@ export class AppComponent implements OnInit {
   public comp_z: Data[] = [];
   public comp_e: Data[] = [];
   public comp_r: Data[] = [];
+  public joke_en: Data[] = [];
+  public rire_en: Data[] = [];
+  public taunt_en: Data[] = [];
   public data: Data[] = [];
   public passed: boolean[] = [];
   public page = 'start';
@@ -535,6 +538,7 @@ export class AppComponent implements OnInit {
     }
   ];
   public debug = false;
+  public nbModes = 13;
 
   public headers!: HttpHeaders;
 
@@ -542,7 +546,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    //this.debug = false;
+    this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -583,6 +587,12 @@ export class AppComponent implements OnInit {
     this.sort(this.comp_e);
     this.comp_r = this.allData.filter((dat: Data) => dat.type == "comp" && dat.langue == "r");
     this.sort(this.comp_r);
+    this.rire_en = this.allData.filter((dat: Data) => dat.type == "rire" && dat.langue == "en");
+    this.sort(this.rire_en);
+    this.taunt_en = this.allData.filter((dat: Data) => dat.type == "taunt" && dat.langue == "en");
+    this.sort(this.taunt_en);
+    this.joke_en = this.allData.filter((dat: Data) => dat.type == "joke" && dat.langue == "en");
+    this.sort(this.joke_en);
   }
 
   public getRank(x: number) {
@@ -619,6 +629,9 @@ export class AppComponent implements OnInit {
     else if (this.data != this.comp_z && this.comp_z.length > j && this.comp_z[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
     else if (this.data != this.comp_e && this.comp_e.length > j && this.comp_e[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
     else if (this.data != this.comp_r && this.comp_r.length > j && this.comp_r[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+    else if (this.data != this.joke_en && this.joke_en.length > j && this.joke_en[j].pseudo == pseudo) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.taunt_en && this.taunt_en.length > j && this.taunt_en[j].pseudo == pseudo) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.rire_en && this.rire_en.length > j && this.rire_en[j].pseudo == pseudo) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
 
     if (tmpType != this.typeGame || this.specificTypeGame != tmpSpecific)
       this.changeSpecificData();
@@ -638,6 +651,9 @@ export class AppComponent implements OnInit {
     else if (this.data != this.comp_z && !this.comp_z.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
     else if (this.data != this.comp_e && !this.comp_e.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
     else if (this.data != this.comp_r && !this.comp_r.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+    else if (this.data != this.joke_en && !this.joke_en.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.taunt_en && !this.taunt_en.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.rire_en && !this.rire_en.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
 
     if (tmpType != this.typeGame || this.specificTypeGame != tmpSpecific)
       this.changeSpecificData();
@@ -661,6 +677,9 @@ export class AppComponent implements OnInit {
         joueur = this.calculateClassement(this.comp_z, joueur, pseudo);
         joueur = this.calculateClassement(this.comp_e, joueur, pseudo);
         joueur = this.calculateClassement(this.comp_r, joueur, pseudo);
+        joueur = this.calculateClassement(this.rire_en, joueur, pseudo);
+        joueur = this.calculateClassement(this.taunt_en, joueur, pseudo);
+        joueur = this.calculateClassement(this.joke_en, joueur, pseudo);
         this.classement.push(joueur);
       }
     }
@@ -690,10 +709,14 @@ export class AppComponent implements OnInit {
     else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Sort Z") this.data = this.comp_z;
     else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Sort E") this.data = this.comp_e;
     else if (this.typeGame == 'Compétences' && this.specificTypeGame == "Sort R") this.data = this.comp_r;
+    else if (this.typeGame == 'Joke' && this.specificTypeGame == "Anglais") this.data = this.joke_en;
+    else if (this.typeGame == 'Rire' && this.specificTypeGame == "Anglais") this.data = this.rire_en;
+    else if (this.typeGame == 'Taunt' && this.specificTypeGame == "Anglais") this.data = this.taunt_en;
   }
 
   public changeData() {
     if (this.typeGame == "Compétences") this.specificTypeGame = "Toutes";
+    if (this.typeGame == "Joke" || this.typeGame == "Rire" || this.typeGame == "Taunt") this.specificTypeGame = "Anglais";
     else this.specificTypeGame = "Français";
     this.switch();
   }
@@ -830,7 +853,7 @@ export class AppComponent implements OnInit {
         }
         else
         {
-          if (diff > 60) {
+          if (diff >= 60) {
             diff = Math.floor(diff / 60);
             res = "Il y a " + diff + " heures";
   
@@ -1138,7 +1161,7 @@ export class AppComponent implements OnInit {
       if (!this.randomChamps.includes(champ)) {
         this.randomChamps[this.randomChamps.length] = champ;
         let audio = new Audio();
-        if (type == "pick" || type == "ban") {
+        if (type == "pick" || type == "ban" || type == "joke" || type == "rire" || type == "taunt") {
           audio.src = './assets/' + type + '/' + langue + '/' + champ.code + '.wav';
         }
         else if (type == "comp") {
@@ -1166,6 +1189,9 @@ export class AppComponent implements OnInit {
     if (this.typeGame == "Pick") return "pick";
     else if (this.typeGame == "Ban") return "ban";
     else if (this.typeGame == "Compétences") return "comp";
+    else if (this.typeGame == "Rire") return "rire";
+    else if (this.typeGame == "Joke") return "joke";
+    else if (this.typeGame == "Taunt") return "taunt";
     else return "pick"
   }
 

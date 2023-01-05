@@ -1,10 +1,14 @@
 <div class="flex justify-content:center" style="margin: 2% 0px">
   <div [ngClass]="{ pickBg: true }" style="overflow: hidden">
     <div class="chat">
+      <p class="gray">Modes de jeu disponibles : {{ nbModes }}</p>
+      <p class="gray">Nombre total de games jouées : {{ nbGames }}</p>
       <p class="gray">GameMaster à rejoint le salon</p>
       <p>
-        <span class="yellow">GameMaster </span> Le nombre total de games joueés
-        est de {{ nbGames }}
+        <span class="yellow">GameMaster </span> Je pense m'arrêter là sauf si on me demande mais ça me paraît pas mal déjà :d
+      </p>
+      <p>
+        <span class="yellow">GameMaster </span> N'hésitez pas à faire des retours ou à partager ce jeu à des amis qui pourraient apprécier :)
       </p>
       <p>
         <span class="yellow">GameMaster </span> Merci à tous, vous êtes les boss
@@ -295,11 +299,8 @@
           </select>
 
           <select [(ngModel)]="specificTypeGame" (ngModelChange)="changeSpecificData()">
-            <ng-container *ngIf="typeGame=='Rire'||typeGame=='Joke'||typeGame=='Taunt'">
-              <option>Anglais</option>
-            </ng-container>
 
-            <ng-container *ngIf="typeGame=='Pick'||typeGame=='Ban'">
+            <ng-container *ngIf="typeGame=='Pick'||typeGame=='Ban'||typeGame=='Rire'||typeGame=='Joke'||typeGame=='Taunt'">
               <option>Français</option>
               <option>Anglais</option>
             </ng-container>
@@ -312,6 +313,7 @@
               <option>Sort E</option>
               <option>Sort R</option>
             </ng-container>
+
           </select>
           <button (click)="clickStart()" [ngClass]="{ disabledButton: invalidName() }" [disabled]="invalidName()">
             Jouer

@@ -53,6 +53,9 @@ export class AppComponent implements OnInit {
   public joke_en: Data[] = [];
   public rire_en: Data[] = [];
   public taunt_en: Data[] = [];
+  public joke_fr: Data[] = [];
+  public rire_fr: Data[] = [];
+  public taunt_fr: Data[] = [];
   public data: Data[] = [];
   public passed: boolean[] = [];
   public page = 'start';
@@ -538,7 +541,7 @@ export class AppComponent implements OnInit {
     }
   ];
   public debug = false;
-  public nbModes = 13;
+  public nbModes = 16;
 
   public headers!: HttpHeaders;
 
@@ -546,7 +549,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    //this.debug = false;
+    this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -593,6 +596,12 @@ export class AppComponent implements OnInit {
     this.sort(this.taunt_en);
     this.joke_en = this.allData.filter((dat: Data) => dat.type == "joke" && dat.langue == "en");
     this.sort(this.joke_en);
+    this.rire_fr = this.allData.filter((dat: Data) => dat.type == "rire" && dat.langue == "fr");
+    this.sort(this.rire_fr);
+    this.taunt_fr = this.allData.filter((dat: Data) => dat.type == "taunt" && dat.langue == "fr");
+    this.sort(this.taunt_fr);
+    this.joke_fr = this.allData.filter((dat: Data) => dat.type == "joke" && dat.langue == "fr");
+    this.sort(this.joke_fr);
   }
 
   public getRank(x: number) {
@@ -609,7 +618,7 @@ export class AppComponent implements OnInit {
         joueur.score += (tab.length > 8 ? 9 : tab.length) - (x > 8 ? 8 : x);
         joueur.nbgame += 1;
         joueur.tempstotal += tab[x].temps;
-        joueur.ranks[x] = joueur.ranks[x] + 1;
+        joueur.ranks[x>8?8:x]++;
       }
     }
     return joueur;
@@ -632,6 +641,9 @@ export class AppComponent implements OnInit {
     else if (this.data != this.joke_en && this.joke_en.length > j && this.joke_en[j].pseudo == pseudo) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
     else if (this.data != this.taunt_en && this.taunt_en.length > j && this.taunt_en[j].pseudo == pseudo) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
     else if (this.data != this.rire_en && this.rire_en.length > j && this.rire_en[j].pseudo == pseudo) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.joke_fr && this.joke_fr.length > j && this.joke_fr[j].pseudo == pseudo) { this.typeGame = "Joke"; this.specificTypeGame = "Français"; }
+    else if (this.data != this.taunt_fr && this.taunt_fr.length > j && this.taunt_fr[j].pseudo == pseudo) { this.typeGame = "Taunt"; this.specificTypeGame = "Français"; }
+    else if (this.data != this.rire_fr && this.rire_fr.length > j && this.rire_fr[j].pseudo == pseudo) { this.typeGame = "Rire"; this.specificTypeGame = "Français"; }
 
     if (tmpType != this.typeGame || this.specificTypeGame != tmpSpecific)
       this.changeSpecificData();
@@ -654,6 +666,9 @@ export class AppComponent implements OnInit {
     else if (this.data != this.joke_en && !this.joke_en.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
     else if (this.data != this.taunt_en && !this.taunt_en.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
     else if (this.data != this.rire_en && !this.rire_en.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.joke_fr && !this.joke_fr.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Joke"; this.specificTypeGame = "Français"; }
+    else if (this.data != this.taunt_fr && !this.taunt_fr.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Taunt"; this.specificTypeGame = "Français"; }
+    else if (this.data != this.rire_fr && !this.rire_fr.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Rire"; this.specificTypeGame = "Français"; }
 
     if (tmpType != this.typeGame || this.specificTypeGame != tmpSpecific)
       this.changeSpecificData();
@@ -680,6 +695,9 @@ export class AppComponent implements OnInit {
         joueur = this.calculateClassement(this.rire_en, joueur, pseudo);
         joueur = this.calculateClassement(this.taunt_en, joueur, pseudo);
         joueur = this.calculateClassement(this.joke_en, joueur, pseudo);
+        joueur = this.calculateClassement(this.rire_fr, joueur, pseudo);
+        joueur = this.calculateClassement(this.taunt_fr, joueur, pseudo);
+        joueur = this.calculateClassement(this.joke_fr, joueur, pseudo);
         this.classement.push(joueur);
       }
     }
@@ -712,11 +730,13 @@ export class AppComponent implements OnInit {
     else if (this.typeGame == 'Joke' && this.specificTypeGame == "Anglais") this.data = this.joke_en;
     else if (this.typeGame == 'Rire' && this.specificTypeGame == "Anglais") this.data = this.rire_en;
     else if (this.typeGame == 'Taunt' && this.specificTypeGame == "Anglais") this.data = this.taunt_en;
+    else if (this.typeGame == 'Joke' && this.specificTypeGame == "Français") this.data = this.joke_fr;
+    else if (this.typeGame == 'Rire' && this.specificTypeGame == "Français") this.data = this.rire_fr;
+    else if (this.typeGame == 'Taunt' && this.specificTypeGame == "Français") this.data = this.taunt_fr;
   }
 
   public changeData() {
     if (this.typeGame == "Compétences") this.specificTypeGame = "Toutes";
-    if (this.typeGame == "Joke" || this.typeGame == "Rire" || this.typeGame == "Taunt") this.specificTypeGame = "Anglais";
     else this.specificTypeGame = "Français";
     this.switch();
   }

@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
       nbgame: 617,
       pseudo: 'Charles',
       temps: 17.5,
-      lastgame: '2023-01-02 17:01:56',
+      lastgame: '2023-01-05 10:51:56',
       checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
       type: "pick",
       langue: "fr",
@@ -153,7 +153,7 @@ export class AppComponent implements OnInit {
       nbgame: 617,
       pseudo: 'Charles',
       temps: 17.5,
-      lastgame: '2023-01-02 17:01:56',
+      lastgame: '2023-01-04 17:01:56',
       checkpoints: [1.8, 3.5, 5.3, 7, 8.8, 10.5, 12.3, 14, 15.8, 17.5],
       type: "comp",
       langue: "e",
@@ -175,7 +175,7 @@ export class AppComponent implements OnInit {
       nbgame: 354,
       pseudo: 'Yet',
       temps: 18.8,
-      lastgame: '2022-12-31 11:01:56',
+      lastgame: '2023-01-04 09:01:56',
       checkpoints: [1.9, 3.8, 5.6, 7.5, 9.4, 11.3, 13.2, 15, 16.9, 18.8],
       type: "pick",
       langue: "fr",
@@ -516,7 +516,18 @@ export class AppComponent implements OnInit {
       nbgame: 30,
       pseudo: 'Yozz4',
       temps: 22.7,
-      lastgame: '2023-01-02 15:05:04',
+      lastgame: '2023-01-04 15:05:04',
+      checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
+      type: "comp",
+      langue: "aa",
+      lastgametext: "",
+    },
+    {
+      id: 24,
+      nbgame: 30,
+      pseudo: 'Yozz4',
+      temps: 22.7,
+      lastgame: '2023-01-03 15:05:04',
       checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
       type: "pick",
       langue: "fr",
@@ -598,18 +609,18 @@ export class AppComponent implements OnInit {
     this.nomJoueur = pseudo;
     let tmpType = this.typeGame;
     let tmpSpecific = this.specificTypeGame;
-    if (this.data!=this.pick_fr && this.pick_fr.length > j && this.pick_fr[j].pseudo == pseudo) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
-    else if (this.data!=this.pick_en && this.pick_en.length > j && this.pick_en[j].pseudo == pseudo) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
-    else if (this.data!=this.ban_fr && this.ban_fr.length > j && this.ban_fr[j].pseudo == pseudo) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
-    else if (this.data!=this.ban_en && this.ban_en.length > j && this.ban_en[j].pseudo == pseudo) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
-    else if (this.data!=this.comp_all && this.comp_all.length > j && this.comp_all[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
-    else if (this.data!=this.comp_aa && this.comp_aa.length > j && this.comp_aa[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
-    else if (this.data!=this.comp_a && this.comp_a.length > j && this.comp_a[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
-    else if (this.data!=this.comp_z && this.comp_z.length > j && this.comp_z[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
-    else if (this.data!=this.comp_e && this.comp_e.length > j && this.comp_e[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
-    else if (this.data!=this.comp_r && this.comp_r.length > j && this.comp_r[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+    if (this.data != this.pick_fr && this.pick_fr.length > j && this.pick_fr[j].pseudo == pseudo) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
+    else if (this.data != this.pick_en && this.pick_en.length > j && this.pick_en[j].pseudo == pseudo) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.ban_fr && this.ban_fr.length > j && this.ban_fr[j].pseudo == pseudo) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
+    else if (this.data != this.ban_en && this.ban_en.length > j && this.ban_en[j].pseudo == pseudo) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.comp_all && this.comp_all.length > j && this.comp_all[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
+    else if (this.data != this.comp_aa && this.comp_aa.length > j && this.comp_aa[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
+    else if (this.data != this.comp_a && this.comp_a.length > j && this.comp_a[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
+    else if (this.data != this.comp_z && this.comp_z.length > j && this.comp_z[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
+    else if (this.data != this.comp_e && this.comp_e.length > j && this.comp_e[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
+    else if (this.data != this.comp_r && this.comp_r.length > j && this.comp_r[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
 
-    if(tmpType!=this.typeGame||this.specificTypeGame!=tmpSpecific)
+    if (tmpType != this.typeGame || this.specificTypeGame != tmpSpecific)
       this.changeSpecificData();
   }
 
@@ -617,18 +628,18 @@ export class AppComponent implements OnInit {
     this.nomJoueur = pseudo;
     let tmpType = this.typeGame;
     let tmpSpecific = this.specificTypeGame;
-    if      (this.data!=this.pick_fr && !this.pick_fr.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
-    else if (this.data!=this.pick_en && !this.pick_en.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
-    else if (this.data!=this.ban_fr && !this.ban_fr.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
-    else if (this.data!=this.ban_en && !this.ban_en.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
-    else if (this.data!=this.comp_all && !this.comp_all.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
-    else if (this.data!=this.comp_aa && !this.comp_aa.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
-    else if (this.data!=this.comp_a && !this.comp_a.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
-    else if (this.data!=this.comp_z && !this.comp_z.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
-    else if (this.data!=this.comp_e && !this.comp_e.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
-    else if (this.data!=this.comp_r && !this.comp_r.find((j:any)=>j.pseudo==pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+    if (this.data != this.pick_fr && !this.pick_fr.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
+    else if (this.data != this.pick_en && !this.pick_en.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.ban_fr && !this.ban_fr.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
+    else if (this.data != this.ban_en && !this.ban_en.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
+    else if (this.data != this.comp_all && !this.comp_all.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
+    else if (this.data != this.comp_aa && !this.comp_aa.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
+    else if (this.data != this.comp_a && !this.comp_a.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
+    else if (this.data != this.comp_z && !this.comp_z.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
+    else if (this.data != this.comp_e && !this.comp_e.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
+    else if (this.data != this.comp_r && !this.comp_r.find((j: any) => j.pseudo == pseudo)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
 
-    if(tmpType!=this.typeGame||this.specificTypeGame!=tmpSpecific)
+    if (tmpType != this.typeGame || this.specificTypeGame != tmpSpecific)
       this.changeSpecificData();
   }
 
@@ -806,12 +817,35 @@ export class AppComponent implements OnInit {
           if (ad > bd) return -1;
           else return 1;
         });
-        let jours = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+        //3600000 = 1h
+        //60000 = 1min
+        //1000 = 1s
         let today = new Date();
         let tmpdate = new Date(allDataFromPlayer[0].lastgame);
-        let jour = jours[tmpdate.getDay()];
-        if (tmpdate.toDateString() == today.toDateString()) jour = "Auj"
-        let date: string = "" + (tmpdate.getHours() < 10 ? "0" : "") + tmpdate.getHours() + ":" + (tmpdate.getMinutes() < 10 ? "0" : "") + tmpdate.getMinutes() + " " + jour + " " + (tmpdate.getDate() < 10 ? "0" : "") + tmpdate.getDate() + "/" + (tmpdate.getMonth() + 1 < 10 ? "0" : "") + (tmpdate.getMonth() + 1);
+        let diff = Math.floor((today.getTime() - tmpdate.getTime()) / 60000);
+        let res = "Il y a " + diff + " minutes";
+        if(diff<=1)
+        {
+          res = "A l'instant";
+        }
+        else
+        {
+          if (diff > 60) {
+            diff = Math.floor(diff / 60);
+            res = "Il y a " + diff + " heures";
+  
+            if (diff >= 24) {
+              diff = Math.floor(diff / 24);
+              res = "Il y a " + diff + " jours";
+              if(diff<=1)
+              {
+                res = "Hier";
+              }
+            }
+          }
+        }
+
+        let date: string = "" + res;
         let lastgame = allDataFromPlayer[0].type + " " + allDataFromPlayer[0].langue;
         for (let x = 0; x < allDataFromPlayer.length; x++) {
           allDataFromPlayer[x].lastgame = allDataFromPlayer[0].lastgame;
@@ -825,6 +859,7 @@ export class AppComponent implements OnInit {
   public checkPresence() {
     //3600000 = 1h
     //60000 = 1min
+    //1000 = 1s
     let date = new Date();
     let tmp: string[] = [];
     for (let i = 0; i < this.allData.length; i++) {

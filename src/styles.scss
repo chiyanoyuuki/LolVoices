@@ -188,11 +188,19 @@ td {
 }
 
 .ligne p:nth-child(6) {
-  width: 200px;
+  width: 120px;
 }
 
 .ligne p:nth-child(7) {
-  width: 60px;
+  width: 70px;
+}
+
+div .grised p:nth-child(6) {
+  color:#252525!important;
+}
+
+div .grised p:nth-child(7) {
+  color:#252525!important;
 }
 
 .tabScore .rank .grised {

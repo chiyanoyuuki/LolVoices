@@ -242,7 +242,7 @@
       </ng-container>
     </ng-container>
 
-    <div style="margin-top: 140px; width: fit-content; margin-left: 432px">
+    <div style="margin-top: 140px; width: fit-content; margin-left: 420px">
       <p style="
           position: absolute;
           top: -155px;
@@ -339,14 +339,15 @@
             <p>Rang</p>
             <p style="padding: 0px; border: none"></p>
             <p>Pseudo</p>
-            <p>Record</p>
+            <p>{{data[0].type | titlecase }} {{data[0].langue | titlecase}}</p>
             <p *ngIf="false">Essais</p>
             <p>Derniere partie</p>
+            <p>Mode</p>
           </div>
           <div>
             <div class="ligne rank" *ngFor="let score of data; let i = index"
               (click)="page == 'start' ? (nomJoueur = score.pseudo) : null"
-              [ngClass]="{ selected: nomJoueur == score.pseudo }">
+              [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgametext.includes('instant')&&!score.lastgametext.includes('heures')&&!score.lastgametext.includes('minutes')}">
               <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" class="elo" />
               <p>{{ i + 1 }}</p>
               <p class="state" [style.background-color]="data[i].actif ? 'green' : 'red'">
@@ -355,9 +356,10 @@
               <p>{{ score.pseudo }}</p>
               <p>{{ score.temps }}</p>
               <p *ngIf="false">{{ score.nbgame }}</p>
-              <p style="text-align:right" [ngClass]="{grised:!score.lastgametext.includes('Auj')}">{{ score.lastgametext
-                }}<span style="opacity:0.6;width:70px;display:inline-block;top:5px;">{{score.typelastgame}}</span>
+              <p style="text-align:right">{{ score.lastgametext
+                }}
               </p>
+              <p>{{score.typelastgame | titlecase}}</p>
             </div>
           </div>
         </div>

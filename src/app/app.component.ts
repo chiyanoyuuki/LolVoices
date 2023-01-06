@@ -540,7 +540,7 @@ export class AppComponent implements OnInit {
       lastgametext: "",
     }
   ];
-  public paliers = { chall: 20, gm: 22, master: 25, diam: 30, plat: 35, gold: 40, silver: 50, bronze: 60, iron: 80 };
+  public paliers = { chall: 20, gm: 22, master: 25, diam: 30, plat: 40, gold: 50, silver: 60, bronze: 80, iron: 100 };
   public debug = false;
   public nbModes = 16;
 

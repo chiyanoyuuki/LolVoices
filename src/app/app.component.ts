@@ -541,8 +541,12 @@ export class AppComponent implements OnInit {
     }
   ];
   public paliers = { chall: 20, gm: 22, master: 25, diam: 30, plat: 40, gold: 50, silver: 60, bronze: 80, iron: 100 };
+  public paliersshow = [this.paliers.chall, this.paliers.gm, this.paliers.master, this.paliers.diam, this.paliers.plat, this.paliers.gold, this.paliers.silver, this.paliers.bronze, this.paliers.iron, "∞"];
   public debug = false;
   public nbModes = 16;
+  public clic: any;
+  public topTxt: string = "";
+  public  cpt =0;
 
   public headers!: HttpHeaders;
 
@@ -550,7 +554,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    this.debug = false;
+    //this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -568,6 +572,9 @@ export class AppComponent implements OnInit {
     this.pickMusic.volume = 0.4;
     this.victory = new Audio();
     this.victory.src = './assets/victory.wav';
+    this.clic = new Audio();
+    this.clic.src = './assets/clic.wav';
+    this.topText();
   }
 
   initData() {
@@ -640,7 +647,7 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0,0] }
+        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
         joueur = this.calculateClassement(this.pick_fr, joueur, pseudo);
         joueur = this.calculateClassement(this.pick_en, joueur, pseudo);
         joueur = this.calculateClassement(this.ban_fr, joueur, pseudo);
@@ -685,47 +692,44 @@ export class AppComponent implements OnInit {
     this.nomJoueur = pseudo;
     let tmpType = this.typeGame;
     let tmpSpecific = this.specificTypeGame;
-    if (this.isElo(this.pick_fr,pseudo,j)) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
-    else if (this.isElo(this.pick_en,pseudo,j)) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
-    else if (this.isElo(this.ban_fr,pseudo,j)) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
-    else if (this.isElo(this.ban_en,pseudo,j)) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
-    else if (this.isElo(this.comp_all,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
-    else if (this.isElo(this.comp_aa,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
-    else if (this.isElo(this.comp_a,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
-    else if (this.isElo(this.comp_z,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
-    else if (this.isElo(this.comp_e,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
-    else if (this.isElo(this.comp_r,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
-    else if (this.isElo(this.joke_en,pseudo,j)) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
-    else if (this.isElo(this.taunt_en,pseudo,j)) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
-    else if (this.isElo(this.rire_en,pseudo,j)) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
-    else if (this.isElo(this.joke_fr,pseudo,j)) { this.typeGame = "Joke"; this.specificTypeGame = "Français"; }
-    else if (this.isElo(this.taunt_fr,pseudo,j)) { this.typeGame = "Taunt"; this.specificTypeGame = "Français"; }
-    else if (this.isElo(this.rire_fr,pseudo,j)) { this.typeGame = "Rire"; this.specificTypeGame = "Français"; }
+    if (this.isElo(this.pick_fr, pseudo, j)) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
+    else if (this.isElo(this.pick_en, pseudo, j)) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.ban_fr, pseudo, j)) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
+    else if (this.isElo(this.ban_en, pseudo, j)) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.comp_all, pseudo, j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
+    else if (this.isElo(this.comp_aa, pseudo, j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
+    else if (this.isElo(this.comp_a, pseudo, j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
+    else if (this.isElo(this.comp_z, pseudo, j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
+    else if (this.isElo(this.comp_e, pseudo, j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
+    else if (this.isElo(this.comp_r, pseudo, j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+    else if (this.isElo(this.joke_en, pseudo, j)) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.taunt_en, pseudo, j)) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.rire_en, pseudo, j)) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.joke_fr, pseudo, j)) { this.typeGame = "Joke"; this.specificTypeGame = "Français"; }
+    else if (this.isElo(this.taunt_fr, pseudo, j)) { this.typeGame = "Taunt"; this.specificTypeGame = "Français"; }
+    else if (this.isElo(this.rire_fr, pseudo, j)) { this.typeGame = "Rire"; this.specificTypeGame = "Français"; }
 
     if (tmpType != this.typeGame || this.specificTypeGame != tmpSpecific)
       this.changeSpecificData();
   }
 
-  public isElo(tab:any,pseudo:string,j:number)
-  {
-    if(this.data != tab)
-    {
+  public isElo(tab: any, pseudo: string, j: number) {
+    if (this.data != tab) {
       let tmp = tab.find((j: any) => j.pseudo == pseudo);
-      if(tmp)
-      {
-        let min = 0;let max = 0;
+      if (tmp) {
+        let min = 0; let max = 0;
         let temps = tmp.temps;
-        if(j==0){max=this.paliers.chall;}
-        else if(j==1){min=this.paliers.chall;max=this.paliers.gm;}
-        else if(j==2){min=this.paliers.gm;max=this.paliers.master;}
-        else if(j==3){min=this.paliers.master;max=this.paliers.diam;}
-        else if(j==4){min=this.paliers.diam;max=this.paliers.plat;}
-        else if(j==5){min=this.paliers.plat;max=this.paliers.gold;}
-        else if(j==6){min=this.paliers.gold;max=this.paliers.silver;}
-        else if(j==7){min=this.paliers.silver;max=this.paliers.bronze;}
-        else if(j==8){min=this.paliers.bronze;max=this.paliers.iron;}
-        else{min = this.paliers.iron;max=-1;}
-        if(temps>min&&temps<=max||temps>min&&max==-1)return true;
+        if (j == 0) { max = this.paliers.chall; }
+        else if (j == 1) { min = this.paliers.chall; max = this.paliers.gm; }
+        else if (j == 2) { min = this.paliers.gm; max = this.paliers.master; }
+        else if (j == 3) { min = this.paliers.master; max = this.paliers.diam; }
+        else if (j == 4) { min = this.paliers.diam; max = this.paliers.plat; }
+        else if (j == 5) { min = this.paliers.plat; max = this.paliers.gold; }
+        else if (j == 6) { min = this.paliers.gold; max = this.paliers.silver; }
+        else if (j == 7) { min = this.paliers.silver; max = this.paliers.bronze; }
+        else if (j == 8) { min = this.paliers.bronze; max = this.paliers.iron; }
+        else { min = this.paliers.iron; max = -1; }
+        if (temps > min && temps <= max || temps > min && max == -1) return true;
       }
     }
     return false;
@@ -1024,25 +1028,77 @@ export class AppComponent implements OnInit {
     }
     this.end = false;
     this.page = 'start';
+    this.topText();
+  }
+
+  public changeNom()
+  {
+    this.topText();
   }
 
   public topText() {
-    if (this.invalidName()) return 'Pseudo invalide';
-    if (this.end) {
+    let end = "";
+    if (this.invalidName()) end = 'Pseudo invalide';
+    else if (this.end) {
       if (this.newRecord != -1)
-        return 'Record battu : ' + this.newRecord.toFixed(1) + 's gagnées';
-      else return 'Bien joué !';
+        end = 'Record battu : ' + this.newRecord.toFixed(1) + 's gagnées';
+      else end = 'Bien joué !';
     } else if (this.page == 'start') {
-      return 'Choisissez un mode de jeu';
+      end = 'Choisissez un mode de jeu';
     } else if (this.page == 'pause') {
-      return 'Attention ! La partie va commencer !';
+      end = 'Attention ! La partie va commencer !';
     } else if (this.page == 'jeu') {
-      if (this.overallBest && this.timer < this.overallBest)
-        return 'Record mondial';
-      else if (this.best && this.timer < this.best) return 'Record personnel';
-      else if (this.best && this.timer >= this.best) return 'Pour le beau jeu';
-      else return 10 - this.nbFound + ' personnages restants';
-    } else return '&nbsp;';
+      //chall essaie d'avoir top1
+      if (this.overallBest && this.timer < this.overallBest && this.best && this.best < this.paliers.chall)
+        end = 'Record mondial';
+      //essaie de monter en elo
+      else if (this.best && this.best > this.paliers.chall && this.timer < this.paliersshow[this.getActualPlayerRank() - 1]) {
+        end = "" + this.getActualRank();
+      }
+      //chall bat son record
+      else if (this.best && this.timer < this.best) end = 'Record personnel';
+      else if (this.best && this.timer >= this.best) end = 'Pour le beau jeu';
+      else end = 10 - this.nbFound + ' personnages restants';
+    } else end = '&nbsp;';
+    if (end != this.topTxt) {
+      if (this.isNumber(this.topTxt)||this.topTxt == "Record personnel")
+      { 
+        this.clic.currentTime = 0;
+        this.clic.play();
+      }
+    }
+    this.topTxt = "" + end;
+    return end;
+  }
+
+  public isNumber(x: any) {
+    return x.match(/^[0-9]$/g);
+  }
+
+  public getActualPlayerRank() {
+    if (this.best <= this.paliers.chall) return 0;
+    if (this.best <= this.paliers.gm) return 1;
+    if (this.best <= this.paliers.master) return 2;
+    if (this.best <= this.paliers.diam) return 3;
+    if (this.best <= this.paliers.plat) return 4;
+    if (this.best <= this.paliers.gold) return 5;
+    if (this.best < this.paliers.silver) return 6;
+    if (this.best < this.paliers.bronze) return 7;
+    if (this.best < this.paliers.iron) return 8;
+    else return 9;
+  }
+
+  public getActualRank() {
+    if (this.timer <= this.paliers.chall) return 0;
+    if (this.timer <= this.paliers.gm) return 1;
+    if (this.timer <= this.paliers.master) return 2;
+    if (this.timer <= this.paliers.diam) return 3;
+    if (this.timer <= this.paliers.plat) return 4;
+    if (this.timer <= this.paliers.gold) return 5;
+    if (this.timer < this.paliers.silver) return 6;
+    if (this.timer < this.paliers.bronze) return 7;
+    if (this.timer < this.paliers.iron) return 8;
+    else return 9;
   }
 
   public invalidName() {
@@ -1112,6 +1168,7 @@ export class AppComponent implements OnInit {
   startTimer() {
     this.interval = setInterval(() => {
       this.timer += 0.1;
+      this.topText();
     }, 100);
   }
 
@@ -1147,6 +1204,7 @@ export class AppComponent implements OnInit {
     }
     this.typing = '';
     this.end = true;
+    this.topText();
     clearInterval(this.interval);
   }
 
@@ -1248,6 +1306,7 @@ export class AppComponent implements OnInit {
     this.blur();
     this.pause = true;
     this.pickMusic.play();
+    this.topText();
     this.startTimer2();
   }
 

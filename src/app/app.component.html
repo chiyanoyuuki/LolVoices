@@ -5,15 +5,43 @@
       <p class="gray">Nombre total de games jouées : {{ nbGames }}</p>
       <p class="gray">GameMaster à rejoint le salon</p>
       <p>
-        <span class="yellow">GameMaster </span> Je pense m'arrêter là sauf si on me demande mais ça me paraît pas mal déjà :d
+        <span class="yellow">GameMaster </span> Je pense m'arrêter là sauf si on me demande mais ça me paraît pas mal
+        déjà :d
       </p>
       <p>
-        <span class="yellow">GameMaster </span> N'hésitez pas à faire des retours ou à partager ce jeu à des amis qui pourraient apprécier :)
+        <span class="yellow">GameMaster </span> N'hésitez pas à faire des retours ou à partager ce jeu à des amis qui
+        pourraient apprécier :)
       </p>
       <p>
         <span class="yellow">GameMaster </span> Merci à tous, vous êtes les boss
         !
       </p>
+    </div>
+    <div
+      style="position: absolute;right: 0px;bottom: -10px;box-shadow: 1px 1px 30px black;padding: 5px;padding-bottom: 100px;">
+      <p style="margin-bottom:10px;opacity:0.6">Paliers :</p>
+      <div>
+        <div style="display:flex;">
+          <div *ngFor="let palier of paliersshow;let i=index">
+            <ng-container *ngIf="i<5">
+              <div class="flex" style="width:70px;justify-content:left">
+                <img src="./assets/elos/{{ i }}.png" style="width:30px;height:30px;padding-right:5px;" />
+                <p style="opacity:0.6;top:5px">{{palier}}s</p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div style="display:flex">
+          <div *ngFor="let palier of paliersshow;let i=index">
+            <ng-container *ngIf="i>4">
+              <div class="flex" style="width:70px;justify-content:left">
+                <img src="./assets/elos/{{ i }}.png" style="width:30px;height:30px;padding-right:5px;" />
+                <p style="opacity:0.6;top:5px">{{palier}}{{i < 9?"s":""}}</p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
     </div>
     <img src="./assets/centerRotate.png" class="rotate2"
       style="position: absolute; width: 750px; height: 750px; left: 345px" />
@@ -48,8 +76,9 @@
               <div style="right: -5px;top:-12px">
                 <div style="display:flex;justify-content:right;">
                   <ng-container *ngFor="let class of score.ranks;let j=index">
-                    <div *ngIf="class>0&&j<5" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv" style="width:45px;">
-                      <p  class="clickableText" style="text-align: left;top:5px">
+                    <div *ngIf="class>0&&j<5" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv"
+                      style="width:45px;">
+                      <p class="clickableText" style="text-align: left;top:5px">
                         {{ class }}x
                       </p>
                       <img src="./assets/elos/{{j}}.png" style="width:26px;height:26px;" />
@@ -60,8 +89,9 @@
 
                 <div style="display:flex;justify-content:right; ">
                   <ng-container *ngFor="let class of score.ranks;let j=index">
-                    <div *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv" style="width:45px;">
-                      <p  style="text-align: left;top:5px">
+                    <div *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv"
+                      style="width:45px;">
+                      <p style="text-align: left;top:5px">
                         {{ class }}x
                       </p>
                       <img src="./assets/elos/{{j}}.png" style="width:26px;height:26px;" />
@@ -72,7 +102,8 @@
                 </div>
               </div>
 
-              <div *ngIf="score.nbgame&&score.nbgame<nbModes" style="position: absolute;right: -15px;top: 70px;opacity:0.6;">
+              <div *ngIf="score.nbgame&&score.nbgame<nbModes"
+                style="position: absolute;right: -15px;top: 70px;opacity:0.6;">
                 <p style="white-space: nowrap;" (click)="clickModeRestant(score.pseudo)" class="clickableText">
                   {{ nbModes-score.nbgame }} modes restants
                 </p>
@@ -106,7 +137,8 @@
               <div style="left: -5px;">
                 <div style="display:flex;justify-content:left;">
                   <ng-container *ngFor="let class of score.ranks;let j=index">
-                    <div *ngIf="class>0&&j<5" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv" style="width:45px;">
+                    <div *ngIf="class>0&&j<5" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv"
+                      style="width:45px;">
                       <p class="clickableText" style="text-align: left;top:5px">
                         {{ class }}x
                       </p>
@@ -118,7 +150,8 @@
 
                 <div style="display:flex;justify-content:left; ">
                   <ng-container *ngFor="let class of score.ranks;let j=index">
-                    <div *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv" style="width:45px;">
+                    <div *ngIf="class>0&&j>4" (click)="clickRank(score.pseudo,j)" class="flex clickableDiv"
+                      style="width:45px;">
                       <p style="text-align: left;top:5px">
                         {{ class }}x
                       </p>
@@ -132,7 +165,8 @@
 
 
 
-              <div *ngIf="score.nbgame&&score.nbgame<nbModes" style="opacity:0.6;position: absolute;left: -15px;top: 70px;">
+              <div *ngIf="score.nbgame&&score.nbgame<nbModes"
+                style="opacity:0.6;position: absolute;left: -15px;top: 70px;">
                 <p style="white-space: nowrap;" (click)="clickModeRestant(score.pseudo)" class="clickableText">
                   {{ nbModes-score.nbgame }} modes restants
                 </p>
@@ -155,7 +189,7 @@
               {{ smallFormat(perso.nom) | uppercase }}
             </p>
             <p style="color: rgb(209, 209, 199); right: 15px">
-              {{ pick_fr[i] ? pick_fr[i].pseudo : creatures[i] }}
+              {{ classement[i] ? classement[i].pseudo : creatures[i] }}
             </p>
             <p *ngIf="checkpoints[i] && actualData" style="color: white">
               {{ checkpoints[i] }}s
@@ -189,7 +223,7 @@
               {{ smallFormat(perso.nom) | uppercase }}
             </p>
             <p style="color: rgb(209, 209, 199); left: 15px">
-              {{ pick_fr[i] ? pick_fr[i].pseudo : creatures[i] }}
+              {{ classement[i] ? classement[i].pseudo : creatures[i] }}
             </p>
             <p *ngIf="checkpoints[i] && actualData" style="color: white">
               <span [style.color]="
@@ -247,15 +281,24 @@
     </ng-container>
 
     <div style="margin-top: 140px; width: fit-content; margin-left: 420px">
-      <p style="
-          position: absolute;
-          top: -155px;
-          width: 100%;
-          font-size: 35px;
-          white-space: nowrap;
-        " [style.color]="invalidName() ? '#772323' : 'rgb(209, 209, 199)'">
-        {{ topText() }}
-      </p>
+      <div style=" 
+      position: absolute;
+      display:flex;
+      justify-content: center;
+      top: -155px;
+      width: 100%;
+      font-size: 35px;
+      white-space: nowrap;">
+        <p *ngIf="!isNumber(topTxt)" [style.color]="invalidName() ? '#772323' : 'rgb(209, 209, 199)'">
+          {{ topTxt }}
+        </p>
+        <div class="flex" *ngIf="isNumber(topTxt)">
+          <img src="./assets/elos/{{ topTxt }}.png" style="width:100px;height:100px;" />
+          <div style="width:130px"></div>
+          <img src="./assets/elos/{{ topTxt }}.png" style="width:100px;height:100px;" />
+        </div>
+      </div>
+
       <div *ngIf="page == 'pause' || page == 'jeu'">
         <div style="width: fit-content; margin: auto; position: relative">
           <p style="
@@ -288,7 +331,8 @@
       </div>
       <div *ngIf="page == 'start'">
         <div style="display: flex; justify-content: center">
-          <input style="width:130px;" type="text" [(ngModel)]="nomJoueur" placeholder="Rentrez un pseudo.." />
+          <input style="width:130px;" type="text" [(ngModel)]="nomJoueur" (ngModelChange)="changeNom()"
+            placeholder="Rentrez un pseudo.." />
           <select [(ngModel)]="typeGame" (ngModelChange)="changeData()">
             <option>Pick</option>
             <option>Ban</option>
@@ -300,7 +344,8 @@
 
           <select [(ngModel)]="specificTypeGame" (ngModelChange)="changeSpecificData()">
 
-            <ng-container *ngIf="typeGame=='Pick'||typeGame=='Ban'||typeGame=='Rire'||typeGame=='Joke'||typeGame=='Taunt'">
+            <ng-container
+              *ngIf="typeGame=='Pick'||typeGame=='Ban'||typeGame=='Rire'||typeGame=='Joke'||typeGame=='Taunt'">
               <option>Français</option>
               <option>Anglais</option>
             </ng-container>

@@ -357,8 +357,8 @@
             <div class="ligne rank" *ngFor="let score of data; let i = index"
               (click)="page == 'start' ? (nomJoueur = score.pseudo) : null"
               [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgametext.includes('instant')&&!score.lastgametext.includes('heures')&&!score.lastgametext.includes('minutes')}">
-              <img src="./assets/elos/{{ i < 8 ? i : 8 }}.png" class="elo" />
-              <p>{{ i + 1 }}</p>
+              <img src="./assets/elos/{{ getRang(score) }}.png" class="elo" />
+              <p>&nbsp;</p>
               <p class="state" [style.background-color]="data[i].actif ? 'green' : 'red'">
                 &nbsp;
               </p>

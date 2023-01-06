@@ -550,7 +550,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    //this.debug = false;
+    this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -618,15 +618,16 @@ export class AppComponent implements OnInit {
       if (tab[x].pseudo == pseudo) {
         joueur.nbgame += 1;
         joueur.tempstotal += tab[x].temps;
-        if (tab[x].temps < this.paliers.chall) joueur.ranks[0]++;
-        else if (tab[x].temps < this.paliers.gm) joueur.ranks[1]++;
-        else if (tab[x].temps < this.paliers.master) joueur.ranks[2]++;
-        else if (tab[x].temps < this.paliers.diam) joueur.ranks[3]++;
-        else if (tab[x].temps < this.paliers.plat) joueur.ranks[4]++;
-        else if (tab[x].temps < this.paliers.gold) joueur.ranks[5]++;
-        else if (tab[x].temps < this.paliers.silver) joueur.ranks[6]++;
-        else if (tab[x].temps < this.paliers.bronze) joueur.ranks[7]++;
-        else if (tab[x].temps < this.paliers.iron) joueur.ranks[8]++;
+        if (tab[x].temps <= this.paliers.chall) joueur.ranks[0]++;
+        else if (tab[x].temps <= this.paliers.gm) joueur.ranks[1]++;
+        else if (tab[x].temps <= this.paliers.master) joueur.ranks[2]++;
+        else if (tab[x].temps <= this.paliers.diam) joueur.ranks[3]++;
+        else if (tab[x].temps <= this.paliers.plat) joueur.ranks[4]++;
+        else if (tab[x].temps <= this.paliers.gold) joueur.ranks[5]++;
+        else if (tab[x].temps <= this.paliers.silver) joueur.ranks[6]++;
+        else if (tab[x].temps <= this.paliers.bronze) joueur.ranks[7]++;
+        else if (tab[x].temps <= this.paliers.iron) joueur.ranks[8]++;
+        else joueur.ranks[9]++;
       }
     }
     return joueur;
@@ -639,7 +640,7 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0] }
+        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0,0] }
         joueur = this.calculateClassement(this.pick_fr, joueur, pseudo);
         joueur = this.calculateClassement(this.pick_en, joueur, pseudo);
         joueur = this.calculateClassement(this.ban_fr, joueur, pseudo);
@@ -684,25 +685,50 @@ export class AppComponent implements OnInit {
     this.nomJoueur = pseudo;
     let tmpType = this.typeGame;
     let tmpSpecific = this.specificTypeGame;
-    if (this.data != this.pick_fr && this.pick_fr.length > j && this.pick_fr[j].pseudo == pseudo) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
-    else if (this.data != this.pick_en && this.pick_en.length > j && this.pick_en[j].pseudo == pseudo) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
-    else if (this.data != this.ban_fr && this.ban_fr.length > j && this.ban_fr[j].pseudo == pseudo) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
-    else if (this.data != this.ban_en && this.ban_en.length > j && this.ban_en[j].pseudo == pseudo) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
-    else if (this.data != this.comp_all && this.comp_all.length > j && this.comp_all[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
-    else if (this.data != this.comp_aa && this.comp_aa.length > j && this.comp_aa[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
-    else if (this.data != this.comp_a && this.comp_a.length > j && this.comp_a[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
-    else if (this.data != this.comp_z && this.comp_z.length > j && this.comp_z[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
-    else if (this.data != this.comp_e && this.comp_e.length > j && this.comp_e[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
-    else if (this.data != this.comp_r && this.comp_r.length > j && this.comp_r[j].pseudo == pseudo) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
-    else if (this.data != this.joke_en && this.joke_en.length > j && this.joke_en[j].pseudo == pseudo) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
-    else if (this.data != this.taunt_en && this.taunt_en.length > j && this.taunt_en[j].pseudo == pseudo) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
-    else if (this.data != this.rire_en && this.rire_en.length > j && this.rire_en[j].pseudo == pseudo) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
-    else if (this.data != this.joke_fr && this.joke_fr.length > j && this.joke_fr[j].pseudo == pseudo) { this.typeGame = "Joke"; this.specificTypeGame = "Français"; }
-    else if (this.data != this.taunt_fr && this.taunt_fr.length > j && this.taunt_fr[j].pseudo == pseudo) { this.typeGame = "Taunt"; this.specificTypeGame = "Français"; }
-    else if (this.data != this.rire_fr && this.rire_fr.length > j && this.rire_fr[j].pseudo == pseudo) { this.typeGame = "Rire"; this.specificTypeGame = "Français"; }
+    if (this.isElo(this.pick_fr,pseudo,j)) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
+    else if (this.isElo(this.pick_en,pseudo,j)) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.ban_fr,pseudo,j)) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
+    else if (this.isElo(this.ban_en,pseudo,j)) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.comp_all,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
+    else if (this.isElo(this.comp_aa,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
+    else if (this.isElo(this.comp_a,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
+    else if (this.isElo(this.comp_z,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
+    else if (this.isElo(this.comp_e,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
+    else if (this.isElo(this.comp_r,pseudo,j)) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+    else if (this.isElo(this.joke_en,pseudo,j)) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.taunt_en,pseudo,j)) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.rire_en,pseudo,j)) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
+    else if (this.isElo(this.joke_fr,pseudo,j)) { this.typeGame = "Joke"; this.specificTypeGame = "Français"; }
+    else if (this.isElo(this.taunt_fr,pseudo,j)) { this.typeGame = "Taunt"; this.specificTypeGame = "Français"; }
+    else if (this.isElo(this.rire_fr,pseudo,j)) { this.typeGame = "Rire"; this.specificTypeGame = "Français"; }
 
     if (tmpType != this.typeGame || this.specificTypeGame != tmpSpecific)
       this.changeSpecificData();
+  }
+
+  public isElo(tab:any,pseudo:string,j:number)
+  {
+    if(this.data != tab)
+    {
+      let tmp = tab.find((j: any) => j.pseudo == pseudo);
+      if(tmp)
+      {
+        let min = 0;let max = 0;
+        let temps = tmp.temps;
+        if(j==0){max=this.paliers.chall;}
+        else if(j==1){min=this.paliers.chall;max=this.paliers.gm;}
+        else if(j==2){min=this.paliers.gm;max=this.paliers.master;}
+        else if(j==3){min=this.paliers.master;max=this.paliers.diam;}
+        else if(j==4){min=this.paliers.diam;max=this.paliers.plat;}
+        else if(j==5){min=this.paliers.plat;max=this.paliers.gold;}
+        else if(j==6){min=this.paliers.gold;max=this.paliers.silver;}
+        else if(j==7){min=this.paliers.silver;max=this.paliers.bronze;}
+        else if(j==8){min=this.paliers.bronze;max=this.paliers.iron;}
+        else{min = this.paliers.iron;max=-1;}
+        if(temps>min&&temps<=max||temps>min&&max==-1)return true;
+      }
+    }
+    return false;
   }
 
   clickModeRestant(pseudo: string) {

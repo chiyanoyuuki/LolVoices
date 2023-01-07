@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   public interval2: any;
   public pickMusic: any;
   public focusTab = -1;
+  public focusLigne = -1;
   public best!: number;
   public overallBest!: number;
   public pause: boolean = false;
@@ -65,7 +66,7 @@ export class AppComponent implements OnInit {
   public specificTypeGame = '';
   public actualData: any;
   public nbGames = 0;
-  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[], lastgame:string, scores:string[] }[] = [];
+  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[], lastgame:string, scores:string[],scoresranks:string[] }[] = [];
   public creatures = [
     'Gromp',
     'Scuttle Crab',
@@ -535,7 +536,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    this.debug = false;
+    //this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -600,7 +601,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  calculateClassement(tab: any, joueur: any, pseudo: any) {
+  calculateClassement(tab: any, joueur: any, pseudo: any, k:number) {
     let found = false;
     for (let x = 0; x < tab.length; x++) {
       if (tab[x].pseudo == pseudo) {
@@ -608,16 +609,16 @@ export class AppComponent implements OnInit {
         joueur.scores[joueur.scores.length] = ""+tab[x].temps;
         joueur.nbgame += 1;
         joueur.tempstotal += tab[x].temps;
-        if (tab[x].temps <= this.paliers.chall) joueur.ranks[0]++;
-        else if (tab[x].temps <= this.paliers.gm) joueur.ranks[1]++;
-        else if (tab[x].temps <= this.paliers.master) joueur.ranks[2]++;
-        else if (tab[x].temps <= this.paliers.diam) joueur.ranks[3]++;
-        else if (tab[x].temps <= this.paliers.plat) joueur.ranks[4]++;
-        else if (tab[x].temps <= this.paliers.gold) joueur.ranks[5]++;
-        else if (tab[x].temps <= this.paliers.silver) joueur.ranks[6]++;
-        else if (tab[x].temps <= this.paliers.bronze) joueur.ranks[7]++;
-        else if (tab[x].temps <= this.paliers.iron) joueur.ranks[8]++;
-        else joueur.ranks[9]++;
+        if (tab[x].temps <= this.paliers.chall) {joueur.ranks[0]++;joueur.scoresranks[k]=0;}
+        else if (tab[x].temps <= this.paliers.gm) {joueur.ranks[1]++;joueur.scoresranks[k]=1;}
+        else if (tab[x].temps <= this.paliers.master) {joueur.ranks[2]++;joueur.scoresranks[k]=2;}
+        else if (tab[x].temps <= this.paliers.diam) {joueur.ranks[3]++;joueur.scoresranks[k]=3;}
+        else if (tab[x].temps <= this.paliers.plat) {joueur.ranks[4]++;joueur.scoresranks[k]=4;}
+        else if (tab[x].temps <= this.paliers.gold) {joueur.ranks[5]++;joueur.scoresranks[k]=5;}
+        else if (tab[x].temps <= this.paliers.silver) {joueur.ranks[6]++;joueur.scoresranks[k]=6;}
+        else if (tab[x].temps <= this.paliers.bronze) {joueur.ranks[7]++;joueur.scoresranks[k]=7;}
+        else if (tab[x].temps <= this.paliers.iron) {joueur.ranks[8]++;joueur.scoresranks[k]=8;}
+        else {joueur.ranks[9]++;joueur.scoresranks[k]=9;}
       }
     }
     if(!found)joueur.scores[joueur.scores.length] = " ";
@@ -631,23 +632,23 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, lastgame:this.allData[i].lastgametext, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores:[] }
-        joueur = this.calculateClassement(this.pick_fr, joueur, pseudo);
-        joueur = this.calculateClassement(this.pick_en, joueur, pseudo);
-        joueur = this.calculateClassement(this.ban_fr, joueur, pseudo);
-        joueur = this.calculateClassement(this.ban_en, joueur, pseudo);
-        joueur = this.calculateClassement(this.rire_fr, joueur, pseudo);
-        joueur = this.calculateClassement(this.rire_en, joueur, pseudo);
-        joueur = this.calculateClassement(this.joke_fr, joueur, pseudo);
-        joueur = this.calculateClassement(this.joke_en, joueur, pseudo);
-        joueur = this.calculateClassement(this.taunt_fr, joueur, pseudo);
-        joueur = this.calculateClassement(this.taunt_en, joueur, pseudo);
-        joueur = this.calculateClassement(this.comp_all, joueur, pseudo);
-        joueur = this.calculateClassement(this.comp_aa, joueur, pseudo);
-        joueur = this.calculateClassement(this.comp_a, joueur, pseudo);
-        joueur = this.calculateClassement(this.comp_z, joueur, pseudo);
-        joueur = this.calculateClassement(this.comp_e, joueur, pseudo);
-        joueur = this.calculateClassement(this.comp_r, joueur, pseudo);
+        let joueur = { pseudo: pseudo, lastgame:this.allData[i].lastgametext, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores:[], scoresranks:["-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1"] }
+        joueur = this.calculateClassement(this.pick_fr, joueur, pseudo,0);
+        joueur = this.calculateClassement(this.pick_en, joueur, pseudo,1);
+        joueur = this.calculateClassement(this.ban_fr, joueur, pseudo,2);
+        joueur = this.calculateClassement(this.ban_en, joueur, pseudo,3);
+        joueur = this.calculateClassement(this.rire_fr, joueur, pseudo,4);
+        joueur = this.calculateClassement(this.rire_en, joueur, pseudo,5);
+        joueur = this.calculateClassement(this.joke_fr, joueur, pseudo,6);
+        joueur = this.calculateClassement(this.joke_en, joueur, pseudo,7);
+        joueur = this.calculateClassement(this.taunt_fr, joueur, pseudo,8);
+        joueur = this.calculateClassement(this.taunt_en, joueur, pseudo,9);
+        joueur = this.calculateClassement(this.comp_all, joueur, pseudo,10);
+        joueur = this.calculateClassement(this.comp_aa, joueur, pseudo,11);
+        joueur = this.calculateClassement(this.comp_a, joueur, pseudo,12);
+        joueur = this.calculateClassement(this.comp_z, joueur, pseudo,13);
+        joueur = this.calculateClassement(this.comp_e, joueur, pseudo,14);
+        joueur = this.calculateClassement(this.comp_r, joueur, pseudo,15);
         joueur.score = 9 * joueur.ranks[0] + 8 * joueur.ranks[1] + 7 * joueur.ranks[2] + 6 * joueur.ranks[3] + 5 * joueur.ranks[4] + 4 * joueur.ranks[5] + 3 * joueur.ranks[6] + 2 * joueur.ranks[7] + joueur.ranks[8]
         this.classement.push(joueur);
       }

@@ -332,9 +332,9 @@
       </div>
       <div *ngIf="page == 'start'">
         <div style="display:flex;justify-content: center;position:absolute;top:-15px;opacity:0.3;left:60px">
-        <p>Pseudo désiré</p>
-        <p style="margin-left:62px;">Type de jeu</p>
-        <p style="margin-left:70px;">Mode</p>
+          <p>Pseudo désiré</p>
+          <p style="margin-left:62px;">Type de jeu</p>
+          <p style="margin-left:70px;">Mode</p>
         </div>
         <div style="display: flex; justify-content: center">
           <input style="width:130px;" type="text" [(ngModel)]="nomJoueur" (ngModelChange)="changeNom('')"
@@ -437,24 +437,30 @@
             <div>
               <p>Pseudo</p>
             </div>
-            <div *ngFor="let mode of modes; let i=index" class="clickableDiv" [ngClass]="{hoveredDiv:i==focusTab}" (mouseover)="focusTab=-1" (click)="goToMode(i)">
+            <div *ngFor="let mode of modes; let i=index" class="clickableDiv" [ngClass]="{hoveredDiv:i==focusTab}"
+              (mouseover)="focusTab=-1" (click)="goToMode(i)">
               <p>{{mode}}</p>
             </div>
           </div>
           <div>
-            <div class="ligne rank" *ngFor="let score of classement; let i = index" [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgame.includes('instant')&&!score.lastgame.includes('heures')&&!score.lastgame.includes('minutes')}">
+            <div class="ligne rank" *ngFor="let score of classement; let i = index" (mouseover)="focusLigne=i"
+              [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgame.includes('instant')&&!score.lastgame.includes('heures')&&!score.lastgame.includes('minutes')}">
               <div class="dergame clickableDiv" (click)="nomJoueur=score.pseudo">
                 <p style="text-align:left;">{{score.lastgame}}</p>
               </div>
-              <div class="clickableDiv pseudotab" (mouseover)="focusTab=-1"  (click)="nomJoueur=score.pseudo" style="overflow:hidden;">
+              <div class="clickableDiv pseudotab" (mouseover)="focusTab=-1" (click)="nomJoueur=score.pseudo"
+                style="overflow:hidden;">
                 <span class="statex" [style.background-color]="score.actif ? 'green' : '#bb303050'" style="top:3px">
                   &nbsp;
                 </span>
-                <p style="text-align:left;left:15px;" >{{score.pseudo}}</p>
+                <p style="text-align:left;left:15px;">{{score.pseudo}}</p>
               </div>
-              
-              <div *ngFor="let temps of score.scores; let i=index"  class="clickableDiv" [ngClass]="{empty:temps==' '}" (mouseover)="focusTab=i" (click)="nomJoueur=score.pseudo;goToMode(i)">
-                <p >{{temps==" "?"&nbsp;":temps}}</p>
+
+              <div *ngFor="let temps of score.scores; let j=index" class="clickableCase" [ngClass]="{empty:temps==' '}"
+                (mouseover)="focusTab=j" (click)="nomJoueur=score.pseudo;goToMode(i)">
+                <p *ngIf="focusTab!=j||focusLigne!=i">{{temps==" "?"&nbsp;":temps}}</p>
+                <img *ngIf="focusLigne==i&&focusTab==j&&score.scoresranks[j]!='-1'" src="./assets/elos/{{ score.scoresranks[j] }}.png"
+                  style="width:22px;height:22px;position:absolute;left:8px;top:-3px" />
               </div>
             </div>
           </div>

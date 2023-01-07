@@ -458,8 +458,8 @@
 
               <div *ngFor="let temps of score.scores; let j=index" class="clickableCase" [ngClass]="{empty:temps==' '}"
                 (mouseover)="focusTab=j" (click)="nomJoueur=score.pseudo;goToMode(i)">
-                <p *ngIf="focusTab!=j||focusLigne!=i">{{temps==" "?"&nbsp;":temps}}</p>
-                <img *ngIf="focusLigne==i&&focusTab==j&&score.scoresranks[j]!='-1'" src="./assets/elos/{{ score.scoresranks[j] }}.png"
+                <p *ngIf="focusLigne!=i">{{temps==" "?"&nbsp;":temps}}</p>
+                <img *ngIf="focusLigne==i&&score.scoresranks[j]!='-1'" src="./assets/elos/{{ score.scoresranks[j] }}.png"
                   style="width:22px;height:22px;position:absolute;left:8px;top:-3px" />
               </div>
             </div>

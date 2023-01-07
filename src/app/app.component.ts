@@ -536,7 +536,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    //this.debug = false;
+    this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -662,6 +662,7 @@ export class AppComponent implements OnInit {
 
   public goToMode(i:number)
   {
+    console.log(i);
     if (i==0) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
     else if (i==1) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
     else if (i==2) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }

@@ -443,7 +443,7 @@
           </div>
           <div>
             <div class="ligne rank" *ngFor="let score of classement; let i = index" [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgame.includes('instant')&&!score.lastgame.includes('heures')&&!score.lastgame.includes('minutes')}">
-              <div class="dergame">
+              <div class="dergame clickableDiv" (click)="nomJoueur=score.pseudo">
                 <p style="text-align:left;">{{score.lastgame}}</p>
               </div>
               <div class="clickableDiv pseudotab" (mouseover)="focusTab=-1"  (click)="nomJoueur=score.pseudo" style="overflow:hidden;">

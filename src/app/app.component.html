@@ -331,8 +331,13 @@
         </div>
       </div>
       <div *ngIf="page == 'start'">
+        <div style="display:flex;justify-content: center;position:absolute;top:-15px;opacity:0.3;left:60px">
+        <p>Pseudo désiré</p>
+        <p style="margin-left:62px;">Type de jeu</p>
+        <p style="margin-left:70px;">Mode</p>
+        </div>
         <div style="display: flex; justify-content: center">
-          <input style="width:130px;" type="text" [(ngModel)]="nomJoueur" (ngModelChange)="changeNom()"
+          <input style="width:130px;" type="text" [(ngModel)]="nomJoueur" (ngModelChange)="changeNom('')"
             placeholder="Rentrez un pseudo.." />
           <select [(ngModel)]="typeGame" (ngModelChange)="changeData()">
             <option>Général</option>
@@ -403,7 +408,7 @@
           </div>
           <div>
             <div class="ligne rank" *ngFor="let score of data; let i = index"
-              (click)="page == 'start' ? (nomJoueur = score.pseudo) : null"
+              (click)="page == 'start' ? changeNom(score.pseudo) : null"
               [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgametext.includes('instant')&&!score.lastgametext.includes('heures')&&!score.lastgametext.includes('minutes')}">
               <img src="./assets/elos/{{ getRang(score) }}.png" class="elo" />
               <p>&nbsp;</p>

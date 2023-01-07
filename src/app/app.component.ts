@@ -535,7 +535,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    this.debug = false;
+    //this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -1041,8 +1041,9 @@ export class AppComponent implements OnInit {
     this.topText();
   }
 
-  public changeNom()
+  public changeNom(nom:string)
   {
+    if(nom!='')this.nomJoueur = nom;
     this.topText();
   }
 

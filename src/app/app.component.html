@@ -280,7 +280,7 @@
       </ng-container>
     </ng-container>
 
-    <div style="margin-top: 140px; width: fit-content; margin-left: 420px">
+    <div style="margin-top: 140px; width: fit-content; margin-left: 410px;width:580px">
       <div style=" 
       position: absolute;
       display:flex;
@@ -289,7 +289,8 @@
       width: 100%;
       font-size: 35px;
       white-space: nowrap;">
-        <p *ngIf="!isNumber(topTxt)" [style.color]="invalidName() ? '#772323' : 'rgb(209, 209, 199)'">
+        <p *ngIf="!isNumber(topTxt)"
+          [style.color]="invalidName()&&typeGame!='Général' ? '#772323' : 'rgb(209, 209, 199)'">
           {{ topTxt }}
         </p>
         <div class="flex" *ngIf="isNumber(topTxt)">
@@ -334,6 +335,7 @@
           <input style="width:130px;" type="text" [(ngModel)]="nomJoueur" (ngModelChange)="changeNom()"
             placeholder="Rentrez un pseudo.." />
           <select [(ngModel)]="typeGame" (ngModelChange)="changeData()">
+            <option>Général</option>
             <option>Pick</option>
             <option>Ban</option>
             <option>Joke</option>
@@ -342,7 +344,8 @@
             <option>Compétences</option>
           </select>
 
-          <select [(ngModel)]="specificTypeGame" (ngModelChange)="changeSpecificData()">
+          <select [(ngModel)]="specificTypeGame" (ngModelChange)="changeSpecificData()" [disabled]="typeGame=='Général'"
+            [ngClass]="{disabled:typeGame=='Général'}">
 
             <ng-container
               *ngIf="typeGame=='Pick'||typeGame=='Ban'||typeGame=='Rire'||typeGame=='Joke'||typeGame=='Taunt'">
@@ -365,7 +368,7 @@
           </button>
         </div>
 
-        <div style="display: flex; justify-content: center; margin-top: 20px">
+        <div style="display: flex; justify-content: center; margin-top: 20px" *ngIf="typeGame!='Général'">
           <div>
             <div style="opacity: 0.5">
               <p>Raccourcis</p>
@@ -386,7 +389,7 @@
           </div>
         </div>
       </div>
-      <div style="margin-top: 20px; display: flex; justify-content: center">
+      <div style="margin-top: 20px; display: flex; justify-content: center" *ngIf="typeGame!='Général'">
         <div [style.max-height]="page == 'start' ? '300px' : '380px'" class="tabScore">
           <div class="ligne" style="opacity: 1 !important; background-color: '#00000080'">
             <p style="display: none"></p>
@@ -414,6 +417,30 @@
                 }}
               </p>
               <p>{{score.typelastgame | titlecase}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab" (mouseleave)="focusTab=-1"
+        style="max-width:800px;margin-top: 20px; display: flex; justify-content: center;position:absolute;left:-85px"
+        *ngIf="typeGame=='Général'">
+        <div class="tabScore2">
+          <div class="ligne" style="opacity: 1 !important; background-color: '#00000080';">
+            <div>
+              <p>Pseudo</p>
+            </div>
+            <div *ngFor="let mode of modes; let i=index" class="clickableDiv" [ngClass]="{hoveredDiv:i==focusTab}" (mouseover)="focusTab=-1" (click)="goToMode(i)">
+              <p>{{mode}}</p>
+            </div>
+          </div>
+          <div>
+            <div class="ligne rank" *ngFor="let score of classement; let i = index" [ngClass]="{ selected: nomJoueur == score.pseudo}">
+              <div class="clickableDiv pseudotab" (mouseover)="focusTab=-1"  (click)="nomJoueur=score.pseudo">
+                <p style="text-align:left;" >{{score.pseudo}}</p>
+              </div>
+              <div *ngFor="let temps of score.scores; let i=index"  class="clickableDiv" [ngClass]="{empty:temps==' '}" (mouseover)="focusTab=i" (click)="nomJoueur=score.pseudo;goToMode(i)">
+                <p >{{temps==" "?"&nbsp;":temps}}</p>
+              </div>
             </div>
           </div>
         </div>

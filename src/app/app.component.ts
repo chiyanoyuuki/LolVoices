@@ -7,6 +7,7 @@ import { from } from 'rxjs';
 import { Data } from './model';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { throws } from 'assert';
 registerLocaleData(localeFr);
 
 @Component({
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
   public interval: any;
   public interval2: any;
   public pickMusic: any;
+  public focusTab = -1;
   public best!: number;
   public overallBest!: number;
   public pause: boolean = false;
@@ -59,11 +61,11 @@ export class AppComponent implements OnInit {
   public data: Data[] = [];
   public passed: boolean[] = [];
   public page = 'start';
-  public typeGame = 'Pick';
-  public specificTypeGame = 'Français';
+  public typeGame = 'Général';
+  public specificTypeGame = '';
   public actualData: any;
   public nbGames = 0;
-  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[] }[] = [];
+  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[], lastgame:string, scores:string[] }[] = [];
   public creatures = [
     'Gromp',
     'Scuttle Crab',
@@ -251,17 +253,6 @@ export class AppComponent implements OnInit {
       checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
       type: "comp",
       langue: "all",
-      lastgametext: "",
-    },
-    {
-      id: 9,
-      nbgame: 946,
-      pseudo: 'Paul',
-      temps: 220.3,
-      lastgame: '2022-12-31 11:01:56',
-      checkpoints: [2.2, 4.5, 6.7, 8.9, 11.2, 13.4, 15.6, 17.8, 20.1, 22.3],
-      type: "pick",
-      langue: "fr",
       lastgametext: "",
     },
     {
@@ -487,17 +478,6 @@ export class AppComponent implements OnInit {
     {
       id: 24,
       nbgame: 30,
-      pseudo: 'Yozz',
-      temps: 22.7,
-      lastgame: '2023-01-02 15:05:04',
-      checkpoints: '[1.8,3.3,5.6,8.2,10.7,12.4,14.3,15.8,18.6,20.7]',
-      type: "ban",
-      langue: "fr",
-      lastgametext: "",
-    },
-    {
-      id: 24,
-      nbgame: 30,
       pseudo: 'Yozz2',
       temps: 22.7,
       lastgame: '2023-01-02 15:05:04',
@@ -540,6 +520,7 @@ export class AppComponent implements OnInit {
       lastgametext: "",
     }
   ];
+  public modes = ["Pick FR", "Pick EN", "Ban FR", "Ban EN", "Rire FR", "Rire EN", "Joke FR", "Joke EN", "Taunt FR", "Taunt EN", "Comp All","Comp AA", "Comp A","Comp Z","Comp E","Comp R"];
   public paliers = { chall: 20, gm: 22, master: 25, diam: 30, plat: 40, gold: 50, silver: 60, bronze: 80, iron: 100 };
   public paliersshow = [this.paliers.chall, this.paliers.gm, this.paliers.master, this.paliers.diam, this.paliers.plat, this.paliers.gold, this.paliers.silver, this.paliers.bronze, this.paliers.iron, "∞"];
   public debug = false;
@@ -554,7 +535,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    //this.debug = false;
+    this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -564,7 +545,6 @@ export class AppComponent implements OnInit {
       this.changeData();
       this.checkValues();
       this.getClassements();
-      this.nomJoueur = this.data[0].pseudo;
     }
     this.getData();
     this.pickMusic = new Audio();
@@ -621,8 +601,12 @@ export class AppComponent implements OnInit {
 
 
   calculateClassement(tab: any, joueur: any, pseudo: any) {
+    let found = false;
     for (let x = 0; x < tab.length; x++) {
       if (tab[x].pseudo == pseudo) {
+        joueur.lastgame = tab[x].lastgametext;
+        found = true;
+        joueur.scores[joueur.scores.length] = ""+tab[x].temps;
         joueur.nbgame += 1;
         joueur.tempstotal += tab[x].temps;
         if (tab[x].temps <= this.paliers.chall) joueur.ranks[0]++;
@@ -637,6 +621,7 @@ export class AppComponent implements OnInit {
         else joueur.ranks[9]++;
       }
     }
+    if(!found)joueur.scores[joueur.scores.length] = " ";
     return joueur;
   }
 
@@ -647,23 +632,23 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+        let joueur = { pseudo: pseudo, lastgame:"", score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores:[] }
         joueur = this.calculateClassement(this.pick_fr, joueur, pseudo);
         joueur = this.calculateClassement(this.pick_en, joueur, pseudo);
         joueur = this.calculateClassement(this.ban_fr, joueur, pseudo);
         joueur = this.calculateClassement(this.ban_en, joueur, pseudo);
+        joueur = this.calculateClassement(this.rire_fr, joueur, pseudo);
+        joueur = this.calculateClassement(this.rire_en, joueur, pseudo);
+        joueur = this.calculateClassement(this.joke_fr, joueur, pseudo);
+        joueur = this.calculateClassement(this.joke_en, joueur, pseudo);
+        joueur = this.calculateClassement(this.taunt_fr, joueur, pseudo);
+        joueur = this.calculateClassement(this.taunt_en, joueur, pseudo);
         joueur = this.calculateClassement(this.comp_all, joueur, pseudo);
         joueur = this.calculateClassement(this.comp_aa, joueur, pseudo);
         joueur = this.calculateClassement(this.comp_a, joueur, pseudo);
         joueur = this.calculateClassement(this.comp_z, joueur, pseudo);
         joueur = this.calculateClassement(this.comp_e, joueur, pseudo);
         joueur = this.calculateClassement(this.comp_r, joueur, pseudo);
-        joueur = this.calculateClassement(this.rire_en, joueur, pseudo);
-        joueur = this.calculateClassement(this.taunt_en, joueur, pseudo);
-        joueur = this.calculateClassement(this.joke_en, joueur, pseudo);
-        joueur = this.calculateClassement(this.rire_fr, joueur, pseudo);
-        joueur = this.calculateClassement(this.taunt_fr, joueur, pseudo);
-        joueur = this.calculateClassement(this.joke_fr, joueur, pseudo);
         joueur.score = 9 * joueur.ranks[0] + 8 * joueur.ranks[1] + 7 * joueur.ranks[2] + 6 * joueur.ranks[3] + 5 * joueur.ranks[4] + 4 * joueur.ranks[5] + 3 * joueur.ranks[6] + 2 * joueur.ranks[7] + joueur.ranks[8]
         this.classement.push(joueur);
       }
@@ -673,6 +658,28 @@ export class AppComponent implements OnInit {
       else if (a.nbgame != b.nbgame) return (b.nbgame < a.nbgame) ? -2 : 2;
       else return (b.tempstotal > a.tempstotal) ? -1 : 1;
     });
+  }
+
+  public goToMode(i:number)
+  {
+    if (i==0) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
+    else if (i==1) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
+    else if (i==2) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
+    else if (i==3) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
+    else if (i==4) { this.typeGame = "Rire"; this.specificTypeGame = "Français"; }
+    else if (i==5) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
+    else if (i==6) { this.typeGame = "Joke"; this.specificTypeGame = "Français"; }
+    else if (i==7) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
+    else if (i==8) { this.typeGame = "Taunt"; this.specificTypeGame = "Français"; }
+    else if (i==9) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
+    else if (i==10) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
+    else if (i==11) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
+    else if (i==12) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
+    else if (i==13) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
+    else if (i==14) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
+    else if (i==15) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+    this.switch();
+    this.topText();
   }
 
   getRang(joueur: any) {
@@ -786,10 +793,12 @@ export class AppComponent implements OnInit {
     else if (this.typeGame == 'Joke' && this.specificTypeGame == "Français") this.data = this.joke_fr;
     else if (this.typeGame == 'Rire' && this.specificTypeGame == "Français") this.data = this.rire_fr;
     else if (this.typeGame == 'Taunt' && this.specificTypeGame == "Français") this.data = this.taunt_fr;
+    this.topText();
   }
 
   public changeData() {
-    if (this.typeGame == "Compétences") this.specificTypeGame = "Toutes";
+    if(this.typeGame =="Général")this.specificTypeGame = "";
+    else if (this.typeGame == "Compétences") this.specificTypeGame = "Toutes";
     else this.specificTypeGame = "Français";
     this.switch();
   }
@@ -1027,6 +1036,7 @@ export class AppComponent implements OnInit {
       this.getData();
     }
     this.end = false;
+    this.typeGame="Général";
     this.page = 'start';
     this.topText();
   }
@@ -1038,7 +1048,9 @@ export class AppComponent implements OnInit {
 
   public topText() {
     let end = "";
-    if (this.invalidName()) end = 'Pseudo invalide';
+    if(this.typeGame=="Général") end = "Classement Général";
+    else if (this.nomJoueur.length == 0) end = "Choisissez un pseudo";
+    else if (this.invalidName()) end = 'Pseudo invalide';
     else if (this.end) {
       if (this.newRecord != -1)
         end = 'Record battu : ' + this.newRecord.toFixed(1) + 's gagnées';

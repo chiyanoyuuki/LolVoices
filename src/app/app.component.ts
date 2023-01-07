@@ -535,7 +535,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.debug = isDevMode();
-    //this.debug = false;
+    this.debug = false;
     if (this.debug) {
       this.allData = this.debugData;
       this.initData();
@@ -604,7 +604,6 @@ export class AppComponent implements OnInit {
     let found = false;
     for (let x = 0; x < tab.length; x++) {
       if (tab[x].pseudo == pseudo) {
-        joueur.lastgame = tab[x].lastgametext;
         found = true;
         joueur.scores[joueur.scores.length] = ""+tab[x].temps;
         joueur.nbgame += 1;
@@ -632,7 +631,7 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, lastgame:"", score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores:[] }
+        let joueur = { pseudo: pseudo, lastgame:this.allData[i].lastgametext, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores:[] }
         joueur = this.calculateClassement(this.pick_fr, joueur, pseudo);
         joueur = this.calculateClassement(this.pick_en, joueur, pseudo);
         joueur = this.calculateClassement(this.ban_fr, joueur, pseudo);
@@ -929,7 +928,7 @@ export class AppComponent implements OnInit {
         let tmpdate = new Date(allDataFromPlayer[0].lastgame);
         let diff = Math.floor((today.getTime() - tmpdate.getTime()) / 60000);
         let res = "Il y a " + diff + " minutes";
-        if (diff <= 1) {
+        if (diff <= 2) {
           res = "A l'instant";
         }
         else {

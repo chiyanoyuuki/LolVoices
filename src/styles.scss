@@ -212,6 +212,10 @@ div .grised p:nth-child(7) {
   color: #303030 !important;
 }
 
+.tabScore2 .grised .dergame p{
+  color: #303030 !important;
+}
+
 .rank:nth-of-type(1) p,
 .classement-0 p {
   color: rgb(55, 127, 139) !important;
@@ -484,16 +488,20 @@ div .grised p:nth-child(7) {
   opacity: 0.4;
 
 }
+.tabScore2 .ligne div:nth-child(1)  {
+  min-width: 120px !important;
+}
 
-.tabScore2 .ligne div:nth-child(1) p {
+.tabScore2 .ligne div:nth-child(2)  {
   min-width: 90px !important;
 }
+
 
 .tabScore2 .ligne div {
   border: 1px solid #202020
 }
 
-.tab .tabScore2 .ligne div p {
+.tab .tabScore2 .ligne div  {
   min-width: 40px;
   max-width: 40px;
   background-color: #10101090;
@@ -521,4 +529,14 @@ div .grised p:nth-child(7) {
 
 .tabScore2 .ligne .hoveredDiv{
   border-color:#f7292980;
+}
+
+.tabScore2 .statex {
+  position: absolute;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 100%;
+  box-shadow: 3px 3px 5px black;
+  border: 1px solid black;
+  padding: 0px !important;
 }

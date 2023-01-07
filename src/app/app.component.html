@@ -68,7 +68,7 @@
               <p style="text-align: right;font-size:20px" (click)="nomJoueur=score.pseudo" class="clickableText">
                 ( {{ score.score }} LP ) {{ score.pseudo }}
               </p>
-              <p class="state" [style.background-color]="score.actif ? 'green' : 'red'"
+              <p class="state" [style.background-color]="score.actif ? 'green' : '#bb303050'"
                 style="left: 203px;text-decoration:unset!important;top:-17px">
                 &nbsp;
               </p>
@@ -122,7 +122,7 @@
             opacity: 0.5;z-index:9"></div>
           <div *ngIf="i < 5">
 
-            <p class="state" [style.background-color]="score.actif ? 'green' : 'red'"
+            <p class="state" [style.background-color]="score.actif ? 'green' : '#bb303050'"
               style="top: 12px;text-decoration:unset!important">
               &nbsp;
             </p>
@@ -412,7 +412,7 @@
               [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgametext.includes('instant')&&!score.lastgametext.includes('heures')&&!score.lastgametext.includes('minutes')}">
               <img src="./assets/elos/{{ getRang(score) }}.png" class="elo" />
               <p>&nbsp;</p>
-              <p class="state" [style.background-color]="data[i].actif ? 'green' : 'red'">
+              <p class="state" [style.background-color]="data[i].actif ? 'green' : '#bb303050'">
                 &nbsp;
               </p>
               <p>{{ score.pseudo }}</p>
@@ -432,6 +432,9 @@
         <div class="tabScore2">
           <div class="ligne" style="opacity: 1 !important; background-color: '#00000080';">
             <div>
+              <p>Derniere Partie</p>
+            </div>
+            <div>
               <p>Pseudo</p>
             </div>
             <div *ngFor="let mode of modes; let i=index" class="clickableDiv" [ngClass]="{hoveredDiv:i==focusTab}" (mouseover)="focusTab=-1" (click)="goToMode(i)">
@@ -439,10 +442,17 @@
             </div>
           </div>
           <div>
-            <div class="ligne rank" *ngFor="let score of classement; let i = index" [ngClass]="{ selected: nomJoueur == score.pseudo}">
-              <div class="clickableDiv pseudotab" (mouseover)="focusTab=-1"  (click)="nomJoueur=score.pseudo">
-                <p style="text-align:left;" >{{score.pseudo}}</p>
+            <div class="ligne rank" *ngFor="let score of classement; let i = index" [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgame.includes('instant')&&!score.lastgame.includes('heures')&&!score.lastgame.includes('minutes')}">
+              <div class="dergame">
+                <p style="text-align:left;">{{score.lastgame}}</p>
               </div>
+              <div class="clickableDiv pseudotab" (mouseover)="focusTab=-1"  (click)="nomJoueur=score.pseudo" style="overflow:hidden;">
+                <span class="statex" [style.background-color]="score.actif ? 'green' : '#bb303050'" style="top:3px">
+                  &nbsp;
+                </span>
+                <p style="text-align:left;left:15px;" >{{score.pseudo}}</p>
+              </div>
+              
               <div *ngFor="let temps of score.scores; let i=index"  class="clickableDiv" [ngClass]="{empty:temps==' '}" (mouseover)="focusTab=i" (click)="nomJoueur=score.pseudo;goToMode(i)">
                 <p >{{temps==" "?"&nbsp;":temps}}</p>
               </div>

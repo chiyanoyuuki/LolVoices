@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
   public specificTypeGame = '';
   public actualData: any;
   public nbGames = 0;
-  public classement: { pseudo: string, score: number, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[], lastgame:string, scores:string[],scoresranks:string[] }[] = [];
+  public classement: { pseudo: string, score: number, typelastgame?:string, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[], lastgame:string, scores:string[],scoresranks:string[] }[] = [];
   public creatures = [
     'Gromp',
     'Scuttle Crab',
@@ -526,7 +526,6 @@ export class AppComponent implements OnInit {
   public paliersshow = [this.paliers.chall, this.paliers.gm, this.paliers.master, this.paliers.diam, this.paliers.plat, this.paliers.gold, this.paliers.silver, this.paliers.bronze, this.paliers.iron, "∞"];
   public debug = false;
   public nbModes = 16;
-  public clic: any;
   public topTxt: string = "";
   public  cpt =0;
 
@@ -553,8 +552,6 @@ export class AppComponent implements OnInit {
     this.pickMusic.volume = 0.4;
     this.victory = new Audio();
     this.victory.src = './assets/victory.wav';
-    this.clic = new Audio();
-    this.clic.src = './assets/clic.wav';
     this.topText();
   }
 
@@ -632,7 +629,7 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, lastgame:this.allData[i].lastgametext, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores:[], scoresranks:["-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1"] }
+        let joueur = { pseudo: pseudo, lastgame:this.allData[i].lastgametext, typelastgame:this.allData[i].typelastgame, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores:[], scoresranks:["-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1"] }
         joueur = this.calculateClassement(this.pick_fr, joueur, pseudo,0);
         joueur = this.calculateClassement(this.pick_en, joueur, pseudo,1);
         joueur = this.calculateClassement(this.ban_fr, joueur, pseudo,2);
@@ -1074,13 +1071,6 @@ export class AppComponent implements OnInit {
       else if (this.best && this.timer >= this.best) end = 'Pour le beau jeu';
       else end = 10 - this.nbFound + ' personnages restants';
     } else end = '&nbsp;';
-    if (end != this.topTxt) {
-      if (this.isNumber(this.topTxt)||this.topTxt == "Record personnel")
-      { 
-        this.clic.currentTime = 0;
-        this.clic.play();
-      }
-    }
     this.topTxt = "" + end;
     return end;
   }

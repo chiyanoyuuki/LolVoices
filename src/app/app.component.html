@@ -435,6 +435,12 @@
               <p>Derniere Partie</p>
             </div>
             <div>
+              <p>Mode</p>
+            </div>
+            <div>
+              <p>Elo</p>
+            </div>
+            <div>
               <p>Pseudo</p>
             </div>
             <div *ngFor="let mode of modes; let i=index" class="clickableDiv" [ngClass]="{hoveredDiv:i==focusTab}"
@@ -448,6 +454,15 @@
               <div class="dergame clickableDiv" (click)="nomJoueur=score.pseudo">
                 <p style="text-align:left;">{{score.lastgame}}</p>
               </div>
+              <div class="dergame clickableDiv" (click)="nomJoueur=score.pseudo">
+                <p >{{score.typelastgame}}</p>
+              </div>
+
+              <div class="clickableDiv" (click)="nomJoueur=score.pseudo">
+                <img src="./assets/elos/{{i<8?i:8}}.png"
+                  style="width:22px;height:22px;position:absolute;left:4px;top:-3px" />
+              </div>
+
               <div class="clickableDiv pseudotab" (mouseover)="focusTab=-1" (click)="nomJoueur=score.pseudo"
                 style="overflow:hidden;">
                 <span class="statex" [style.background-color]="score.actif ? 'green' : '#bb303050'" style="top:3px">

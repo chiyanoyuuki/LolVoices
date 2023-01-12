@@ -937,9 +937,11 @@ export class AppComponent implements OnInit {
 
             if (diff >= 24) {
               diff = Math.floor(diff / 24);
-              res = "Il y a " + diff + " jours";
               if (diff <= 1) {
                 res = "Hier";
+              }
+              else{
+                res = "Plus d'un jour";
               }
             }
           }

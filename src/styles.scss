@@ -212,7 +212,7 @@ div .grised p:nth-child(7) {
   color: #303030 !important;
 }
 
-.tabScore2 .grised .dergame p{
+.tabScore2 .grised .dergame p {
   color: #303030 !important;
 }
 
@@ -488,28 +488,30 @@ div .grised p:nth-child(7) {
   opacity: 0.4;
 
 }
-.tabScore2 .ligne div:nth-child(1)  {
+
+.tabScore2 .ligne div:nth-child(2) {
   min-width: 120px !important;
 }
 
-.tabScore2 .ligne div:nth-child(2)  {
+.tabScore2 .ligne div:nth-child(3) {
   min-width: 70px !important;
 }
 
-.tabScore2 .ligne div:nth-child(3)  {
+.tabScore2 .ligne div:nth-child(4) {
   min-width: 30px !important;
 }
 
-.tabScore2 .ligne div:nth-child(4)  {
+.tabScore2 .ligne div:nth-child(6) {
   min-width: 90px !important;
 }
+
 
 
 .tabScore2 .ligne div {
   border: 1px solid #202020
 }
 
-.tab .tabScore2 .ligne div  {
+.tab .tabScore2 .ligne div {
   min-width: 40px;
   max-width: 40px;
   background-color: #10101090;
@@ -525,23 +527,23 @@ div .grised p:nth-child(7) {
   display: flex;
 }
 
-.tabScore2 .clickableDiv:hover{
-  opacity:0.4;
-  cursor:pointer;
-  border-color:#f7292980;
+.tabScore2 .clickableDiv:hover {
+  opacity: 0.4;
+  cursor: pointer;
+  border-color: #f7292980;
 }
 
-.tabScore2 .clickableCase:hover{
-  cursor:pointer;
-  border-color:#f7292980;
+.tabScore2 .clickableCase:hover {
+  cursor: pointer;
+  border-color: #f7292980;
 }
 
-.tabScore2 .ligne:hover .pseudotab{
-  border-color:#f7292980;
+.tabScore2 .ligne:hover .pseudotab {
+  border-color: #f7292980;
 }
 
-.tabScore2 .ligne .hoveredDiv{
-  border-color:#f7292980;
+.tabScore2 .ligne .hoveredDiv {
+  border-color: #f7292980;
 }
 
 .tabScore2 .statex {

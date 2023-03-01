@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
   public specificTypeGame = '';
   public actualData: any;
   public nbGames = 0;
-  public classement: { pseudo: string, score: number, typelastgame?:string, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[], lastgame:string, scores:string[],scoresranks:string[] }[] = [];
+  public classement: { pseudo: string, score: number, typelastgame?: string, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[], lastgame: string, scores: string[], scoresranks: string[] }[] = [];
   public creatures = [
     'Gromp',
     'Scuttle Crab',
@@ -521,13 +521,13 @@ export class AppComponent implements OnInit {
       lastgametext: "",
     }
   ];
-  public modes = ["Pick FR", "Pick EN", "Ban FR", "Ban EN", "Rire FR", "Rire EN", "Joke FR", "Joke EN", "Taunt FR", "Taunt EN", "Comp All","Comp AA", "Comp A","Comp Z","Comp E","Comp R"];
+  public modes = ["Pick FR", "Pick EN", "Ban FR", "Ban EN", "Rire FR", "Rire EN", "Joke FR", "Joke EN", "Taunt FR", "Taunt EN", "Comp All", "Comp AA", "Comp A", "Comp Z", "Comp E", "Comp R"];
   public paliers = { chall: 20, gm: 22, master: 25, diam: 30, plat: 40, gold: 50, silver: 60, bronze: 80, iron: 100 };
   public paliersshow = [this.paliers.chall, this.paliers.gm, this.paliers.master, this.paliers.diam, this.paliers.plat, this.paliers.gold, this.paliers.silver, this.paliers.bronze, this.paliers.iron, "∞"];
   public debug = false;
   public nbModes = 16;
   public topTxt: string = "";
-  public  cpt =0;
+  public cpt = 0;
 
   public headers!: HttpHeaders;
 
@@ -598,27 +598,27 @@ export class AppComponent implements OnInit {
   }
 
 
-  calculateClassement(tab: any, joueur: any, pseudo: any, k:number) {
+  calculateClassement(tab: any, joueur: any, pseudo: any, k: number) {
     let found = false;
     for (let x = 0; x < tab.length; x++) {
       if (tab[x].pseudo == pseudo) {
         found = true;
-        joueur.scores[joueur.scores.length] = ""+tab[x].temps;
+        joueur.scores[joueur.scores.length] = "" + tab[x].temps;
         joueur.nbgame += 1;
         joueur.tempstotal += tab[x].temps;
-        if (tab[x].temps <= this.paliers.chall) {joueur.ranks[0]++;joueur.scoresranks[k]=0;}
-        else if (tab[x].temps <= this.paliers.gm) {joueur.ranks[1]++;joueur.scoresranks[k]=1;}
-        else if (tab[x].temps <= this.paliers.master) {joueur.ranks[2]++;joueur.scoresranks[k]=2;}
-        else if (tab[x].temps <= this.paliers.diam) {joueur.ranks[3]++;joueur.scoresranks[k]=3;}
-        else if (tab[x].temps <= this.paliers.plat) {joueur.ranks[4]++;joueur.scoresranks[k]=4;}
-        else if (tab[x].temps <= this.paliers.gold) {joueur.ranks[5]++;joueur.scoresranks[k]=5;}
-        else if (tab[x].temps <= this.paliers.silver) {joueur.ranks[6]++;joueur.scoresranks[k]=6;}
-        else if (tab[x].temps <= this.paliers.bronze) {joueur.ranks[7]++;joueur.scoresranks[k]=7;}
-        else if (tab[x].temps <= this.paliers.iron) {joueur.ranks[8]++;joueur.scoresranks[k]=8;}
-        else {joueur.ranks[9]++;joueur.scoresranks[k]=9;}
+        if (tab[x].temps <= this.paliers.chall) { joueur.ranks[0]++; joueur.scoresranks[k] = 0; }
+        else if (tab[x].temps <= this.paliers.gm) { joueur.ranks[1]++; joueur.scoresranks[k] = 1; }
+        else if (tab[x].temps <= this.paliers.master) { joueur.ranks[2]++; joueur.scoresranks[k] = 2; }
+        else if (tab[x].temps <= this.paliers.diam) { joueur.ranks[3]++; joueur.scoresranks[k] = 3; }
+        else if (tab[x].temps <= this.paliers.plat) { joueur.ranks[4]++; joueur.scoresranks[k] = 4; }
+        else if (tab[x].temps <= this.paliers.gold) { joueur.ranks[5]++; joueur.scoresranks[k] = 5; }
+        else if (tab[x].temps <= this.paliers.silver) { joueur.ranks[6]++; joueur.scoresranks[k] = 6; }
+        else if (tab[x].temps <= this.paliers.bronze) { joueur.ranks[7]++; joueur.scoresranks[k] = 7; }
+        else if (tab[x].temps <= this.paliers.iron) { joueur.ranks[8]++; joueur.scoresranks[k] = 8; }
+        else { joueur.ranks[9]++; joueur.scoresranks[k] = 9; }
       }
     }
-    if(!found)joueur.scores[joueur.scores.length] = " ";
+    if (!found) joueur.scores[joueur.scores.length] = " ";
     return joueur;
   }
 
@@ -629,23 +629,23 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, lastgame:this.allData[i].lastgametext, typelastgame:this.allData[i].typelastgame, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores:[], scoresranks:["-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1"] }
-        joueur = this.calculateClassement(this.pick_fr, joueur, pseudo,0);
-        joueur = this.calculateClassement(this.pick_en, joueur, pseudo,1);
-        joueur = this.calculateClassement(this.ban_fr, joueur, pseudo,2);
-        joueur = this.calculateClassement(this.ban_en, joueur, pseudo,3);
-        joueur = this.calculateClassement(this.rire_fr, joueur, pseudo,4);
-        joueur = this.calculateClassement(this.rire_en, joueur, pseudo,5);
-        joueur = this.calculateClassement(this.joke_fr, joueur, pseudo,6);
-        joueur = this.calculateClassement(this.joke_en, joueur, pseudo,7);
-        joueur = this.calculateClassement(this.taunt_fr, joueur, pseudo,8);
-        joueur = this.calculateClassement(this.taunt_en, joueur, pseudo,9);
-        joueur = this.calculateClassement(this.comp_all, joueur, pseudo,10);
-        joueur = this.calculateClassement(this.comp_aa, joueur, pseudo,11);
-        joueur = this.calculateClassement(this.comp_a, joueur, pseudo,12);
-        joueur = this.calculateClassement(this.comp_z, joueur, pseudo,13);
-        joueur = this.calculateClassement(this.comp_e, joueur, pseudo,14);
-        joueur = this.calculateClassement(this.comp_r, joueur, pseudo,15);
+        let joueur = { pseudo: pseudo, lastgame: this.allData[i].lastgametext, typelastgame: this.allData[i].typelastgame, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores: [], scoresranks: ["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1"] }
+        joueur = this.calculateClassement(this.pick_fr, joueur, pseudo, 0);
+        joueur = this.calculateClassement(this.pick_en, joueur, pseudo, 1);
+        joueur = this.calculateClassement(this.ban_fr, joueur, pseudo, 2);
+        joueur = this.calculateClassement(this.ban_en, joueur, pseudo, 3);
+        joueur = this.calculateClassement(this.rire_fr, joueur, pseudo, 4);
+        joueur = this.calculateClassement(this.rire_en, joueur, pseudo, 5);
+        joueur = this.calculateClassement(this.joke_fr, joueur, pseudo, 6);
+        joueur = this.calculateClassement(this.joke_en, joueur, pseudo, 7);
+        joueur = this.calculateClassement(this.taunt_fr, joueur, pseudo, 8);
+        joueur = this.calculateClassement(this.taunt_en, joueur, pseudo, 9);
+        joueur = this.calculateClassement(this.comp_all, joueur, pseudo, 10);
+        joueur = this.calculateClassement(this.comp_aa, joueur, pseudo, 11);
+        joueur = this.calculateClassement(this.comp_a, joueur, pseudo, 12);
+        joueur = this.calculateClassement(this.comp_z, joueur, pseudo, 13);
+        joueur = this.calculateClassement(this.comp_e, joueur, pseudo, 14);
+        joueur = this.calculateClassement(this.comp_r, joueur, pseudo, 15);
         joueur.score = 9 * joueur.ranks[0] + 8 * joueur.ranks[1] + 7 * joueur.ranks[2] + 6 * joueur.ranks[3] + 5 * joueur.ranks[4] + 4 * joueur.ranks[5] + 3 * joueur.ranks[6] + 2 * joueur.ranks[7] + joueur.ranks[8]
         this.classement.push(joueur);
       }
@@ -657,25 +657,24 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public goToMode(i:number)
-  {
+  public goToMode(i: number) {
     console.log(i);
-    if (i==0) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
-    else if (i==1) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
-    else if (i==2) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
-    else if (i==3) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
-    else if (i==4) { this.typeGame = "Rire"; this.specificTypeGame = "Français"; }
-    else if (i==5) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
-    else if (i==6) { this.typeGame = "Joke"; this.specificTypeGame = "Français"; }
-    else if (i==7) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
-    else if (i==8) { this.typeGame = "Taunt"; this.specificTypeGame = "Français"; }
-    else if (i==9) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
-    else if (i==10) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
-    else if (i==11) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
-    else if (i==12) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
-    else if (i==13) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
-    else if (i==14) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
-    else if (i==15) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
+    if (i == 0) { this.typeGame = "Pick"; this.specificTypeGame = "Français"; }
+    else if (i == 1) { this.typeGame = "Pick"; this.specificTypeGame = "Anglais"; }
+    else if (i == 2) { this.typeGame = "Ban"; this.specificTypeGame = "Français"; }
+    else if (i == 3) { this.typeGame = "Ban"; this.specificTypeGame = "Anglais"; }
+    else if (i == 4) { this.typeGame = "Rire"; this.specificTypeGame = "Français"; }
+    else if (i == 5) { this.typeGame = "Rire"; this.specificTypeGame = "Anglais"; }
+    else if (i == 6) { this.typeGame = "Joke"; this.specificTypeGame = "Français"; }
+    else if (i == 7) { this.typeGame = "Joke"; this.specificTypeGame = "Anglais"; }
+    else if (i == 8) { this.typeGame = "Taunt"; this.specificTypeGame = "Français"; }
+    else if (i == 9) { this.typeGame = "Taunt"; this.specificTypeGame = "Anglais"; }
+    else if (i == 10) { this.typeGame = "Compétences"; this.specificTypeGame = "Toutes"; }
+    else if (i == 11) { this.typeGame = "Compétences"; this.specificTypeGame = "Attaque"; }
+    else if (i == 12) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort A"; }
+    else if (i == 13) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort Z"; }
+    else if (i == 14) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort E"; }
+    else if (i == 15) { this.typeGame = "Compétences"; this.specificTypeGame = "Sort R"; }
     this.switch();
     this.topText();
   }
@@ -795,7 +794,7 @@ export class AppComponent implements OnInit {
   }
 
   public changeData() {
-    if(this.typeGame =="Général")this.specificTypeGame = "";
+    if (this.typeGame == "Général") this.specificTypeGame = "";
     else if (this.typeGame == "Compétences") this.specificTypeGame = "Toutes";
     else this.specificTypeGame = "Français";
     this.switch();
@@ -937,10 +936,13 @@ export class AppComponent implements OnInit {
 
             if (diff >= 24) {
               diff = Math.floor(diff / 24);
-              if (diff <= 1) {
+              if (diff <= 2) {
                 res = "Hier";
               }
-              else{
+              else if (diff <= 8) {
+                res = "Il y a " + diff + " jours";
+              }
+              else {
                 res = "Plus d'un jour";
               }
             }
@@ -1036,20 +1038,19 @@ export class AppComponent implements OnInit {
       this.getData();
     }
     this.end = false;
-    this.typeGame="Général";
+    this.typeGame = "Général";
     this.page = 'start';
     this.topText();
   }
 
-  public changeNom(nom:string)
-  {
-    if(nom!='')this.nomJoueur = nom;
+  public changeNom(nom: string) {
+    if (nom != '') this.nomJoueur = nom;
     this.topText();
   }
 
   public topText() {
     let end = "";
-    if(this.typeGame=="Général") end = "Classement Général";
+    if (this.typeGame == "Général") end = "Classement Général";
     else if (this.nomJoueur.length == 0) end = "Choisissez un pseudo";
     else if (this.invalidName()) end = 'Pseudo invalide';
     else if (this.end) {

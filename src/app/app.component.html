@@ -432,6 +432,9 @@
         <div class="tabScore2">
           <div class="ligne" style="opacity: 1 !important; background-color: '#00000080';">
             <div>
+              <p>Place</p>
+            </div>
+            <div>
               <p>Derniere Partie</p>
             </div>
             <div>
@@ -439,6 +442,9 @@
             </div>
             <div>
               <p>Elo</p>
+            </div>
+            <div>
+              <p>Score</p>
             </div>
             <div>
               <p>Pseudo</p>
@@ -451,16 +457,23 @@
           <div>
             <div class="ligne rank" *ngFor="let score of classement; let i = index" (mouseover)="focusLigne=i"
               [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgame.includes('instant')&&!score.lastgame.includes('heures')&&!score.lastgame.includes('minutes')}">
+              <div class="dergame">
+                <p>{{(i+1)}}</p>
+              </div>
               <div class="dergame clickableDiv" (click)="nomJoueur=score.pseudo">
                 <p style="text-align:left;">{{score.lastgame}}</p>
               </div>
               <div class="dergame clickableDiv" (click)="nomJoueur=score.pseudo">
-                <p >{{score.typelastgame}}</p>
+                <p>{{score.typelastgame}}</p>
               </div>
 
               <div class="clickableDiv" (click)="nomJoueur=score.pseudo">
                 <img src="./assets/elos/{{i<8?i:8}}.png"
                   style="width:22px;height:22px;position:absolute;left:4px;top:-3px" />
+              </div>
+
+              <div class="dergame">
+                <p>{{score.score}}</p>
               </div>
 
               <div class="clickableDiv pseudotab" (mouseover)="focusTab=-1" (click)="nomJoueur=score.pseudo"
@@ -474,7 +487,8 @@
               <div *ngFor="let temps of score.scores; let j=index" class="clickableCase" [ngClass]="{empty:temps==' '}"
                 (mouseover)="focusTab=j" (click)="nomJoueur=score.pseudo;goToMode(j)">
                 <p *ngIf="focusLigne!=i">{{temps==" "?"&nbsp;":temps}}</p>
-                <img *ngIf="focusLigne==i&&score.scoresranks[j]!='-1'" src="./assets/elos/{{ score.scoresranks[j] }}.png"
+                <img *ngIf="focusLigne==i&&score.scoresranks[j]!='-1'"
+                  src="./assets/elos/{{ score.scoresranks[j] }}.png"
                   style="width:22px;height:22px;position:absolute;left:8px;top:-3px" />
               </div>
             </div>

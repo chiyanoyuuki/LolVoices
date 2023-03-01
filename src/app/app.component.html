@@ -312,6 +312,16 @@
             {{ (page == "jeu" ? timer : timer2) | number : "1.1-1" }}
           </p>
           <div [ngClass]="{ paused: page == 'pause' }">
+            <div style="position:absolute;top:-15px;opacity:0.3;left:20px">
+              <div class="flex">
+                <p>Ctrl</p>
+                <p style="left:305px">Entrée</p>
+              </div>
+              <div class="flex" style="top:72px;left:180px">
+                <p>Tab (-10s)</p>
+                <p style="left:55px;">Echap</p>
+              </div>
+            </div>
             <div style="display: flex; justify-content: center" *ngIf="!end">
               <button (click)="play()" [ngClass]="{
                   disabled: audios[nbFound] && audios[nbFound].currentTime < 0.4

@@ -5,16 +5,16 @@
       <p class="gray">Nombre total de games jouées : {{ nbGames }}</p>
       <p class="gray">GameMaster à rejoint le salon</p>
       <p>
-        <span class="yellow">GameMaster </span> Je pense m'arrêter là sauf si on me demande mais ça me paraît pas mal
-        déjà :d
-      </p>
-      <p>
         <span class="yellow">GameMaster </span> N'hésitez pas à faire des retours ou à partager ce jeu à des amis qui
         pourraient apprécier :)
       </p>
       <p>
         <span class="yellow">GameMaster </span> Merci à tous, vous êtes les boss
         !
+      </p>
+      <p>
+        <span class="yellow">GameMaster </span> Petit tips : Gangplank peut s'écrire gp.. qui d'autre pourrait s'écrire
+        autrement..?
       </p>
     </div>
     <div
@@ -312,7 +312,7 @@
             {{ (page == "jeu" ? timer : timer2) | number : "1.1-1" }}
           </p>
           <div [ngClass]="{ paused: page == 'pause' }">
-            <div style="position:absolute;top:-15px;opacity:0.3;left:20px">
+            <div style="position:absolute;top:-15px;opacity:0.3;left:20px" *ngIf="!end">
               <div class="flex">
                 <p>Ctrl</p>
                 <p style="left:305px">Entrée</p>

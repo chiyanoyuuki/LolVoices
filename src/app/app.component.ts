@@ -66,6 +66,7 @@ export class AppComponent implements OnInit {
   public specificTypeGame = '';
   public actualData: any;
   public nbGames = 0;
+  public langue = "Français";
   public classement: { pseudo: string, score: number, typelastgame?: string, actif?: boolean, tempstotal?: number, nbgame?: number, ranks: number[], lastgame: string, scores: string[], scoresranks: string[] }[] = [];
   public creatures = [
     'Gromp',
@@ -796,7 +797,7 @@ export class AppComponent implements OnInit {
   public changeData() {
     if (this.typeGame == "Général") this.specificTypeGame = "";
     else if (this.typeGame == "Compétences") this.specificTypeGame = "Toutes";
-    else this.specificTypeGame = "Français";
+    else this.specificTypeGame = "Anglais";
     this.switch();
   }
 
@@ -1050,16 +1051,17 @@ export class AppComponent implements OnInit {
 
   public topText() {
     let end = "";
-    if (this.typeGame == "Général") end = "Classement Général";
-    else if (this.nomJoueur.length == 0) end = "Choisissez un pseudo";
+    if (this.nomJoueur.length == 0) end = "Choisissez un pseudo";
     else if (this.invalidName()) end = 'Pseudo invalide';
+    else if (this.typeGame == "Général") end = "Choisissez un type de jeu";
+    else if (this.page == 'start') {
+      end = 'Choisissez un mode de jeu';
+    }
     else if (this.end) {
       if (this.newRecord != -1)
         end = 'Record battu : ' + this.newRecord.toFixed(1) + 's gagnées';
       else end = 'Bien joué !';
-    } else if (this.page == 'start') {
-      end = 'Choisissez un mode de jeu';
-    } else if (this.page == 'pause') {
+    }  else if (this.page == 'pause') {
       end = 'Attention ! La partie va commencer !';
     } else if (this.page == 'jeu') {
       //chall essaie d'avoir top1

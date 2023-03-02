@@ -1,20 +1,16 @@
 <div class="flex justify-content:center" style="margin: 2% 0px">
   <div [ngClass]="{ pickBg: true }" style="overflow: hidden">
     <div class="chat">
-      <p class="gray">Modes de jeu disponibles : {{ nbModes }}</p>
-      <p class="gray">Nombre total de games jouées : {{ nbGames }}</p>
-      <p class="gray">GameMaster à rejoint le salon</p>
+      <p class="gray">{{langue=='Anglais'?'Game mode available':'Modes de jeu disponibles'}} : {{ nbModes }}</p>
+      <p class="gray">{{langue=='Anglais'?'Total game played':'Nombre total de games jouées'}} : {{ nbGames }}</p>
+      <p class="gray">{{langue=='Anglais'?'GameMaster joined the lobby':'GameMaster à rejoint le salon'}}</p>
       <p>
-        <span class="yellow">GameMaster </span> N'hésitez pas à faire des retours ou à partager ce jeu à des amis qui
-        pourraient apprécier :)
+        <span class="yellow">GameMaster </span> {{langue=='Anglais'?'Share it with your friends':'N\'hésitez pas à faire des retours ou à partager ce jeu à des amis qui
+        pourraient apprécier'}} :)
       </p>
       <p>
-        <span class="yellow">GameMaster </span> Merci à tous, vous êtes les boss
-        !
-      </p>
-      <p>
-        <span class="yellow">GameMaster </span> Petit tips : Gangplank peut s'écrire gp.. qui d'autre pourrait s'écrire
-        autrement..?
+        <span class="yellow">GameMaster </span> {{langue=='Anglais'?'Little advice : You can write gp for Gangplank..':'Petit tips : Gangplank peut s\'écrire gp.. qui d\'autre pourrait s\'écrire
+        autrement..?'}}
       </p>
     </div>
     <div
@@ -105,7 +101,7 @@
               <div *ngIf="score.nbgame&&score.nbgame<nbModes"
                 style="position: absolute;right: -15px;top: 70px;opacity:0.6;">
                 <p style="white-space: nowrap;" (click)="clickModeRestant(score.pseudo)" class="clickableText">
-                  {{ nbModes-score.nbgame }} modes restants
+                  {{ nbModes-score.nbgame }} {{langue=='Anglais'?'game mode left':'modes restants'}}
                 </p>
               </div>
             </div>
@@ -168,7 +164,7 @@
               <div *ngIf="score.nbgame&&score.nbgame<nbModes"
                 style="opacity:0.6;position: absolute;left: -15px;top: 70px;">
                 <p style="white-space: nowrap;" (click)="clickModeRestant(score.pseudo)" class="clickableText">
-                  {{ nbModes-score.nbgame }} modes restants
+                  {{ nbModes-score.nbgame }} {{langue=='Anglais'?'game mode left':'modes restants'}}
                 </p>
               </div>
 
@@ -319,7 +315,7 @@
               </div>
               <div class="flex" style="top:72px;left:180px">
                 <p>Tab (-10s)</p>
-                <p style="left:55px;">Echap</p>
+                <p style="left:55px;">{{langue=='Anglais'?'Escape':'Echap'}}</p>
               </div>
             </div>
             <div style="display: flex; justify-content: center" *ngIf="!end">
@@ -333,18 +329,18 @@
               <button (click)="validate()">Ok</button>
             </div>
             <div style="display: flex; justify-content: center">
-              <button (click)="clickMenu()">Menu principal</button>
-              <button *ngIf="!end" (click)="passer()">Passer</button>
-              <button (click)="clickReplay()">Rejouer</button>
+              <button (click)="clickMenu()">{{langue=='Anglais'?'Main menu':'Menu principal'}}</button>
+              <button *ngIf="!end" (click)="passer()">{{langue=='Anglais'?'Skip':'Passer'}}</button>
+              <button (click)="clickReplay()">{{langue=='Anglais'?'Play again':'Rejouer'}}</button>
             </div>
           </div>
         </div>
       </div>
       <div *ngIf="page == 'start'">
         <div style="display:flex;justify-content: center;position:absolute;top:-15px;opacity:0.3;left:60px">
-          <p>Pseudo désiré</p>
-          <p style="margin-left:62px;">Type de jeu</p>
-          <p style="margin-left:70px;">Mode</p>
+          <p>{{langue=='Anglais'?'Chosen name':'Pseudo désiré'}}</p>
+          <p style="margin-left:62px;">{{langue=='Anglais'?'Game type':'Type de jeu'}}</p>
+          <p style="margin-left:70px;">{{langue=='Anglais'?'Game mode':'Mode'}}</p>
         </div>
         <div style="display: flex; justify-content: center">
           <input style="width:130px;" type="text" [(ngModel)]="nomJoueur" (ngModelChange)="changeNom('')"
@@ -491,7 +487,7 @@
                 <span class="statex" [style.background-color]="score.actif ? 'green' : '#bb303050'" style="top:3px">
                   &nbsp;
                 </span>
-                <p style="text-align:left;left:15px;">{{score.pseudo}}</p>
+                <p style="text-align:left;left:15px;white-space:nowrap">{{score.pseudo}}</p>
               </div>
 
               <div *ngFor="let temps of score.scores; let j=index" class="clickableCase" [ngClass]="{empty:temps==' '}"

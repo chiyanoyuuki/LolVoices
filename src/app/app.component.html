@@ -378,7 +378,7 @@
             </ng-container>
 
           </select>
-          <button (click)="clickStart()" [ngClass]="{ disabledButton: invalidName() }" [disabled]="invalidName()">
+          <button (click)="clickStart()" [ngClass]="{ disabledButton: invalidName() || typeGame=='Général' }" [disabled]="invalidName() || typeGame=='Général'">
             Jouer
           </button>
         </div>

@@ -1115,6 +1115,10 @@ export class AppComponent implements OnInit {
     return true;
   }
 
+  public noGameSelected(){
+    return this.specificTypeGame != "";
+  }
+
   passer() {
     this.passed[this.nbFound] = true;
     this.timer += 10;

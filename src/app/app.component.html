@@ -403,7 +403,7 @@
       <div style="margin-top: 20px; display: flex; justify-content: center" *ngIf="typeGame!='Général'">
         <div [style.max-height]="page == 'start' ? '300px' : '380px'" class="tabScore">
           <div class="ligne" style="opacity: 1 !important; background-color: '#00000080'">
-            <p style="display: none"></p>
+            <p>Place</p>
             <p>Rang</p>
             <p style="padding: 0px; border: none"></p>
             <p>Pseudo</p>
@@ -418,6 +418,7 @@
               [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgametext.includes('instant')&&!score.lastgametext.includes('heures')&&!score.lastgametext.includes('minutes')}">
               <img src="./assets/elos/{{ getRang(score) }}.png" class="elo" />
               <p>&nbsp;</p>
+              <p>{{(i+1)}}</p>
               <p class="state" [style.background-color]="data[i].actif ? 'green' : '#bb303050'">
                 &nbsp;
               </p>

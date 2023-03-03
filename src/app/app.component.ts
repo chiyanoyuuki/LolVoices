@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
   public joke_en: Data[] = [];
   public rire_en: Data[] = [];
   public taunt_en: Data[] = [];
+  public bestoverall = "";
   public joke_fr: Data[] = [];
   public rire_fr: Data[] = [];
   public taunt_fr: Data[] = [];
@@ -774,6 +775,17 @@ export class AppComponent implements OnInit {
     }
   }
 
+  public getBestOverall()
+  {
+    let tmp = this.allData.filter((d:any)=>d.temps<50);
+    tmp.sort((a: any, b: any) => {
+      if (a.temps < b.temps) return -1;
+      else return 1;
+    });
+    console.log(tmp);
+    this.bestoverall = tmp[0].pseudo + " : " + tmp[0].temps +"s ("+tmp[0].type + " " + tmp[0].langue+")";
+  }
+
   public switch() {
     if (this.typeGame == 'Pick' && this.specificTypeGame == "Anglais") this.data = this.pick_en;
     else if (this.typeGame == 'Pick' && this.specificTypeGame == "Français") this.data = this.pick_fr;
@@ -904,6 +916,7 @@ export class AppComponent implements OnInit {
         this.changeSpecificData();
         this.checkValues();
         this.getClassements();
+        this.getBestOverall();
       });
   }
 

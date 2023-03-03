@@ -12,6 +12,9 @@
         <span class="yellow">GameMaster </span> {{langue=='Anglais'?'Little advice : You can write gp for Gangplank..':'Petit tips : Gangplank peut s\'écrire gp.. qui d\'autre pourrait s\'écrire
         autrement..?'}}
       </p>
+      <p>
+        <span class="yellow">Honor </span> {{bestoverall}}
+      </p>
     </div>
     <div
       style="position: absolute;right: 0px;bottom: -10px;box-shadow: 1px 1px 30px black;padding: 5px;padding-bottom: 100px;">
@@ -403,7 +406,7 @@
       <div style="margin-top: 20px; display: flex; justify-content: center" *ngIf="typeGame!='Général'">
         <div [style.max-height]="page == 'start' ? '300px' : '380px'" class="tabScore">
           <div class="ligne" style="opacity: 1 !important; background-color: '#00000080'">
-            <p>Place</p>
+            <p style="display: none"></p>
             <p>Rang</p>
             <p style="padding: 0px; border: none"></p>
             <p>Pseudo</p>
@@ -418,7 +421,6 @@
               [ngClass]="{ selected: nomJoueur == score.pseudo,  grised:!score.lastgametext.includes('instant')&&!score.lastgametext.includes('heures')&&!score.lastgametext.includes('minutes')}">
               <img src="./assets/elos/{{ getRang(score) }}.png" class="elo" />
               <p>&nbsp;</p>
-              <p>{{(i+1)}}</p>
               <p class="state" [style.background-color]="data[i].actif ? 'green' : '#bb303050'">
                 &nbsp;
               </p>

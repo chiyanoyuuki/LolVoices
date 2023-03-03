@@ -631,7 +631,7 @@ export class AppComponent implements OnInit {
       let pseudo = this.allData[i].pseudo;
       if (!tmp.includes(pseudo)) {
         tmp.push(pseudo);
-        let joueur = { pseudo: pseudo, lastgame: this.allData[i].lastgametext, typelastgame: this.allData[i].typelastgame, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores: [], scoresranks: ["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1"] }
+        let joueur = { pseudo: pseudo, lastplayed:this.allData[i].lastgame, lastgame: this.allData[i].lastgametext, typelastgame: this.allData[i].typelastgame, score: 0, actif: this.allData[i].actif, nbgame: 0, tempstotal: 0, ranks: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], scores: [], scoresranks: ["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1"] }
         joueur = this.calculateClassement(this.pick_fr, joueur, pseudo, 0);
         joueur = this.calculateClassement(this.pick_en, joueur, pseudo, 1);
         joueur = this.calculateClassement(this.ban_fr, joueur, pseudo, 2);
@@ -657,6 +657,32 @@ export class AppComponent implements OnInit {
       else if (a.nbgame != b.nbgame) return (b.nbgame < a.nbgame) ? -2 : 2;
       else return (b.tempstotal > a.tempstotal) ? -1 : 1;
     });
+  }
+
+  public sorting(i:number)
+  {
+    if(this.nomJoueur!=".3")return;
+    if(i==0)
+    {
+      this.classement.sort((a: any, b: any) => {
+        if (a.lastplayed < b.lastplayed) return 1;
+        else return -1;
+      });
+    }
+    else if(i==1)
+    {
+      this.classement.sort((a: any, b: any) => {
+        if (a.score < b.score) return 1;
+        else return -1;
+      });
+    }
+    else if(i==2)
+    {
+      this.classement.sort((a: any, b: any) => {
+        if (a.pseudo < b.pseudo) return -1;
+        else return 1;
+      });
+    }
   }
 
   public goToMode(i: number) {
@@ -782,7 +808,6 @@ export class AppComponent implements OnInit {
       if (a.temps < b.temps) return -1;
       else return 1;
     });
-    console.log(tmp);
     this.bestoverall = tmp[0].pseudo + " : " + tmp[0].temps +"s ("+tmp[0].type + " " + tmp[0].langue+")";
   }
 

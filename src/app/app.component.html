@@ -443,7 +443,7 @@
             <div>
               <p>Place</p>
             </div>
-            <div>
+            <div class="" (click)="sorting(0)">
               <p>Derniere Partie</p>
             </div>
             <div>
@@ -452,10 +452,10 @@
             <div>
               <p>Elo</p>
             </div>
-            <div>
+            <div  class="" (click)="sorting(1)">
               <p>Score</p>
             </div>
-            <div>
+            <div  class="" (click)="sorting(2)">
               <p>Pseudo</p>
             </div>
             <div *ngFor="let mode of modes; let i=index" class="clickableDiv" [ngClass]="{hoveredDiv:i==focusTab}"

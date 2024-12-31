@@ -1195,7 +1195,9 @@ export class AppComponent implements OnInit {
     let langue = this.getLangue();
     from(
       fetch(
-        'http://chiyanh.cluster031.hosting.ovh.net/record?pseudo=' +
+        'http' +
+          (isDevMode() ? '' : 's') +
+          '://chiyanh.cluster031.hosting.ovh.net/record?pseudo=' +
           this.nomJoueur.replaceAll(' ', '%20') +
           '&temps=' +
           this.timer.toFixed(1) +
@@ -1227,7 +1229,9 @@ export class AppComponent implements OnInit {
     let langue = this.getLangue();
     from(
       fetch(
-        'http://chiyanh.cluster031.hosting.ovh.net/addgame?pseudo=' +
+        'http' +
+          (isDevMode() ? '' : 's') +
+          '://chiyanh.cluster031.hosting.ovh.net/addgame?pseudo=' +
           this.nomJoueur.replaceAll(' ', '%20') +
           '&type=' +
           type +
@@ -1254,7 +1258,9 @@ export class AppComponent implements OnInit {
     let langue = this.getLangue();
     from(
       fetch(
-        'http://chiyanh.cluster031.hosting.ovh.net/insert?nbgame=1&pseudo=' +
+        'http' +
+          (isDevMode() ? '' : 's') +
+          '://chiyanh.cluster031.hosting.ovh.net/insert?nbgame=1&pseudo=' +
           this.nomJoueur.replaceAll(' ', '%20') +
           '&temps=' +
           this.timer.toFixed(1) +
@@ -1283,7 +1289,11 @@ export class AppComponent implements OnInit {
     if (this.debug) return;
     console.log('getData()');
     this.http
-      .get<any>('http://chiyanh.cluster031.hosting.ovh.net/select')
+      .get<any>(
+        'http' +
+          (isDevMode() ? '' : 's') +
+          '://chiyanh.cluster031.hosting.ovh.net/select'
+      )
       .subscribe((data) => {
         this.allData = data;
         this.initData();
